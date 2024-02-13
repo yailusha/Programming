@@ -14,6 +14,7 @@ namespace Programming.Model
         Black,
         White,
         Red,
-        Purple
+        Purple,
+        Orange
     }
 }
