@@ -1,4 +1,5 @@
 using Programming.Model;
+using System.Globalization;
 
 namespace Programming
 {
@@ -54,11 +55,17 @@ namespace Programming
         {
             Weekday weekday;
             string day = TextToParse.Text;
+            int numbers;
+            if (int.TryParse(day, out numbers)) 
+            {
+                NumberOfWeekday.Text = "Введите день недели, а не число!";
+                return;
+            }
+            
             if (Enum.TryParse(day, out weekday))
                 NumberOfWeekday.Text = $"Это день недели ({weekday} = {(int)weekday})";
             else
                 NumberOfWeekday.Text = "Нет такого дня недели";
-
         }
 
         private void Weekday_TextChanged(object sender, EventArgs e)
