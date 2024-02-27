@@ -101,6 +101,15 @@
             label1.TabIndex = 3;
             label1.Text = "Choose enumeration:";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(6, 19);
+            label1.Name = "label1";
+            label1.Size = new Size(121, 15);
+            label1.TabIndex = 3;
+            label1.Text = "Choose enumeration:";
+            // 
             // label2
             // 
             label2.AutoSize = true;
