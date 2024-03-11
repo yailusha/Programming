@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             groupBox1 = new GroupBox();
             label1 = new Label();
@@ -46,22 +45,25 @@
             ChooseSeason = new Button();
             label5 = new Label();
             comboBox1 = new ComboBox();
-            tabControl1.SuspendLayout();
+            tabControl1 = new TabControl();
+            tabPage2 = new TabPage();
+            groupBox3 = new GroupBox();
+            rectangleButton = new Button();
+            textBox3 = new TextBox();
+            label8 = new Label();
+            textBox2 = new TextBox();
+            label7 = new Label();
+            textBox1 = new TextBox();
+            label6 = new Label();
+            rectanglesListBox = new ListBox();
             tabPage1.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SeasonHandle.SuspendLayout();
+            tabControl1.SuspendLayout();
+            tabPage2.SuspendLayout();
+            groupBox3.SuspendLayout();
             SuspendLayout();
-            // 
-            // tabControl1
-            // 
-            tabControl1.Controls.Add(tabPage1);
-            tabControl1.Dock = DockStyle.Fill;
-            tabControl1.Location = new Point(0, 0);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(800, 450);
-            tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -91,15 +93,6 @@
             groupBox1.TabIndex = 6;
             groupBox1.TabStop = false;
             groupBox1.Text = "Enumerations";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(6, 19);
-            label1.Name = "label1";
-            label1.Size = new Size(121, 15);
-            label1.TabIndex = 3;
-            label1.Text = "Choose enumeration:";
             // 
             // label1
             // 
@@ -249,6 +242,113 @@
             comboBox1.TabIndex = 0;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Dock = DockStyle.Fill;
+            tabControl1.Location = new Point(0, 0);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(800, 450);
+            tabControl1.TabIndex = 0;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Controls.Add(groupBox3);
+            tabPage2.Location = new Point(4, 24);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(792, 422);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "Classes";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(rectangleButton);
+            groupBox3.Controls.Add(textBox3);
+            groupBox3.Controls.Add(label8);
+            groupBox3.Controls.Add(textBox2);
+            groupBox3.Controls.Add(label7);
+            groupBox3.Controls.Add(textBox1);
+            groupBox3.Controls.Add(label6);
+            groupBox3.Controls.Add(rectanglesListBox);
+            groupBox3.Location = new Point(12, 21);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(348, 300);
+            groupBox3.TabIndex = 0;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Rectangles";
+            // 
+            // rectangleButton
+            // 
+            rectangleButton.Location = new Point(165, 258);
+            rectangleButton.Name = "rectangleButton";
+            rectangleButton.Size = new Size(108, 23);
+            rectangleButton.TabIndex = 7;
+            rectangleButton.Text = "Find";
+            rectangleButton.UseVisualStyleBackColor = true;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(165, 128);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(108, 23);
+            textBox3.TabIndex = 6;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(165, 110);
+            label8.Name = "label8";
+            label8.Size = new Size(46, 15);
+            label8.TabIndex = 5;
+            label8.Text = "Colour:";
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(165, 84);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(108, 23);
+            textBox2.TabIndex = 4;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(165, 66);
+            label7.Name = "label7";
+            label7.Size = new Size(42, 15);
+            label7.TabIndex = 3;
+            label7.Text = "Width:";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(165, 40);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(108, 23);
+            textBox1.TabIndex = 2;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(165, 22);
+            label6.Name = "label6";
+            label6.Size = new Size(47, 15);
+            label6.TabIndex = 1;
+            label6.Text = "Length:";
+            // 
+            // rectanglesListBox
+            // 
+            rectanglesListBox.FormattingEnabled = true;
+            rectanglesListBox.ItemHeight = 15;
+            rectanglesListBox.Items.AddRange(new object[] { "Rectangle 1", "Rectangle 2", "Rectangle 3", "Rectangle 4", "Rectangle 5" });
+            rectanglesListBox.Location = new Point(6, 22);
+            rectanglesListBox.Name = "rectanglesListBox";
+            rectanglesListBox.Size = new Size(153, 259);
+            rectanglesListBox.TabIndex = 0;
+            rectanglesListBox.SelectedIndexChanged += rectanglesListBox_SelectedIndexChanged;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -258,7 +358,6 @@
             Name = "MainForm";
             Text = "Programming Demo";
             Load += MainForm_Load;
-            tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -266,28 +365,42 @@
             groupBox2.PerformLayout();
             SeasonHandle.ResumeLayout(false);
             SeasonHandle.PerformLayout();
+            tabControl1.ResumeLayout(false);
+            tabPage2.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private TabControl tabControl1;
         private TabPage tabPage1;
-        private ListBox ValuesListBox;
-        private ListBox EnumsListBox;
-        private TextBox IntValue;
-        private Label label3;
-        private Label label2;
-        private Label label1;
         private GroupBox groupBox1;
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private ListBox EnumsListBox;
+        private ListBox ValuesListBox;
+        private TextBox IntValue;
         private GroupBox groupBox2;
-        private Label label4;
-        private TextBox TextToParse;
         private TextBox NumberOfWeekday;
         private Button button1;
+        private Label label4;
+        private TextBox TextToParse;
         private GroupBox SeasonHandle;
+        private Button ChooseSeason;
         private Label label5;
         private ComboBox comboBox1;
-        private Button ChooseSeason;
+        private TabControl tabControl1;
+        private TabPage tabPage2;
+        private GroupBox groupBox3;
+        private Button rectangleButton;
+        private TextBox textBox3;
+        private Label label8;
+        private TextBox textBox2;
+        private Label label7;
+        private TextBox textBox1;
+        private Label label6;
+        private ListBox rectanglesListBox;
     }
 }

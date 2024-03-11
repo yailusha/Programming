@@ -1,17 +1,22 @@
 using Programming.Model;
 using System.Globalization;
+using Rectangle = Programming.Model.Rectangle;
 
 namespace Programming
 {
     public partial class MainForm : Form
     {
+        private Rectangle[] _rectangles;
+        private Rectangle _currentRectangle;
         public MainForm()
         {
             InitializeComponent();
+
         }
         private readonly Type[] _typeModel = new Type[] { typeof(Colours),
         typeof(FormOfTheStudentEducation), typeof(Genre), typeof (SeasonOfYear),
         typeof(SmartphoneManufacturers), typeof(Weekday)};
+
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -56,12 +61,12 @@ namespace Programming
             Weekday weekday;
             string day = TextToParse.Text;
             int numbers;
-            if (int.TryParse(day, out numbers)) 
+            if (int.TryParse(day, out numbers))
             {
                 NumberOfWeekday.Text = "¬ведите день недели, а не число!";
                 return;
             }
-            
+
             if (Enum.TryParse(day, out weekday))
                 NumberOfWeekday.Text = $"Ёто день недели ({weekday} = {(int)weekday})";
             else
@@ -91,7 +96,7 @@ namespace Programming
         private void ChooseSeason_Click(object sender, EventArgs e)
         {
             switch (comboBox1.SelectedIndex)
-            { 
+            {
                 case 0:
                     MessageBox.Show("’ќЋќƒЌќ!");
                     break;
@@ -105,6 +110,11 @@ namespace Programming
                     this.BackColor = System.Drawing.Color.Orange;
                     break;
             }
+        }
+
+        private void rectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
