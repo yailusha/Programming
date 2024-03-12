@@ -10,8 +10,17 @@ namespace Programming
         private Rectangle _currentRectangle;
         public MainForm()
         {
+            Random random = new Random();
+            _rectangles = new Rectangle[5];
+            string[] colours = new string[] { "green", "red", "black", "purple", "orange" };
+            for (int i = 0; i < 5; i++)
+            {
+                int length = random.Next(1, 100);
+                int width = random.Next(1, 100);
+                int selectedColour = random.Next(0, colours.Length);
+                _rectangles[i] = new Rectangle(length, width, colours[selectedColour]);
+            }
             InitializeComponent();
-
         }
         private readonly Type[] _typeModel = new Type[] { typeof(Colours),
         typeof(FormOfTheStudentEducation), typeof(Genre), typeof (SeasonOfYear),
@@ -112,9 +121,34 @@ namespace Programming
             }
         }
 
-        private void rectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int selectedIndex = RectanglesListBox.SelectedIndex;
+             _currentRectangle = _rectangles[selectedIndex];
+            lengthTextBox.Text = _currentRectangle.Length.ToString();
+            widthTextBox.Text = _currentRectangle.Width.ToString();
+            colourTextBox.Text = _currentRectangle.Colour.ToString();
+        }   
 
+        private void lengthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _currentRectangle.Length = double.Parse(lengthTextBox.Text);
+
+            try
+            {
+                double number = double.Parse(lengthTextBox.Text);
+
+            }
+        }
+
+        private void widthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _currentRectangle.Width = double.Parse(widthTextBox.Text);
+        }
+
+        private void colourTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _currentRectangle.Colour = colourTextBox.Text;
         }
     }
 }

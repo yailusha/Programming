@@ -49,13 +49,13 @@
             tabPage2 = new TabPage();
             groupBox3 = new GroupBox();
             rectangleButton = new Button();
-            textBox3 = new TextBox();
+            colourTextBox = new TextBox();
             label8 = new Label();
-            textBox2 = new TextBox();
+            widthTextBox = new TextBox();
             label7 = new Label();
-            textBox1 = new TextBox();
+            lengthTextBox = new TextBox();
             label6 = new Label();
-            rectanglesListBox = new ListBox();
+            RectanglesListBox = new ListBox();
             tabPage1.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -267,13 +267,13 @@
             // groupBox3
             // 
             groupBox3.Controls.Add(rectangleButton);
-            groupBox3.Controls.Add(textBox3);
+            groupBox3.Controls.Add(colourTextBox);
             groupBox3.Controls.Add(label8);
-            groupBox3.Controls.Add(textBox2);
+            groupBox3.Controls.Add(widthTextBox);
             groupBox3.Controls.Add(label7);
-            groupBox3.Controls.Add(textBox1);
+            groupBox3.Controls.Add(lengthTextBox);
             groupBox3.Controls.Add(label6);
-            groupBox3.Controls.Add(rectanglesListBox);
+            groupBox3.Controls.Add(RectanglesListBox);
             groupBox3.Location = new Point(12, 21);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(348, 300);
@@ -290,12 +290,13 @@
             rectangleButton.Text = "Find";
             rectangleButton.UseVisualStyleBackColor = true;
             // 
-            // textBox3
+            // colourTextBox
             // 
-            textBox3.Location = new Point(165, 128);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(108, 23);
-            textBox3.TabIndex = 6;
+            colourTextBox.Location = new Point(165, 128);
+            colourTextBox.Name = "colourTextBox";
+            colourTextBox.Size = new Size(108, 23);
+            colourTextBox.TabIndex = 6;
+            colourTextBox.TextChanged += colourTextBox_TextChanged;
             // 
             // label8
             // 
@@ -306,12 +307,13 @@
             label8.TabIndex = 5;
             label8.Text = "Colour:";
             // 
-            // textBox2
+            // widthTextBox
             // 
-            textBox2.Location = new Point(165, 84);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(108, 23);
-            textBox2.TabIndex = 4;
+            widthTextBox.Location = new Point(165, 84);
+            widthTextBox.Name = "widthTextBox";
+            widthTextBox.Size = new Size(108, 23);
+            widthTextBox.TabIndex = 4;
+            widthTextBox.TextChanged += widthTextBox_TextChanged;
             // 
             // label7
             // 
@@ -322,12 +324,13 @@
             label7.TabIndex = 3;
             label7.Text = "Width:";
             // 
-            // textBox1
+            // lengthTextBox
             // 
-            textBox1.Location = new Point(165, 40);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(108, 23);
-            textBox1.TabIndex = 2;
+            lengthTextBox.Location = new Point(165, 40);
+            lengthTextBox.Name = "lengthTextBox";
+            lengthTextBox.Size = new Size(108, 23);
+            lengthTextBox.TabIndex = 2;
+            lengthTextBox.TextChanged += lengthTextBox_TextChanged;
             // 
             // label6
             // 
@@ -338,16 +341,16 @@
             label6.TabIndex = 1;
             label6.Text = "Length:";
             // 
-            // rectanglesListBox
+            // RectanglesListBox
             // 
-            rectanglesListBox.FormattingEnabled = true;
-            rectanglesListBox.ItemHeight = 15;
-            rectanglesListBox.Items.AddRange(new object[] { "Rectangle 1", "Rectangle 2", "Rectangle 3", "Rectangle 4", "Rectangle 5" });
-            rectanglesListBox.Location = new Point(6, 22);
-            rectanglesListBox.Name = "rectanglesListBox";
-            rectanglesListBox.Size = new Size(153, 259);
-            rectanglesListBox.TabIndex = 0;
-            rectanglesListBox.SelectedIndexChanged += rectanglesListBox_SelectedIndexChanged;
+            RectanglesListBox.FormattingEnabled = true;
+            RectanglesListBox.ItemHeight = 15;
+            RectanglesListBox.Items.AddRange(new object[] { "Rectangle 1", "Rectangle 2", "Rectangle 3", "Rectangle 4", "Rectangle 5" });
+            RectanglesListBox.Location = new Point(6, 22);
+            RectanglesListBox.Name = "RectanglesListBox";
+            RectanglesListBox.Size = new Size(153, 259);
+            RectanglesListBox.TabIndex = 0;
+            RectanglesListBox.SelectedIndexChanged += RectanglesListBox_SelectedIndexChanged;
             // 
             // MainForm
             // 
@@ -395,12 +398,12 @@
         private TabPage tabPage2;
         private GroupBox groupBox3;
         private Button rectangleButton;
-        private TextBox textBox3;
+        private TextBox colourTextBox;
         private Label label8;
-        private TextBox textBox2;
+        private TextBox widthTextBox;
         private Label label7;
-        private TextBox textBox1;
+        private TextBox lengthTextBox;
         private Label label6;
-        private ListBox rectanglesListBox;
+        private ListBox RectanglesListBox;
     }
 }

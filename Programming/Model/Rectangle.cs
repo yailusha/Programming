@@ -50,7 +50,7 @@ namespace Programming.Model
                         break;
                     }
                 }
-                if (flag || string.IsNullOrEmpty(colour))
+                if (flag || string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentException("Такого значения не может быть");
                 }
