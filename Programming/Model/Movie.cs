@@ -8,22 +8,22 @@ namespace Programming.Model
 {
     internal class Movie
     {
-        private string name;
+        private string title;
         private int durationInMinutes;
         private int yearOfRelease;
         private string genre;
         private double rating;
 
-        public string Name
+        public string Title
         {
-            get { return name; }
+            get { return title; }
             set
             {
                 if(string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentException("Название не может быть пустым");
                 }
-                name = value;
+                title = value;
             }
         }
         public int DurationInMinutes
@@ -65,7 +65,7 @@ namespace Programming.Model
                     }
                 }
 
-                if (flag || string.IsNullOrEmpty(value)) 
+                if (flag) 
                 {
                     throw new ArgumentException("Введено неверное значение");
                 }
@@ -84,9 +84,9 @@ namespace Programming.Model
                 rating = value;
             }
         }
-        public Movie(string name, int durationInMinutes, int yearOfRelease, string genre, double rating)
+        public Movie(string title, int durationInMinutes, int yearOfRelease, string genre, double rating)
         {
-            Name = name;
+            Title = title;
             DurationInMinutes = durationInMinutes;
             YearOfRelease = yearOfRelease;
             Genre = genre;
