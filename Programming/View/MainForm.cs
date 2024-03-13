@@ -124,31 +124,78 @@ namespace Programming
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = RectanglesListBox.SelectedIndex;
-             _currentRectangle = _rectangles[selectedIndex];
+            _currentRectangle = _rectangles[selectedIndex];
             lengthTextBox.Text = _currentRectangle.Length.ToString();
             widthTextBox.Text = _currentRectangle.Width.ToString();
             colourTextBox.Text = _currentRectangle.Colour.ToString();
-        }   
+        }
 
         private void lengthTextBox_TextChanged(object sender, EventArgs e)
         {
-            _currentRectangle.Length = double.Parse(lengthTextBox.Text);
-
             try
             {
-                double number = double.Parse(lengthTextBox.Text);
-
+                double length = double.Parse(lengthTextBox.Text);
+                if (length < 0)
+                {
+                    throw new ArgumentOutOfRangeException("Длина меньше нуля быть не может");
+                }
+                _currentRectangle.Length = length;
+                lengthTextBox.BackColor = Color.White;
+            }
+            catch (FormatException)
+            {
+                lengthTextBox.BackColor = Color.LightPink;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                lengthTextBox.BackColor = Color.LightPink;
             }
         }
 
         private void widthTextBox_TextChanged(object sender, EventArgs e)
         {
-            _currentRectangle.Width = double.Parse(widthTextBox.Text);
+            try
+            {
+                double width = double.Parse(widthTextBox.Text);
+                if (width < 0)
+                {
+                    throw new ArgumentOutOfRangeException("Длина меньше нуля быть не может");
+                }
+                _currentRectangle.Length = width;
+                widthTextBox.BackColor = Color.White;
+            }
+            catch (FormatException)
+            {
+                widthTextBox.BackColor = Color.LightPink;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                widthTextBox.BackColor = Color.LightPink;
+            }
         }
 
         private void colourTextBox_TextChanged(object sender, EventArgs e)
         {
             _currentRectangle.Colour = colourTextBox.Text;
+        }
+        private int FindRectangleWithMaxWidth()
+        {
+            double maxWidth = _rectangles[0].Width;
+            int indexOfMaxWidth = 0;
+            for (int i = 1; i < _rectangles.Length; i++)
+            {
+                if (maxWidth < _rectangles[i].Width)
+                {
+                    maxWidth = _rectangles[i].Width;
+                    indexOfMaxWidth = i;
+                }
+            }
+            return indexOfMaxWidth;
+        }
+
+        private void rectangleButton_Click(object sender, EventArgs e)
+        {
+            RectanglesListBox.SelectedIndex = FindRectangleWithMaxWidth();
         }
     }
 }

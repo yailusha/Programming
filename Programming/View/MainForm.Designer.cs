@@ -56,6 +56,17 @@
             lengthTextBox = new TextBox();
             label6 = new Label();
             RectanglesListBox = new ListBox();
+            groupBox4 = new GroupBox();
+            listBox1 = new ListBox();
+            label9 = new Label();
+            textBox1 = new TextBox();
+            label10 = new Label();
+            textBox2 = new TextBox();
+            label11 = new Label();
+            textBox3 = new TextBox();
+            label12 = new Label();
+            textBox4 = new TextBox();
+            movieButton = new Button();
             tabPage1.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -63,6 +74,7 @@
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
             groupBox3.SuspendLayout();
+            groupBox4.SuspendLayout();
             SuspendLayout();
             // 
             // tabPage1
@@ -255,6 +267,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(groupBox4);
             tabPage2.Controls.Add(groupBox3);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
@@ -289,6 +302,7 @@
             rectangleButton.TabIndex = 7;
             rectangleButton.Text = "Find";
             rectangleButton.UseVisualStyleBackColor = true;
+            rectangleButton.Click += rectangleButton_Click;
             // 
             // colourTextBox
             // 
@@ -352,6 +366,108 @@
             RectanglesListBox.TabIndex = 0;
             RectanglesListBox.SelectedIndexChanged += RectanglesListBox_SelectedIndexChanged;
             // 
+            // groupBox4
+            // 
+            groupBox4.Controls.Add(movieButton);
+            groupBox4.Controls.Add(textBox4);
+            groupBox4.Controls.Add(label12);
+            groupBox4.Controls.Add(textBox3);
+            groupBox4.Controls.Add(label11);
+            groupBox4.Controls.Add(textBox2);
+            groupBox4.Controls.Add(label10);
+            groupBox4.Controls.Add(textBox1);
+            groupBox4.Controls.Add(label9);
+            groupBox4.Controls.Add(listBox1);
+            groupBox4.Location = new Point(412, 21);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(348, 300);
+            groupBox4.TabIndex = 1;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Movies";
+            // 
+            // listBox1
+            // 
+            listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 15;
+            listBox1.Items.AddRange(new object[] { "The Green Mile", "Intouchables", "Forrest Gump", "The Shawshank Redemption", "Interstellar" });
+            listBox1.Location = new Point(6, 22);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(158, 259);
+            listBox1.TabIndex = 0;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(170, 22);
+            label9.Name = "label9";
+            label9.Size = new Size(115, 15);
+            label9.TabIndex = 1;
+            label9.Text = "Duration in minutes:";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(170, 40);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(108, 23);
+            textBox1.TabIndex = 2;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(170, 66);
+            label10.Name = "label10";
+            label10.Size = new Size(32, 15);
+            label10.TabIndex = 3;
+            label10.Text = "Year:";
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(170, 84);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(108, 23);
+            textBox2.TabIndex = 4;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(170, 110);
+            label11.Name = "label11";
+            label11.Size = new Size(41, 15);
+            label11.TabIndex = 5;
+            label11.Text = "Genre:";
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(170, 128);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(108, 23);
+            textBox3.TabIndex = 6;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(170, 154);
+            label12.Name = "label12";
+            label12.Size = new Size(44, 15);
+            label12.TabIndex = 7;
+            label12.Text = "Rating:";
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(170, 172);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(108, 23);
+            textBox4.TabIndex = 8;
+            // 
+            // movieButton
+            // 
+            movieButton.Location = new Point(170, 258);
+            movieButton.Name = "movieButton";
+            movieButton.Size = new Size(108, 23);
+            movieButton.TabIndex = 8;
+            movieButton.Text = "Find";
+            movieButton.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -372,6 +488,8 @@
             tabPage2.ResumeLayout(false);
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -405,5 +523,16 @@
         private TextBox lengthTextBox;
         private Label label6;
         private ListBox RectanglesListBox;
+        private GroupBox groupBox4;
+        private ListBox listBox1;
+        private TextBox textBox1;
+        private Label label9;
+        private TextBox textBox2;
+        private Label label10;
+        private Button movieButton;
+        private TextBox textBox4;
+        private Label label12;
+        private TextBox textBox3;
+        private Label label11;
     }
 }
