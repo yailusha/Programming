@@ -8,44 +8,43 @@ namespace Programming.Model
 {
     internal class Race
     {
-        private string departurePoint;
-        private string destinationPoint;
-        private int flightTimeInMinutes;
+        private string _departurePoint;
+        private string _destinationPoint;
+        private int _flightTimeInMinutes;
 
         public string DeparturePoint
         {
-            get { return departurePoint; }
+            get { return _departurePoint; }
             set
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentException("Значение не может быть пустым");
+                    throw new ArgumentException("Value can not be empty");
                 }
-                departurePoint = value;
+                _departurePoint = value;
             }
         }
         public string DestinationPoint
         {
-            get { return destinationPoint; }
+            get { return _destinationPoint; }
             set
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentException("Значение не может быть пустым");
+                    throw new ArgumentException("Value can not be empty");
                 }
-                destinationPoint = value;
+                _destinationPoint = value;
             }
         }
         public int FlightTimeInMinutes
         {
-            get { return flightTimeInMinutes; }
+            get { return _flightTimeInMinutes; }
             set
             {
-                if (value < 0)
+                if (Validator.AssertOnPositiveValue(value))
                 {
-                    throw new ArgumentException("Время полета не может быть отрицательным");
+                    _flightTimeInMinutes = value;
                 }
-                flightTimeInMinutes = value;
             }
         }
         public Race(string departurePoint, string destinationPoint, int flightTimeInMinutes)

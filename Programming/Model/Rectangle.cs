@@ -8,37 +8,35 @@ namespace Programming.Model
 {
     internal class Rectangle
     {
-        private double length;
-        private double width;
-        private string colour;
+        private double _length;
+        private double _width;
+        private string _colour;
 
         public double Length
         {
-            get { return length; }
+            get { return _length; }
             set
             {
-                if (value < 0)
+                if (Validator.AssertOnPositiveValue(value))
                 {
-                    throw new ArgumentException("Длина не может быть отрицательной");
+                    _length = value;
                 }
-                length = value;
             }
         }
         public double Width
         {
-            get { return width; }
+            get { return _width; }
             set
             {
-                if (value < 0)
+                if (Validator.AssertOnPositiveValue(value))
                 {
-                    throw new ArgumentException("Ширина не может быть отрицательной");
+                    _width = value;
                 }
-                width = value;
             }
         }
         public string Colour
         {
-            get { return colour; }
+            get { return _colour; }
             set
             {
                 bool flag = false;
@@ -50,11 +48,11 @@ namespace Programming.Model
                         break;
                     }
                 }
-                if (flag)
+                if (flag || string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentException("Такого значения не может быть");
+                    throw new ArgumentException("Incorrect value. It probably contains numbers or empty");
                 }
-                colour = value;
+                _colour = value;
             }
         }
         public Rectangle(double length, double width, string colour)

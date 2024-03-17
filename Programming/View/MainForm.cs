@@ -152,7 +152,7 @@ namespace Programming
             try
             {
                 double length = double.Parse(lengthTextBox.Text);
-                if (length < 0 || length > 100)
+                if (length <=0 || length > 100)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
@@ -174,11 +174,11 @@ namespace Programming
             try
             {
                 double width = double.Parse(widthTextBox.Text);
-                if (width < 0 || width > 100)
+                if (width <= 0 || width > 100)
                 {
-                    throw new ArgumentOutOfRangeException("Длина меньше нуля быть не может");
+                    throw new ArgumentOutOfRangeException();
                 }
-                _currentRectangle.Length = width;
+                _currentRectangle.Width = width;
                 widthTextBox.BackColor = Color.White;
             }
             catch (FormatException)

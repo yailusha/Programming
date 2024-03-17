@@ -8,44 +8,44 @@ namespace Programming.Model
 {
     internal class Discipline
     {
-        private string subject;
-        private int grade;
-        private int hoursOfDiscipline;
+        private string _subject;
+        private int _grade;
+        private int _hoursOfDiscipline;
 
         public string Subject
         {
-            get { return subject; }
+            get { return _subject; }
             set
             {
-                if (string.IsNullOrEmpty(subject))
+                if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentException("Название предмета не может быть пустым");
+                    throw new ArgumentException("Subject can not be empty");
                 }
-                subject = value;
+                _subject = value;
             }
         }
         public int Grade
         {
-            get { return grade; }
+            get { return _grade; }
             set
             {
-                if (grade < 1 ||  grade > 5)
+                if (_grade < 1 ||  _grade > 5)
                 {
-                    throw new ArgumentException("Оценка должна быть от 1 до 5");
+                    throw new ArgumentException("Grade only from 1 to 5");
                 }
-                grade = value;
+                _grade = value;
             }
         }
         public int HoursOfDiscipline
         {
-            get { return hoursOfDiscipline; }
+            get { return _hoursOfDiscipline; }
             set
             {
-                if (value < 0)
+                if (!Validator.AssertOnPositiveValue(value))
                 {
-                    throw new ArgumentException("Значение не может быть отрицательным");
+                    throw new ArgumentException("HoursOfDiscipline must contain only positive value");
                 }
-                hoursOfDiscipline = value;
+                _hoursOfDiscipline = value;
             }
         }
         public Discipline(string subject, int grade, int hoursOfDiscipline)

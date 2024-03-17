@@ -8,26 +8,27 @@ namespace Programming.Model
 {
     internal class Song
     {
-        private string NameSong { get; set; }
-        private string NameArtist { get; set; }
-        private int durationSong; //В секундах продолжительность песни
+        private string _nameSong;
+        private string _artist;
+        private int _durationSong; //В секундах продолжительность песни
 
         public int DurationSong
         {
-            get { return durationSong; }
+            get { return _durationSong; }
             set
             {
-                if (value < 0)
+                if (Validator.AssertOnPositiveValue(value))
                 {
-                    throw new ArgumentException("Длительность песни не может быть отрицательной");
+                    _durationSong = value;
                 }
-                durationSong = value;
             }
         }
+        private string NameSong { get; set; }
+        private string Artist { get; set; }
         public Song(string nameSong, string nameArtist, int durationSong)
         {
             NameSong = nameSong;
-            NameArtist = nameArtist;
+            Artist = nameArtist;
             DurationSong = durationSong;
         }
         public Song()

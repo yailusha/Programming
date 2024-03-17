@@ -8,51 +8,49 @@ namespace Programming.Model
 {
     internal class Movie
     {
-        private string title;
-        private int durationInMinutes;
-        private int yearOfRelease;
-        private string genre;
-        private double rating;
+        private string _title;
+        private int _durationInMinutes;
+        private int _yearOfRelease;
+        private string _genre;
+        private double _rating;
 
         public string Title
         {
-            get { return title; }
+            get { return _title; }
             set
             {
                 if(string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentException("Название не может быть пустым");
+                    throw new ArgumentException("Title can not be empty");
                 }
-                title = value;
+                _title = value;
             }
         }
         public int DurationInMinutes
         {
-            get { return durationInMinutes; }
+            get { return _durationInMinutes; }
             set
             {
-                if (value < 0)
+                if (Validator.AssertOnPositiveValue(value))
                 {
-                    throw new ArgumentException("Значение не может быть меньше нуля");
+                    _durationInMinutes = value;
                 }
-                durationInMinutes = value;
             }
         }
         public int YearOfRelease
         {
-            get { return yearOfRelease; }
+            get { return _yearOfRelease; }
             set
             {
-                if (value < 1900 || value > 2024)
+                if (Validator.AssertValueInRange(value, 1900, 2024))
                 {
-                    throw new ArgumentException("Год должен быть от 1900 до 2024");
+                    _yearOfRelease = value;
                 }
-                yearOfRelease = value;
             }
         }
         public string Genre
         {
-            get { return genre; }
+            get { return _genre; }
             set
             {
                 bool flag = false;
@@ -65,23 +63,22 @@ namespace Programming.Model
                     }
                 }
 
-                if (flag) 
+                if (flag || string.IsNullOrEmpty(value)) 
                 {
-                    throw new ArgumentException("Введено неверное значение");
+                    throw new ArgumentException("Incorrect value. It probably contains numbers or empty");
                 }
-                genre = value;
+                _genre = value;
             }
         }
         public double Rating
         {
-            get { return rating; }
+            get { return _rating; }
             set
             {
-                if (value < 0 || value > 10)
+                if (Validator.AssertValueInRange(value, 0.0, 10.0))
                 {
-                    throw new ArgumentException("Рейтинг должен быть от 0 до 10");
+                    _rating = value;
                 }
-                rating = value;
             }
         }
         public Movie(string title, int durationInMinutes, int yearOfRelease, string genre, double rating)
