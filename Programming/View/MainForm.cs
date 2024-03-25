@@ -21,7 +21,9 @@ namespace Programming
                 int length = random.Next(1, 100);
                 int width = random.Next(1, 100);
                 int selectedColour = random.Next(0, colours.Length);
-                _rectangles[i] = new Rectangle(length, width, colours[selectedColour]);
+                int centerX = random.Next(1, 100);
+                int centerY = random.Next(1, 100);
+                _rectangles[i] = new Rectangle(length, width, colours[selectedColour], new Point2D(centerX, centerY));
             }
 
             _movies = new Movie[5];
@@ -145,6 +147,8 @@ namespace Programming
             lengthTextBox.Text = _currentRectangle.Length.ToString();
             widthTextBox.Text = _currentRectangle.Width.ToString();
             colourTextBox.Text = _currentRectangle.Colour.ToString();
+            xCenterTextBox.Text = _currentRectangle.Center.X.ToString();
+            yCenterTextBox.Text = _currentRectangle.Center.Y.ToString();
         }
 
         private void lengthTextBox_TextChanged(object sender, EventArgs e)
@@ -152,7 +156,7 @@ namespace Programming
             try
             {
                 double length = double.Parse(lengthTextBox.Text);
-                if (length <=0 || length > 100)
+                if (length <= 0 || length > 100)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
@@ -220,6 +224,7 @@ namespace Programming
                 colourTextBox.BackColor = Color.LightPink;
             }
         }
+
         private int FindRectangleWithMaxWidth()
         {
             double maxWidth = _rectangles[0].Width;
@@ -364,7 +369,7 @@ namespace Programming
                 titleTextBox.BackColor = Color.LightPink;
             }
         }
-        private int FindMovieWithMaxRating ()
+        private int FindMovieWithMaxRating()
         {
             double maxRating = _movies[0].Rating;
             int indexOfMaxRating = 0;
@@ -382,5 +387,7 @@ namespace Programming
         {
             moviesListBox.SelectedIndex = FindMovieWithMaxRating();
         }
+
+
     }
 }

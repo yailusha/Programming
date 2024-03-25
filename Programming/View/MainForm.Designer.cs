@@ -61,6 +61,8 @@
             label9 = new Label();
             moviesListBox = new ListBox();
             groupBox3 = new GroupBox();
+            xCenterTextBox = new TextBox();
+            label14 = new Label();
             rectangleButton = new Button();
             colourTextBox = new TextBox();
             label8 = new Label();
@@ -69,6 +71,8 @@
             lengthTextBox = new TextBox();
             label6 = new Label();
             RectanglesListBox = new ListBox();
+            label15 = new Label();
+            yCenterTextBox = new TextBox();
             tabPage1.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -408,6 +412,10 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(yCenterTextBox);
+            groupBox3.Controls.Add(label15);
+            groupBox3.Controls.Add(xCenterTextBox);
+            groupBox3.Controls.Add(label14);
             groupBox3.Controls.Add(rectangleButton);
             groupBox3.Controls.Add(colourTextBox);
             groupBox3.Controls.Add(label8);
@@ -422,6 +430,23 @@
             groupBox3.TabIndex = 0;
             groupBox3.TabStop = false;
             groupBox3.Text = "Rectangles";
+            // 
+            // xCenterTextBox
+            // 
+            xCenterTextBox.Enabled = false;
+            xCenterTextBox.Location = new Point(165, 172);
+            xCenterTextBox.Name = "xCenterTextBox";
+            xCenterTextBox.Size = new Size(108, 23);
+            xCenterTextBox.TabIndex = 9;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(165, 154);
+            label14.Name = "label14";
+            label14.Size = new Size(55, 15);
+            label14.TabIndex = 8;
+            label14.Text = "Center X:";
             // 
             // rectangleButton
             // 
@@ -495,6 +520,23 @@
             RectanglesListBox.TabIndex = 0;
             RectanglesListBox.SelectedIndexChanged += RectanglesListBox_SelectedIndexChanged;
             // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(165, 198);
+            label15.Name = "label15";
+            label15.Size = new Size(55, 15);
+            label15.TabIndex = 10;
+            label15.Text = "Center Y:";
+            // 
+            // yCenterTextBox
+            // 
+            yCenterTextBox.Enabled = false;
+            yCenterTextBox.Location = new Point(165, 216);
+            yCenterTextBox.Name = "yCenterTextBox";
+            yCenterTextBox.Size = new Size(108, 23);
+            yCenterTextBox.TabIndex = 11;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -563,5 +605,9 @@
         private Label label11;
         private Label label13;
         private TextBox titleTextBox;
+        private TextBox xCenterTextBox;
+        private Label label14;
+        private Label label15;
+        private TextBox yCenterTextBox;
     }
 }

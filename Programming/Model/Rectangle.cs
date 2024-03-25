@@ -55,15 +55,18 @@ namespace Programming.Model
                 _colour = value;
             }
         }
-        public Rectangle(double length, double width, string colour)
+        public Rectangle(double length, double width, string colour, Point2D center)
         {
             Length = length;
             Width = width;
             Colour = colour;
+            Center = center;
         }
         public Rectangle()
         {
 
         }
+        public Point2D Center { get; private set; }
+
     }
 }
