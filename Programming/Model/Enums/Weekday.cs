@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model
+namespace Programming.Model.Enums
 {
     public enum Weekday
     {
         Monday = 1,
         Tuesday,
-        Wednesday, 
+        Wednesday,
         Thursday,
         Friday,
         Saturday,

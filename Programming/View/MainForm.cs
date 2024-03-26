@@ -2,6 +2,7 @@ using Programming.Model;
 using System.Globalization;
 using Rectangle = Programming.Model.Rectangle;
 using Movie = Programming.Model.Movie;
+using Programming.Model.Enums;
 
 namespace Programming
 {
@@ -21,8 +22,8 @@ namespace Programming
                 int length = random.Next(1, 100);
                 int width = random.Next(1, 100);
                 int selectedColour = random.Next(0, colours.Length);
-                int centerX = random.Next(1, 100);
-                int centerY = random.Next(1, 100);
+                double centerX = random.Next(1, 100) * random.NextDouble();
+                double centerY = random.Next(1, 100) * random.NextDouble();
                 _rectangles[i] = new Rectangle(length, width, colours[selectedColour], new Point2D(centerX, centerY));
             }
 
@@ -149,6 +150,7 @@ namespace Programming
             colourTextBox.Text = _currentRectangle.Colour.ToString();
             xCenterTextBox.Text = _currentRectangle.Center.X.ToString();
             yCenterTextBox.Text = _currentRectangle.Center.Y.ToString();
+            idTextBox.Text = _currentRectangle.Id.ToString();
         }
 
         private void lengthTextBox_TextChanged(object sender, EventArgs e)

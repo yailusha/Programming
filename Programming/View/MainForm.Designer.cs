@@ -61,6 +61,8 @@
             label9 = new Label();
             moviesListBox = new ListBox();
             groupBox3 = new GroupBox();
+            yCenterTextBox = new TextBox();
+            label15 = new Label();
             xCenterTextBox = new TextBox();
             label14 = new Label();
             rectangleButton = new Button();
@@ -71,8 +73,8 @@
             lengthTextBox = new TextBox();
             label6 = new Label();
             RectanglesListBox = new ListBox();
-            label15 = new Label();
-            yCenterTextBox = new TextBox();
+            label16 = new Label();
+            idTextBox = new TextBox();
             tabPage1.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -299,7 +301,7 @@
             groupBox4.Controls.Add(moviesListBox);
             groupBox4.Location = new Point(412, 21);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(348, 300);
+            groupBox4.Size = new Size(348, 319);
             groupBox4.TabIndex = 1;
             groupBox4.TabStop = false;
             groupBox4.Text = "Movies";
@@ -323,7 +325,7 @@
             // 
             // movieButton
             // 
-            movieButton.Location = new Point(170, 258);
+            movieButton.Location = new Point(170, 288);
             movieButton.Name = "movieButton";
             movieButton.Size = new Size(108, 23);
             movieButton.TabIndex = 8;
@@ -406,12 +408,14 @@
             moviesListBox.Items.AddRange(new object[] { "Movie 1", "Movie 2", "Movie 3", "Movie 4", "Movie 5" });
             moviesListBox.Location = new Point(6, 22);
             moviesListBox.Name = "moviesListBox";
-            moviesListBox.Size = new Size(158, 259);
+            moviesListBox.Size = new Size(158, 289);
             moviesListBox.TabIndex = 0;
             moviesListBox.SelectedIndexChanged += moviesListBox_SelectedIndexChanged;
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(idTextBox);
+            groupBox3.Controls.Add(label16);
             groupBox3.Controls.Add(yCenterTextBox);
             groupBox3.Controls.Add(label15);
             groupBox3.Controls.Add(xCenterTextBox);
@@ -426,10 +430,27 @@
             groupBox3.Controls.Add(RectanglesListBox);
             groupBox3.Location = new Point(12, 21);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(348, 300);
+            groupBox3.Size = new Size(348, 319);
             groupBox3.TabIndex = 0;
             groupBox3.TabStop = false;
             groupBox3.Text = "Rectangles";
+            // 
+            // yCenterTextBox
+            // 
+            yCenterTextBox.Enabled = false;
+            yCenterTextBox.Location = new Point(165, 216);
+            yCenterTextBox.Name = "yCenterTextBox";
+            yCenterTextBox.Size = new Size(108, 23);
+            yCenterTextBox.TabIndex = 11;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(165, 198);
+            label15.Name = "label15";
+            label15.Size = new Size(55, 15);
+            label15.TabIndex = 10;
+            label15.Text = "Center Y:";
             // 
             // xCenterTextBox
             // 
@@ -450,7 +471,7 @@
             // 
             // rectangleButton
             // 
-            rectangleButton.Location = new Point(165, 258);
+            rectangleButton.Location = new Point(165, 288);
             rectangleButton.Name = "rectangleButton";
             rectangleButton.Size = new Size(108, 23);
             rectangleButton.TabIndex = 7;
@@ -516,26 +537,27 @@
             RectanglesListBox.Items.AddRange(new object[] { "Rectangle 1", "Rectangle 2", "Rectangle 3", "Rectangle 4", "Rectangle 5" });
             RectanglesListBox.Location = new Point(6, 22);
             RectanglesListBox.Name = "RectanglesListBox";
-            RectanglesListBox.Size = new Size(153, 259);
+            RectanglesListBox.Size = new Size(153, 289);
             RectanglesListBox.TabIndex = 0;
             RectanglesListBox.SelectedIndexChanged += RectanglesListBox_SelectedIndexChanged;
             // 
-            // label15
+            // label16
             // 
-            label15.AutoSize = true;
-            label15.Location = new Point(165, 198);
-            label15.Name = "label15";
-            label15.Size = new Size(55, 15);
-            label15.TabIndex = 10;
-            label15.Text = "Center Y:";
+            label16.AutoSize = true;
+            label16.Location = new Point(165, 242);
+            label16.Name = "label16";
+            label16.Size = new Size(21, 15);
+            label16.TabIndex = 12;
+            label16.Text = "ID:";
             // 
-            // yCenterTextBox
+            // idTextBox
             // 
-            yCenterTextBox.Enabled = false;
-            yCenterTextBox.Location = new Point(165, 216);
-            yCenterTextBox.Name = "yCenterTextBox";
-            yCenterTextBox.Size = new Size(108, 23);
-            yCenterTextBox.TabIndex = 11;
+            idTextBox.Enabled = false;
+            idTextBox.Location = new Point(165, 259);
+            idTextBox.Name = "idTextBox";
+            idTextBox.ReadOnly = true;
+            idTextBox.Size = new Size(108, 23);
+            idTextBox.TabIndex = 13;
             // 
             // MainForm
             // 
@@ -609,5 +631,7 @@
         private Label label14;
         private Label label15;
         private TextBox yCenterTextBox;
+        private TextBox idTextBox;
+        private Label label16;
     }
 }
