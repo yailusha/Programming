@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             tabPage1 = new TabPage();
             groupBox1 = new GroupBox();
             label1 = new Label();
@@ -35,16 +36,16 @@
             label3 = new Label();
             EnumsListBox = new ListBox();
             ValuesListBox = new ListBox();
-            IntValue = new TextBox();
+            intValueTextBox = new TextBox();
             groupBox2 = new GroupBox();
-            NumberOfWeekday = new TextBox();
-            button1 = new Button();
+            resultOfWeekday = new TextBox();
+            parseButton = new Button();
             label4 = new Label();
             TextToParse = new TextBox();
             SeasonHandle = new GroupBox();
-            ChooseSeason = new Button();
+            chooseSeasonButton = new Button();
             label5 = new Label();
-            comboBox1 = new ComboBox();
+            seasonComboBox = new ComboBox();
             tabControl1 = new TabControl();
             tabPage2 = new TabPage();
             groupBox4 = new GroupBox();
@@ -59,8 +60,10 @@
             label10 = new Label();
             durationTextBox = new TextBox();
             label9 = new Label();
-            moviesListBox = new ListBox();
+            MoviesListBox = new ListBox();
             groupBox3 = new GroupBox();
+            idTextBox = new TextBox();
+            label16 = new Label();
             yCenterTextBox = new TextBox();
             label15 = new Label();
             xCenterTextBox = new TextBox();
@@ -73,8 +76,23 @@
             lengthTextBox = new TextBox();
             label6 = new Label();
             RectanglesListBox = new ListBox();
-            label16 = new Label();
-            idTextBox = new TextBox();
+            tabPage3 = new TabPage();
+            heightRecTextBox = new TextBox();
+            label23 = new Label();
+            widthRecTextBox = new TextBox();
+            label22 = new Label();
+            yRecTextBox = new TextBox();
+            label21 = new Label();
+            xRecTextBox = new TextBox();
+            label20 = new Label();
+            idRecTextBox = new TextBox();
+            label19 = new Label();
+            label18 = new Label();
+            deleteRectangleButton = new Button();
+            addRectangleButton = new Button();
+            RecListBox = new ListBox();
+            label17 = new Label();
+            RectanglePanels = new Panel();
             tabPage1.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -83,6 +101,7 @@
             tabPage2.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox3.SuspendLayout();
+            tabPage3.SuspendLayout();
             SuspendLayout();
             // 
             // tabPage1
@@ -97,7 +116,6 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Enums";
             tabPage1.UseVisualStyleBackColor = true;
-            tabPage1.Click += tabPage1_Click;
             // 
             // groupBox1
             // 
@@ -106,7 +124,7 @@
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(EnumsListBox);
             groupBox1.Controls.Add(ValuesListBox);
-            groupBox1.Controls.Add(IntValue);
+            groupBox1.Controls.Add(intValueTextBox);
             groupBox1.Location = new Point(0, 4);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(762, 277);
@@ -162,19 +180,19 @@
             ValuesListBox.TabIndex = 1;
             ValuesListBox.SelectedIndexChanged += ValuesListBox_SelectedIndexChanged;
             // 
-            // IntValue
+            // intValueTextBox
             // 
-            IntValue.Enabled = false;
-            IntValue.Location = new Point(379, 37);
-            IntValue.Name = "IntValue";
-            IntValue.Size = new Size(145, 23);
-            IntValue.TabIndex = 2;
-            IntValue.TextChanged += IntValue_TextChanged;
+            intValueTextBox.Enabled = false;
+            intValueTextBox.Location = new Point(379, 37);
+            intValueTextBox.Name = "intValueTextBox";
+            intValueTextBox.Size = new Size(145, 23);
+            intValueTextBox.TabIndex = 2;
+            intValueTextBox.TextChanged += intValueTextBox_TextChanged;
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(NumberOfWeekday);
-            groupBox2.Controls.Add(button1);
+            groupBox2.Controls.Add(resultOfWeekday);
+            groupBox2.Controls.Add(parseButton);
             groupBox2.Controls.Add(label4);
             groupBox2.Controls.Add(TextToParse);
             groupBox2.Location = new Point(0, 286);
@@ -184,24 +202,24 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Weekday Paring";
             // 
-            // NumberOfWeekday
+            // resultOfWeekday
             // 
-            NumberOfWeekday.Enabled = false;
-            NumberOfWeekday.Location = new Point(17, 78);
-            NumberOfWeekday.Name = "NumberOfWeekday";
-            NumberOfWeekday.Size = new Size(246, 23);
-            NumberOfWeekday.TabIndex = 3;
-            NumberOfWeekday.TextChanged += ResultOfWeekday_TextChanged;
+            resultOfWeekday.Enabled = false;
+            resultOfWeekday.Location = new Point(17, 78);
+            resultOfWeekday.Name = "resultOfWeekday";
+            resultOfWeekday.Size = new Size(246, 23);
+            resultOfWeekday.TabIndex = 3;
+            resultOfWeekday.TextChanged += resultOfWeekday_TextChanged;
             // 
-            // button1
+            // parseButton
             // 
-            button1.Location = new Point(269, 38);
-            button1.Name = "button1";
-            button1.Size = new Size(87, 23);
-            button1.TabIndex = 2;
-            button1.Text = "Parse";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += Parse_Click;
+            parseButton.Location = new Point(269, 38);
+            parseButton.Name = "parseButton";
+            parseButton.Size = new Size(87, 23);
+            parseButton.TabIndex = 2;
+            parseButton.Text = "Parse";
+            parseButton.UseVisualStyleBackColor = true;
+            parseButton.Click += parseButton_Click;
             // 
             // label4
             // 
@@ -218,13 +236,12 @@
             TextToParse.Name = "TextToParse";
             TextToParse.Size = new Size(246, 23);
             TextToParse.TabIndex = 0;
-            TextToParse.TextChanged += Weekday_TextChanged;
             // 
             // SeasonHandle
             // 
-            SeasonHandle.Controls.Add(ChooseSeason);
+            SeasonHandle.Controls.Add(chooseSeasonButton);
             SeasonHandle.Controls.Add(label5);
-            SeasonHandle.Controls.Add(comboBox1);
+            SeasonHandle.Controls.Add(seasonComboBox);
             SeasonHandle.Location = new Point(390, 287);
             SeasonHandle.Name = "SeasonHandle";
             SeasonHandle.Size = new Size(372, 127);
@@ -232,15 +249,15 @@
             SeasonHandle.TabStop = false;
             SeasonHandle.Text = "SeasonHadle";
             // 
-            // ChooseSeason
+            // chooseSeasonButton
             // 
-            ChooseSeason.Location = new Point(180, 37);
-            ChooseSeason.Name = "ChooseSeason";
-            ChooseSeason.Size = new Size(91, 23);
-            ChooseSeason.TabIndex = 2;
-            ChooseSeason.Text = "Go!";
-            ChooseSeason.UseVisualStyleBackColor = true;
-            ChooseSeason.Click += ChooseSeason_Click;
+            chooseSeasonButton.Location = new Point(180, 37);
+            chooseSeasonButton.Name = "chooseSeasonButton";
+            chooseSeasonButton.Size = new Size(91, 23);
+            chooseSeasonButton.TabIndex = 2;
+            chooseSeasonButton.Text = "Go!";
+            chooseSeasonButton.UseVisualStyleBackColor = true;
+            chooseSeasonButton.Click += chooseSeasonButton_Click;
             // 
             // label5
             // 
@@ -250,22 +267,22 @@
             label5.Size = new Size(89, 15);
             label5.TabIndex = 1;
             label5.Text = "Choose season:";
-            label5.Click += label5_Click;
             // 
-            // comboBox1
+            // seasonComboBox
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Winter", "Spring", "Summer", "Autumn" });
-            comboBox1.Location = new Point(6, 38);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(168, 23);
-            comboBox1.TabIndex = 0;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            seasonComboBox.FormattingEnabled = true;
+            seasonComboBox.Items.AddRange(new object[] { "Winter", "Spring", "Summer", "Autumn" });
+            seasonComboBox.Location = new Point(6, 38);
+            seasonComboBox.Name = "seasonComboBox";
+            seasonComboBox.Size = new Size(168, 23);
+            seasonComboBox.TabIndex = 0;
+            seasonComboBox.SelectedIndexChanged += seasonComboBox_SelectedIndexChanged;
             // 
             // tabControl1
             // 
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(tabPage3);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
@@ -298,7 +315,7 @@
             groupBox4.Controls.Add(label10);
             groupBox4.Controls.Add(durationTextBox);
             groupBox4.Controls.Add(label9);
-            groupBox4.Controls.Add(moviesListBox);
+            groupBox4.Controls.Add(MoviesListBox);
             groupBox4.Location = new Point(412, 21);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(348, 319);
@@ -401,16 +418,16 @@
             label9.TabIndex = 1;
             label9.Text = "Duration in minutes:";
             // 
-            // moviesListBox
+            // MoviesListBox
             // 
-            moviesListBox.FormattingEnabled = true;
-            moviesListBox.ItemHeight = 15;
-            moviesListBox.Items.AddRange(new object[] { "Movie 1", "Movie 2", "Movie 3", "Movie 4", "Movie 5" });
-            moviesListBox.Location = new Point(6, 22);
-            moviesListBox.Name = "moviesListBox";
-            moviesListBox.Size = new Size(158, 289);
-            moviesListBox.TabIndex = 0;
-            moviesListBox.SelectedIndexChanged += moviesListBox_SelectedIndexChanged;
+            MoviesListBox.FormattingEnabled = true;
+            MoviesListBox.ItemHeight = 15;
+            MoviesListBox.Items.AddRange(new object[] { "Movie 1", "Movie 2", "Movie 3", "Movie 4", "Movie 5" });
+            MoviesListBox.Location = new Point(6, 22);
+            MoviesListBox.Name = "MoviesListBox";
+            MoviesListBox.Size = new Size(158, 289);
+            MoviesListBox.TabIndex = 0;
+            MoviesListBox.SelectedIndexChanged += MoviesListBox_SelectedIndexChanged;
             // 
             // groupBox3
             // 
@@ -434,6 +451,24 @@
             groupBox3.TabIndex = 0;
             groupBox3.TabStop = false;
             groupBox3.Text = "Rectangles";
+            // 
+            // idTextBox
+            // 
+            idTextBox.Enabled = false;
+            idTextBox.Location = new Point(165, 259);
+            idTextBox.Name = "idTextBox";
+            idTextBox.ReadOnly = true;
+            idTextBox.Size = new Size(108, 23);
+            idTextBox.TabIndex = 13;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(165, 242);
+            label16.Name = "label16";
+            label16.Size = new Size(21, 15);
+            label16.TabIndex = 12;
+            label16.Text = "ID:";
             // 
             // yCenterTextBox
             // 
@@ -534,30 +569,183 @@
             // 
             RectanglesListBox.FormattingEnabled = true;
             RectanglesListBox.ItemHeight = 15;
-            RectanglesListBox.Items.AddRange(new object[] { "Rectangle 1", "Rectangle 2", "Rectangle 3", "Rectangle 4", "Rectangle 5" });
             RectanglesListBox.Location = new Point(6, 22);
             RectanglesListBox.Name = "RectanglesListBox";
             RectanglesListBox.Size = new Size(153, 289);
             RectanglesListBox.TabIndex = 0;
             RectanglesListBox.SelectedIndexChanged += RectanglesListBox_SelectedIndexChanged;
             // 
-            // label16
+            // tabPage3
             // 
-            label16.AutoSize = true;
-            label16.Location = new Point(165, 242);
-            label16.Name = "label16";
-            label16.Size = new Size(21, 15);
-            label16.TabIndex = 12;
-            label16.Text = "ID:";
+            tabPage3.Controls.Add(heightRecTextBox);
+            tabPage3.Controls.Add(label23);
+            tabPage3.Controls.Add(widthRecTextBox);
+            tabPage3.Controls.Add(label22);
+            tabPage3.Controls.Add(yRecTextBox);
+            tabPage3.Controls.Add(label21);
+            tabPage3.Controls.Add(xRecTextBox);
+            tabPage3.Controls.Add(label20);
+            tabPage3.Controls.Add(idRecTextBox);
+            tabPage3.Controls.Add(label19);
+            tabPage3.Controls.Add(label18);
+            tabPage3.Controls.Add(deleteRectangleButton);
+            tabPage3.Controls.Add(addRectangleButton);
+            tabPage3.Controls.Add(RecListBox);
+            tabPage3.Controls.Add(label17);
+            tabPage3.Controls.Add(RectanglePanels);
+            tabPage3.Location = new Point(4, 24);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Padding = new Padding(3);
+            tabPage3.Size = new Size(792, 422);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "Rectangles";
+            tabPage3.UseVisualStyleBackColor = true;
             // 
-            // idTextBox
+            // heightRecTextBox
             // 
-            idTextBox.Enabled = false;
-            idTextBox.Location = new Point(165, 259);
-            idTextBox.Name = "idTextBox";
-            idTextBox.ReadOnly = true;
-            idTextBox.Size = new Size(108, 23);
-            idTextBox.TabIndex = 13;
+            heightRecTextBox.Location = new Point(63, 384);
+            heightRecTextBox.Name = "heightRecTextBox";
+            heightRecTextBox.Size = new Size(136, 23);
+            heightRecTextBox.TabIndex = 15;
+            heightRecTextBox.TextChanged += heightRecTextBox_TextChanged;
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Location = new Point(11, 387);
+            label23.Name = "label23";
+            label23.Size = new Size(46, 15);
+            label23.TabIndex = 14;
+            label23.Text = "Height:";
+            // 
+            // widthRecTextBox
+            // 
+            widthRecTextBox.Location = new Point(63, 355);
+            widthRecTextBox.Name = "widthRecTextBox";
+            widthRecTextBox.Size = new Size(136, 23);
+            widthRecTextBox.TabIndex = 13;
+            widthRecTextBox.TextChanged += widthRecTextBox_TextChanged;
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Location = new Point(15, 358);
+            label22.Name = "label22";
+            label22.Size = new Size(42, 15);
+            label22.TabIndex = 12;
+            label22.Text = "Width:";
+            // 
+            // yRecTextBox
+            // 
+            yRecTextBox.Location = new Point(63, 324);
+            yRecTextBox.Name = "yRecTextBox";
+            yRecTextBox.Size = new Size(136, 23);
+            yRecTextBox.TabIndex = 11;
+            yRecTextBox.TextChanged += yRecTextBox_TextChanged;
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Location = new Point(40, 327);
+            label21.Name = "label21";
+            label21.Size = new Size(17, 15);
+            label21.TabIndex = 10;
+            label21.Text = "Y:";
+            // 
+            // xRecTextBox
+            // 
+            xRecTextBox.Location = new Point(63, 295);
+            xRecTextBox.Name = "xRecTextBox";
+            xRecTextBox.Size = new Size(136, 23);
+            xRecTextBox.TabIndex = 9;
+            xRecTextBox.TextChanged += xRecTextBox_TextChanged;
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Location = new Point(40, 298);
+            label20.Name = "label20";
+            label20.Size = new Size(17, 15);
+            label20.TabIndex = 8;
+            label20.Text = "X:";
+            // 
+            // idRecTextBox
+            // 
+            idRecTextBox.Enabled = false;
+            idRecTextBox.Location = new Point(63, 264);
+            idRecTextBox.Name = "idRecTextBox";
+            idRecTextBox.ReadOnly = true;
+            idRecTextBox.Size = new Size(136, 23);
+            idRecTextBox.TabIndex = 7;
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Location = new Point(37, 267);
+            label19.Name = "label19";
+            label19.Size = new Size(20, 15);
+            label19.TabIndex = 6;
+            label19.Text = "Id:";
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(8, 241);
+            label18.Name = "label18";
+            label18.Size = new Size(109, 15);
+            label18.TabIndex = 5;
+            label18.Text = "Selected Rectangle:";
+            // 
+            // deleteRectangleButton
+            // 
+            deleteRectangleButton.BackColor = Color.White;
+            deleteRectangleButton.Image = (Image)resources.GetObject("deleteRectangleButton.Image");
+            deleteRectangleButton.Location = new Point(120, 181);
+            deleteRectangleButton.Name = "deleteRectangleButton";
+            deleteRectangleButton.Size = new Size(67, 57);
+            deleteRectangleButton.TabIndex = 4;
+            deleteRectangleButton.UseVisualStyleBackColor = false;
+            deleteRectangleButton.Click += deleteRectangleButton_Click;
+            // 
+            // addRectangleButton
+            // 
+            addRectangleButton.BackColor = Color.White;
+            addRectangleButton.FlatAppearance.BorderColor = Color.White;
+            addRectangleButton.FlatAppearance.BorderSize = 0;
+            addRectangleButton.Image = (Image)resources.GetObject("addRectangleButton.Image");
+            addRectangleButton.Location = new Point(37, 181);
+            addRectangleButton.Name = "addRectangleButton";
+            addRectangleButton.Size = new Size(67, 57);
+            addRectangleButton.TabIndex = 3;
+            addRectangleButton.UseVisualStyleBackColor = false;
+            addRectangleButton.Click += addRectangleButton_Click;
+            // 
+            // RecListBox
+            // 
+            RecListBox.FormattingEnabled = true;
+            RecListBox.ItemHeight = 15;
+            RecListBox.Location = new Point(8, 24);
+            RecListBox.Name = "RecListBox";
+            RecListBox.Size = new Size(295, 154);
+            RecListBox.TabIndex = 2;
+            RecListBox.SelectedIndexChanged += RecListBox_SelectedIndexChanged;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(8, 6);
+            label17.Name = "label17";
+            label17.Size = new Size(67, 15);
+            label17.TabIndex = 1;
+            label17.Text = "Rectangles:";
+            // 
+            // RectanglePanels
+            // 
+            RectanglePanels.BorderStyle = BorderStyle.FixedSingle;
+            RectanglePanels.Location = new Point(309, 6);
+            RectanglePanels.Name = "RectanglePanels";
+            RectanglePanels.Size = new Size(480, 413);
+            RectanglePanels.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -581,6 +769,8 @@
             groupBox4.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
+            tabPage3.ResumeLayout(false);
+            tabPage3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -593,16 +783,16 @@
         private Label label3;
         private ListBox EnumsListBox;
         private ListBox ValuesListBox;
-        private TextBox IntValue;
+        private TextBox intValueTextBox;
         private GroupBox groupBox2;
-        private TextBox NumberOfWeekday;
-        private Button button1;
+        private TextBox resultOfWeekday;
+        private Button parseButton;
         private Label label4;
         private TextBox TextToParse;
         private GroupBox SeasonHandle;
-        private Button ChooseSeason;
+        private Button chooseSeasonButton;
         private Label label5;
-        private ComboBox comboBox1;
+        private ComboBox seasonComboBox;
         private TabControl tabControl1;
         private TabPage tabPage2;
         private GroupBox groupBox3;
@@ -615,7 +805,7 @@
         private Label label6;
         private ListBox RectanglesListBox;
         private GroupBox groupBox4;
-        private ListBox moviesListBox;
+        private ListBox MoviesListBox;
         private TextBox durationTextBox;
         private Label label9;
         private TextBox yearTextBox;
@@ -633,5 +823,22 @@
         private TextBox yCenterTextBox;
         private TextBox idTextBox;
         private Label label16;
+        private TabPage tabPage3;
+        private Panel RectanglePanels;
+        private Label label19;
+        private Label label18;
+        private Button deleteRectangleButton;
+        private Button addRectangleButton;
+        private ListBox RecListBox;
+        private Label label17;
+        private TextBox heightRecTextBox;
+        private Label label23;
+        private TextBox widthRecTextBox;
+        private Label label22;
+        private TextBox yRecTextBox;
+        private Label label21;
+        private TextBox xRecTextBox;
+        private Label label20;
+        private TextBox idRecTextBox;
     }
 }

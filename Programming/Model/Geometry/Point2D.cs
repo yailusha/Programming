@@ -8,11 +8,9 @@ namespace Programming.Model
 {
     internal class Point2D
     {
-        private readonly double _x;
-        private readonly double _y;
-        public double X { get; private set; }
-        public double Y { get; private set; }
-        public Point2D(double x, double y)
+        public int X { get; set; }
+        public int Y { get; set; }
+        public Point2D(int x, int y)
         {
             if (x < 0 || y < 0)
             {

@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Programming.Model;
 
 namespace Programming.Model
 {
     internal class Rectangle
     {
-        private double _length;
-        private double _width;
+        private int _length;
+        private int _width;
         private string _colour;
         private static int _allRectanglesCount;
         private readonly int _id;
+        private Point2D _center;
         public int Id
         {
             get { return _id; }
         }
-        public double Length
+        public Point2D Center { get; set; }
+        public int Length
         {
             get { return _length; }
             set
@@ -28,7 +31,7 @@ namespace Programming.Model
                 }
             }
         }
-        public double Width
+        public int Width
         {
             get { return _width; }
             set
@@ -64,7 +67,7 @@ namespace Programming.Model
         {
             set { _allRectanglesCount = value; }
         }
-        public Rectangle(double length, double width, string colour, Point2D center)
+        public Rectangle(int length, int width, string colour, Point2D center)
         {
             Length = length;
             Width = width;
@@ -73,11 +76,6 @@ namespace Programming.Model
             _allRectanglesCount++;
             _id = _allRectanglesCount;
         }
-        public Rectangle()
-        {
-
-        }
-        public Point2D Center { get; private set; }
-
+        public Rectangle() { }
     }
 }
