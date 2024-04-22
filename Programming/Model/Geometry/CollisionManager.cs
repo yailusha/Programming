@@ -12,8 +12,8 @@ namespace Programming.Model
         {
             double differenceX = Math.Abs(rectangle1.Center.X - rectangle2.Center.X);
             double differenceY = Math.Abs(rectangle1.Center.Y - rectangle2.Center.Y);
-            double halfWidth = (rectangle1.Width + rectangle2.Width) / 2;
-            double halfLength = (rectangle1.Length + rectangle2.Length) / 2;
+            double halfWidth = Math.Abs(rectangle1.Width + rectangle2.Width) / 2;
+            double halfLength = Math.Abs(rectangle1.Length + rectangle2.Length) / 2;
             return differenceX < halfWidth && differenceY < halfLength;
         }
         static public bool IsCollision(Ring ring1, Ring ring2)
