@@ -78,16 +78,16 @@ namespace Programming.View.Panels
                         throw new ArgumentOutOfRangeException();
                     }
                     _currentRectangle.Length = length;
-                    lengthTextBox.BackColor = Color.White;
+                    lengthTextBox.BackColor = AppColors.ValidatorTrueColor;
                 }
             }
             catch (FormatException)
             {
-                lengthTextBox.BackColor = Color.LightPink;
+                lengthTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
             catch (ArgumentOutOfRangeException)
             {
-                lengthTextBox.BackColor = Color.LightPink;
+                lengthTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
         private void widthTextBox_TextChanged(object sender, EventArgs e)
@@ -102,16 +102,16 @@ namespace Programming.View.Panels
                         throw new ArgumentOutOfRangeException();
                     }
                     _currentRectangle.Width = width;
-                    widthTextBox.BackColor = Color.White;
+                    widthTextBox.BackColor = AppColors.ValidatorTrueColor;
                 }
             }
             catch (FormatException)
             {
-                widthTextBox.BackColor = Color.LightPink;
+                widthTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
             catch (ArgumentOutOfRangeException)
             {
-                widthTextBox.BackColor = Color.LightPink;
+                widthTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
         private void colourTextBox_TextChanged(object sender, EventArgs e)
@@ -131,15 +131,15 @@ namespace Programming.View.Panels
                     }
                 }
                 _currentRectangle.Colour = colour;
-                colourTextBox.BackColor = Color.White;
+                colourTextBox.BackColor = AppColors.ValidatorTrueColor;
             }
             catch (ArgumentNullException)
             {
-                colourTextBox.BackColor = Color.LightPink;
+                colourTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
             catch (ArgumentException)
             {
-                colourTextBox.BackColor = Color.LightPink;
+                colourTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
         private void rectangleButton_Click(object sender, EventArgs e)

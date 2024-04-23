@@ -143,7 +143,6 @@
             Controls.Add(tabControl1);
             Name = "MainForm";
             Text = "Programming Demo";
-            Load += MainForm_Load;
             tabPage1.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);

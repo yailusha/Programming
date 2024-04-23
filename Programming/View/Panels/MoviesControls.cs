@@ -67,15 +67,15 @@ namespace Programming.View.Panels
                     throw new ArgumentOutOfRangeException();
                 }
                 _currentMovie.DurationInMinutes = duration;
-                durationTextBox.BackColor = Color.White;
+                durationTextBox.BackColor = AppColors.ValidatorTrueColor;
             }
             catch (FormatException)
             {
-                durationTextBox.BackColor = Color.LightPink;
+                durationTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
             catch (ArgumentOutOfRangeException)
             {
-                durationTextBox.BackColor = Color.LightPink;
+                durationTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
         private void yearTextBox_TextChanged(object sender, EventArgs e)
@@ -88,15 +88,15 @@ namespace Programming.View.Panels
                     throw new ArgumentOutOfRangeException();
                 }
                 _currentMovie.YearOfRelease = year;
-                yearTextBox.BackColor = Color.White;
+                yearTextBox.BackColor = AppColors.ValidatorTrueColor;
             }
             catch (FormatException)
             {
-                yearTextBox.BackColor = Color.LightPink;
+                yearTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
             catch (ArgumentOutOfRangeException)
             {
-                yearTextBox.BackColor = Color.LightPink;
+                yearTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
         private void ratingTextBox_TextChanged(object sender, EventArgs e)
@@ -109,15 +109,15 @@ namespace Programming.View.Panels
                     throw new ArgumentOutOfRangeException();
                 }
                 _currentMovie.Rating = rating;
-                ratingTextBox.BackColor = Color.White;
+                ratingTextBox.BackColor = AppColors.ValidatorTrueColor;
             }
             catch (FormatException)
             {
-                ratingTextBox.BackColor = Color.LightPink;
+                ratingTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
             catch (ArgumentOutOfRangeException)
             {
-                ratingTextBox.BackColor = Color.LightPink;
+                ratingTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
         private void genreTextBox_TextChanged(object sender, EventArgs e)
@@ -138,15 +138,15 @@ namespace Programming.View.Panels
                     }
                 }
                 _currentMovie.Genre = genre;
-                genreTextBox.BackColor = Color.White;
+                genreTextBox.BackColor = AppColors.ValidatorTrueColor;
             }
             catch (FormatException)
             {
-                genreTextBox.BackColor = Color.LightPink;
+                genreTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
             catch (ArgumentNullException)
             {
-                genreTextBox.BackColor = Color.LightPink;
+                genreTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
         private void titleTextBox_TextChanged(object sender, EventArgs e)
@@ -159,11 +159,11 @@ namespace Programming.View.Panels
                     throw new ArgumentNullException();
                 }
                 _currentMovie.Title = title;
-                titleTextBox.BackColor = Color.White;
+                titleTextBox.BackColor = AppColors.ValidatorTrueColor;
             }
             catch (ArgumentNullException)
             {
-                titleTextBox.BackColor = Color.LightPink;
+                titleTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
         private void movieButton_Click(object sender, EventArgs e)

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Programming.Model;
 using Programming.Model.Geometry;
+using AppColors = Programming.Model.AppColors;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Rectangle = Programming.Model.Rectangle;
 
@@ -36,7 +37,7 @@ namespace Programming.View.Panels
         {
             for (int i = 0; i < _rectanglePanels.Count; i++)
             {
-                _rectanglePanels[i].BackColor = Color.FromArgb(127, 127, 255, 127);
+                _rectanglePanels[i].BackColor = AppColors.CollisionFalse;
             }
             for (int i = 1; i < _rectangles.Count; i++)
             {
@@ -44,8 +45,8 @@ namespace Programming.View.Panels
                 {
                     if (CollisionManager.IsCollision(_rectangles[i], _rectangles[j]))
                     {
-                        _rectanglePanels[i].BackColor = Color.FromArgb(127, 255, 127, 127);
-                        _rectanglePanels[j].BackColor = Color.FromArgb(127, 255, 127, 127);
+                        _rectanglePanels[i].BackColor = AppColors.CollisionTrue;
+                        _rectanglePanels[j].BackColor = AppColors.CollisionTrue;
                     }
                 }
             }
@@ -54,7 +55,7 @@ namespace Programming.View.Panels
         {
             for (int i = 0; i < _rectanglePanels.Count; i++)
             {
-                _rectanglePanels[i].Location = new Point(_rectangles[i].Center.X, _rectangles[i].Center.Y);
+                _rectanglePanels[i].Location = new Point((int)_rectangles[i].Center.X-_rectangles[i].Width/2, (int)_rectangles[i].Center.Y - _rectangles[i].Length/2);
                 _rectanglePanels[i].Width = _rectangles[i].Width;
                 _rectanglePanels[i].Height = _rectangles[i].Length;
                 RectanglePanels.Controls.Add(_rectanglePanels[i]);
@@ -65,7 +66,7 @@ namespace Programming.View.Panels
             RecListBox.Items.Clear();
             foreach (Rectangle rectangle in _rectangles)
             {
-                RecListBox.Items.Add($"{rectangle.Id - 1}: (X= {rectangle.Center.X}; Y= {rectangle.Center.Y};" +
+                RecListBox.Items.Add($"{rectangle.Id - 5}: (X= {rectangle.Center.X}; Y= {rectangle.Center.Y};" +
                     $" W= {rectangle.Width}; H= {rectangle.Length})");
             }
         }
@@ -98,17 +99,17 @@ namespace Programming.View.Panels
                     }
                     _currentRectangle.Center.X = xCoord;
 
-                    xRecTextBox.BackColor = Color.White;
+                    xRecTextBox.BackColor = AppColors.ValidatorTrueColor;
                     UpdateRecListBox();
                 }
             }
             catch (FormatException)
             {
-                xRecTextBox.BackColor = Color.LightPink;
+                xRecTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
             catch (ArgumentOutOfRangeException)
             {
-                xRecTextBox.BackColor = Color.LightPink;
+                xRecTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
         private void yRecTextBox_TextChanged(object sender, EventArgs e)
@@ -123,17 +124,17 @@ namespace Programming.View.Panels
                         throw new ArgumentOutOfRangeException();
                     }
                     _currentRectangle.Center.Y = yCoord;
-                    yRecTextBox.BackColor = Color.White;
+                    yRecTextBox.BackColor = AppColors.ValidatorTrueColor;
                     UpdateRecListBox();
                 }
             }
             catch (FormatException)
             {
-                yRecTextBox.BackColor = Color.LightPink;
+                yRecTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
             catch (ArgumentOutOfRangeException)
             {
-                yRecTextBox.BackColor = Color.LightPink;
+                yRecTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
         private void widthRecTextBox_TextChanged(object sender, EventArgs e)
@@ -148,17 +149,17 @@ namespace Programming.View.Panels
                         throw new ArgumentOutOfRangeException();
                     }
                     _currentRectangle.Width = width;
-                    widthRecTextBox.BackColor = Color.White;
+                    widthRecTextBox.BackColor = AppColors.ValidatorTrueColor;
                     UpdateRecListBox();
                 }
             }
             catch (FormatException)
             {
-                widthRecTextBox.BackColor = Color.LightPink;
+                widthRecTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
             catch (ArgumentOutOfRangeException)
             {
-                widthRecTextBox.BackColor = Color.LightPink;
+                widthRecTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
         private void heightRecTextBox_TextChanged(object sender, EventArgs e)
@@ -173,17 +174,17 @@ namespace Programming.View.Panels
                         throw new ArgumentOutOfRangeException();
                     }
                     _currentRectangle.Length = heigth;
-                    heightRecTextBox.BackColor = Color.White;
+                    heightRecTextBox.BackColor = AppColors.ValidatorTrueColor;
                     UpdateRecListBox();
                 }
             }
             catch (FormatException)
             {
-                heightRecTextBox.BackColor = Color.LightPink;
+                heightRecTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
             catch (ArgumentOutOfRangeException)
             {
-                heightRecTextBox.BackColor = Color.LightPink;
+                heightRecTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
         private void addRectangleButton_Click(object sender, EventArgs e)
@@ -191,10 +192,10 @@ namespace Programming.View.Panels
             Rectangle rectangle = RectangleFactory.Randomize();
             Panel panel = new Panel
             {
-                Location = new Point(rectangle.Center.X, rectangle.Center.Y),
+                Location = new Point((int)rectangle.Center.X-rectangle.Width/2,(int) rectangle.Center.Y-rectangle.Length/2),
                 Width = (int)rectangle.Width,
                 Height = (int)rectangle.Length,
-                BackColor = Color.FromArgb(127, 127, 255, 127)
+                BackColor =AppColors.CollisionFalse
             };
             RectanglePanels.Controls.Add(panel);
             _rectanglePanels.Add(panel);
