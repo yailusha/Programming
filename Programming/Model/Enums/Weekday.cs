@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Enums
 {
+    /// <summary>
+    /// Хранит список дней недели.
+    /// </summary>
     public enum Weekday
     {
         Monday = 1,

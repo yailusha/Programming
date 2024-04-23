@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Производит поиск фильма с наибольшим рейтингом.
+    /// </summary>
     public partial class MoviesControls : UserControl
     {
         private Movie[] _movies;
@@ -18,12 +21,16 @@ namespace Programming.View.Panels
         public MoviesControls()
         {
             Random random = new Random();
+            //Создание массива из 5 фильмов.
             _movies = new Movie[5];
+
             string[] titles = new string[] { "The Green Mile", "Intouchables", "Forrest Gump",
                                             "The Shawshank Redemption", "Interstellar"};
             string[] genres = new string[] { "drama", "thriller", "fantastic", "crime", "comedy" };
+            //Генерация данных фильма.
             for (int i = 0; i < _movies.Length; i++)
             {
+                //Генерация длительности фильма, года выпуска, рейтинга, названия и жанра. 
                 int duration = random.Next(1, 240);
                 int year = random.Next(1900, 2024);
                 double rating = random.NextDouble() * 10;
@@ -33,6 +40,10 @@ namespace Programming.View.Panels
             }
             InitializeComponent();
         }
+        /// <summary>
+        /// Осуществляет поиск фильма с наибольшим рейтингом.
+        /// </summary>
+        /// <returns>Возвращает индекс фильма, с наибольшим рейтингом.</returns>
         private int FindMovieWithMaxRating()
         {
             double maxRating = _movies[0].Rating;
@@ -47,6 +58,11 @@ namespace Programming.View.Panels
             }
             return indexOfMaxRating;
         }
+        /// <summary>
+        /// Отображение данных выбранного фильма.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MoviesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = MoviesListBox.SelectedIndex;
@@ -57,6 +73,11 @@ namespace Programming.View.Panels
             genreTextBox.Text = _currentMovie.Genre;
             ratingTextBox.Text = _currentMovie.Rating.ToString();
         }
+        /// <summary>
+        /// Изменение и сохранение новой длительности фильма с его валидацией.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void durationTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -78,6 +99,11 @@ namespace Programming.View.Panels
                 durationTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
+        /// <summary>
+        /// Изменение и сохранение нового года выпуска фильма с его валидацией.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void yearTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -99,6 +125,11 @@ namespace Programming.View.Panels
                 yearTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
+        /// <summary>
+        /// Изменение и сохранение нового рейтинга фильма с его валидацией.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ratingTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -120,6 +151,11 @@ namespace Programming.View.Panels
                 ratingTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
+        /// <summary>
+        /// Изменение и сохранение нового жанра фильма с его валидацией.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void genreTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -149,6 +185,11 @@ namespace Programming.View.Panels
                 genreTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
+        /// <summary>
+        /// Сохранение и изменение нового названия фильма с его валидацией.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void titleTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -166,6 +207,11 @@ namespace Programming.View.Panels
                 titleTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
+        /// <summary>
+        /// Осуществляет поиск фильма с наибольшим рейтингом.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void movieButton_Click(object sender, EventArgs e)
         {
             MoviesListBox.SelectedIndex = FindMovieWithMaxRating();

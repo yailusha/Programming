@@ -6,12 +6,26 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Хранит данные об учебном предмете.
+    /// </summary>
     internal class Discipline
     {
+        /// <summary>
+        /// Название предмета.
+        /// </summary>
         private string _subject;
+        /// <summary>
+        /// Оценка.
+        /// </summary>
         private int _grade;
+        /// <summary>
+        /// Длительность предмета (в часах).
+        /// </summary>
         private int _hoursOfDiscipline;
-
+        /// <summary>
+        /// Возвращает и задает название предмета. Не может быть пустым.
+        /// </summary>
         public string Subject
         {
             get { return _subject; }
@@ -24,6 +38,9 @@ namespace Programming.Model
                 _subject = value;
             }
         }
+        /// <summary>
+        /// Возвращает и задает оценку. Должна быть в интервале от 1 до 5.
+        /// </summary>
         public int Grade
         {
             get { return _grade; }
@@ -36,6 +53,9 @@ namespace Programming.Model
                 _grade = value;
             }
         }
+        /// <summary>
+        /// Возвращает и задает длительность предмета. Значение должно быть только положительным.
+        /// </summary>
         public int HoursOfDiscipline
         {
             get { return _hoursOfDiscipline; }
@@ -48,6 +68,12 @@ namespace Programming.Model
                 _hoursOfDiscipline = value;
             }
         }
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Discipline"/>
+        /// </summary>
+        /// <param name="subject">Предмет. Не может быть пустым.</param>
+        /// <param name="grade">Оценка. Должна быть в интервале от 1 до 5.</param>
+        /// <param name="hoursOfDiscipline">Длительность предмета. Не может быть отрицательным.</param>
         public Discipline(string subject, int grade, int hoursOfDiscipline)
         {
             Subject = subject;

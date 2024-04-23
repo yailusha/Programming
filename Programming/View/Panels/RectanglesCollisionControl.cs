@@ -15,6 +15,9 @@ using Rectangle = Programming.Model.Rectangle;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Хранит данные о 3 вкладке "Rectangles".
+    /// </summary>
     public partial class RectanglesCollisionControl : UserControl
     {
         private readonly List<Rectangle> _rectangles = new List<Rectangle>();
@@ -25,6 +28,9 @@ namespace Programming.View.Panels
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Очищает информация о прямоугольнике в TextBox.
+        /// </summary>
         private void ClearRectangleInfo()
         {
             idRecTextBox.Text = "";
@@ -33,6 +39,9 @@ namespace Programming.View.Panels
             widthRecTextBox.Text = "";
             heightRecTextBox.Text = "";
         }
+        /// <summary>
+        /// Производит поиск пересечений.
+        /// </summary>
         private void FindCollisions()
         {
             for (int i = 0; i < _rectanglePanels.Count; i++)
@@ -51,6 +60,9 @@ namespace Programming.View.Panels
                 }
             }
         }
+        /// <summary>
+        /// Отрисовывает прямоуогольник и присваивает в случае изменения новые данные.
+        /// </summary>
         private void DrawRectangle()
         {
             for (int i = 0; i < _rectanglePanels.Count; i++)
@@ -61,6 +73,9 @@ namespace Programming.View.Panels
                 RectanglePanels.Controls.Add(_rectanglePanels[i]);
             }
         }
+        /// <summary>
+        /// Осуществляет обновление данных в ListBox.
+        /// </summary>
         private void UpdateRecListBox()
         {
             RecListBox.Items.Clear();
@@ -70,6 +85,11 @@ namespace Programming.View.Panels
                     $" W= {rectangle.Width}; H= {rectangle.Length})");
             }
         }
+        /// <summary>
+        /// Отображает данные прямоугольника.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RecListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = RecListBox.SelectedIndex;
@@ -86,6 +106,11 @@ namespace Programming.View.Panels
                 FindCollisions();
             }
         }
+        /// <summary>
+        /// Изменение и сохранение новой координаты X прямоугольника с его валидацией.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void xRecTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -112,6 +137,11 @@ namespace Programming.View.Panels
                 xRecTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
+        /// <summary>
+        /// Изменение и сохранение новой координаты Y прямоугольника с его валидацией.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void yRecTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -137,6 +167,11 @@ namespace Programming.View.Panels
                 yRecTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
+        /// <summary>
+        /// Изменение и сохранение новой ширины прямоугольника с его валидацией.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void widthRecTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -162,6 +197,11 @@ namespace Programming.View.Panels
                 widthRecTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
+        /// <summary>
+        /// Изменение и сохранение новой длины прямоугольника с его валидацией.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void heightRecTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -187,6 +227,11 @@ namespace Programming.View.Panels
                 heightRecTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
+        /// <summary>
+        /// Добавляет новый прямоугольник в ListBox и Panel.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addRectangleButton_Click(object sender, EventArgs e)
         {
             Rectangle rectangle = RectangleFactory.Randomize();
@@ -203,6 +248,11 @@ namespace Programming.View.Panels
             UpdateRecListBox();
             FindCollisions();
         }
+        /// <summary>
+        /// Удаляет выбранный прямоугольник с ListBox'а и Panel'и.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void deleteRectangleButton_Click(object sender, EventArgs e)
         {
             if (RecListBox.SelectedIndex != -1)

@@ -6,12 +6,26 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Хранит данные о времени.
+    /// </summary>
     internal class Time
     {
+        /// <summary>
+        /// Час.
+        /// </summary>
         private int _hours;
+        /// <summary>
+        /// Минуты.
+        /// </summary>
         private int _minutes;
+        /// <summary>
+        /// Секунды.
+        /// </summary>
         private int _seconds;
-
+        /// <summary>
+        /// Возвращает и задает час. Должен быть в интервале от 0 до 23.
+        /// </summary>
         public int Hours
         {
             get { return _hours; }
@@ -23,6 +37,9 @@ namespace Programming.Model
                 }
             }
         }
+        /// <summary>
+        /// Возвращает и задает минуты. Должны быть в интервале от 0 до 60.
+        /// </summary>
         public int Minutes
         {
             get { return _minutes; }
@@ -34,6 +51,9 @@ namespace Programming.Model
                 }
             }
         }
+        /// <summary>
+        /// Возвращает и задает секунды. Должны быть в интервале от 0 до 60.
+        /// </summary>
         public int Seconds
         {
             get { return _seconds; }
@@ -45,6 +65,12 @@ namespace Programming.Model
                 }
             }
         }
+        /// <summary>
+        /// Создает экземлпяр класса <see cref="Time"/>
+        /// </summary>
+        /// <param name="hours">Час. Должен быть в интервале от 0 до 23.</param>
+        /// <param name="minutes">Минуты. Должны быть в интервале от 0 до 60.</param>
+        /// <param name="seconds">Секунды. Должны быть в интервале от 0 до 60.</param>
         public Time(int hours, int minutes, int seconds)
         {
             Hours = hours;

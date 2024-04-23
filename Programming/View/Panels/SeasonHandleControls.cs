@@ -10,12 +10,20 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Хранит данные о пользовательском интерфейсе.
+    /// </summary>
     public partial class SeasonHandleControls : UserControl
     {
         public SeasonHandleControls()
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Осуществляет различные действия ввиду выбора.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void chooseSeasonButton_Click(object sender, EventArgs e)
         {
             switch (seasonComboBox.SelectedIndex)

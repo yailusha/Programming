@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Enums
 {
+    /// <summary>
+    /// Хранит список форматов обучения.
+    /// </summary>
     public enum FormOfTheStudentEducation
     {
         FullTime,

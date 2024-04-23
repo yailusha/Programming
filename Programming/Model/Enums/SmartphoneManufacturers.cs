@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Enums
 {
+    /// <summary>
+    /// Хранит список производителей смартфонов.
+    /// </summary>
     public enum SmartphoneManufacturers
     {
         Apple,
         Samsung,
         Huawei,
         Xiaomi,
-        Nokia5
+        Nokia,
     }
 }

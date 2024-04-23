@@ -11,12 +11,20 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Хранит данные о пользовательском интерфейсе.
+    /// </summary>
     public partial class WeekdayParsingControls : UserControl
     {
         public WeekdayParsingControls()
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Переводит день недели в число. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void parseButton_Click(object sender, EventArgs e)
         {
             Weekday weekday;
