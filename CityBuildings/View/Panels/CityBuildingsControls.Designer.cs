@@ -78,7 +78,6 @@
             label1.Size = new Size(35, 15);
             label1.TabIndex = 0;
             label1.Text = "Title: ";
-            label1.Click += this.label1_Click;
             // 
             // label2
             // 
@@ -106,7 +105,6 @@
             label4.Size = new Size(44, 15);
             label4.TabIndex = 3;
             label4.Text = "Rating:";
-            label4.Click += this.label4_Click;
             // 
             // TitleTextBox
             // 
@@ -154,7 +152,6 @@
             EditButton.TabIndex = 3;
             EditButton.Text = "Edit";
             EditButton.UseVisualStyleBackColor = true;
-            EditButton.Click += this.EditButton_Click;
             // 
             // DeleteButton
             // 
