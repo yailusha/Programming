@@ -1,6 +1,6 @@
 ﻿namespace CityBuildings
 {
-    partial class CityBuildings
+    partial class Buildings
     {
         /// <summary>
         ///  Required designer variable.

@@ -31,9 +31,9 @@
             CityBuildingsListBox = new ListBox();
             groupBox1 = new GroupBox();
             CategoryComboBox = new ComboBox();
-            AdressTextBox = new TextBox();
-            RatingTextBox = new TextBox();
-            TitleTextBox = new TextBox();
+            adressTextBox = new TextBox();
+            ratingTextBox = new TextBox();
+            titleTextBox = new TextBox();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
@@ -56,9 +56,9 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(CategoryComboBox);
-            groupBox1.Controls.Add(AdressTextBox);
-            groupBox1.Controls.Add(RatingTextBox);
-            groupBox1.Controls.Add(TitleTextBox);
+            groupBox1.Controls.Add(adressTextBox);
+            groupBox1.Controls.Add(ratingTextBox);
+            groupBox1.Controls.Add(titleTextBox);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
@@ -72,34 +72,35 @@
             // 
             // CategoryComboBox
             // 
+            CategoryComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             CategoryComboBox.FormattingEnabled = true;
             CategoryComboBox.Items.AddRange(new object[] { "Cafe", "Restaurant", "Municipal", "Autonomous", "Club" });
             CategoryComboBox.Location = new Point(69, 80);
             CategoryComboBox.Name = "CategoryComboBox";
             CategoryComboBox.Size = new Size(281, 23);
             CategoryComboBox.TabIndex = 7;
-            CategoryComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             // 
-            // AdressTextBox
+            // adressTextBox
             // 
-            AdressTextBox.Location = new Point(69, 51);
-            AdressTextBox.Name = "AdressTextBox";
-            AdressTextBox.Size = new Size(281, 23);
-            AdressTextBox.TabIndex = 6;
+            adressTextBox.Location = new Point(69, 51);
+            adressTextBox.Name = "adressTextBox";
+            adressTextBox.Size = new Size(281, 23);
+            adressTextBox.TabIndex = 6;
             // 
-            // RatingTextBox
+            // ratingTextBox
             // 
-            RatingTextBox.Location = new Point(69, 109);
-            RatingTextBox.Name = "RatingTextBox";
-            RatingTextBox.Size = new Size(281, 23);
-            RatingTextBox.TabIndex = 5;
+            ratingTextBox.Location = new Point(69, 109);
+            ratingTextBox.Name = "ratingTextBox";
+            ratingTextBox.Size = new Size(281, 23);
+            ratingTextBox.TabIndex = 5;
+            ratingTextBox.TextChanged += RatingTextBox_TextChanged;
             // 
-            // TitleTextBox
+            // titleTextBox
             // 
-            TitleTextBox.Location = new Point(69, 22);
-            TitleTextBox.Name = "TitleTextBox";
-            TitleTextBox.Size = new Size(281, 23);
-            TitleTextBox.TabIndex = 4;
+            titleTextBox.Location = new Point(69, 22);
+            titleTextBox.Name = "titleTextBox";
+            titleTextBox.Size = new Size(281, 23);
+            titleTextBox.TabIndex = 4;
             // 
             // label4
             // 
@@ -189,9 +190,9 @@
         private Label label2;
         private Label label1;
         private ComboBox CategoryComboBox;
-        private TextBox AdressTextBox;
-        private TextBox RatingTextBox;
-        private TextBox TitleTextBox;
+        private TextBox adressTextBox;
+        private TextBox ratingTextBox;
+        private TextBox titleTextBox;
         private Button AddButton;
         private Button EditButton;
         private Button DeleteButton;
