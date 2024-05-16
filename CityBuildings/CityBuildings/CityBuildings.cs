@@ -1,8 +1,8 @@
 namespace CityBuildings
 {
-    public partial class Form1 : Form
+    public partial class CityBuildings : Form
     {
-        public Form1()
+        public CityBuildings()
         {
             InitializeComponent();
         }
