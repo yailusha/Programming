@@ -6,7 +6,5 @@ namespace CityBuildings
         {
             InitializeComponent();
         }
-
-
     }
 }

@@ -10,9 +10,10 @@ namespace CityBuildings.Model
     {
         public static bool AssertValueInRange(double value, double min, double max)
         {
-            if (value < min ||  value > max)
+            if (value < min || value > max)
             {
-                throw new ArgumentException($"Value not in range from 0 to 5: {value}");
+                MessageBox.Show($"Value not in range from 0 to 5, current value: {value}");
+                return false;
             }
             return true;
         }
@@ -20,7 +21,8 @@ namespace CityBuildings.Model
         {
             if (value.Length > max)
             {
-                throw new ArgumentException("Incorrect value");
+                MessageBox.Show("The value is too high.");
+                return false;
             }
             return true;
         }

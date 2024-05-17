@@ -28,31 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            cityBuildingsControls2 = new View.Panels.CityBuildingsControls();
+            cityBuildingsControls1 = new View.Panels.CityBuildingsControls();
             SuspendLayout();
             // 
-            // cityBuildingsControls2
+            // cityBuildingsControls1
             // 
-            cityBuildingsControls2.Location = new Point(12, 12);
-            cityBuildingsControls2.Name = "cityBuildingsControls2";
-            cityBuildingsControls2.Size = new Size(656, 417);
-            cityBuildingsControls2.TabIndex = 0;
+            cityBuildingsControls1.Location = new Point(12, 12);
+            cityBuildingsControls1.Name = "cityBuildingsControls1";
+            cityBuildingsControls1.Size = new Size(656, 417);
+            cityBuildingsControls1.TabIndex = 0;
             // 
-            // CityBuildings
+            // Buildings
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(cityBuildingsControls2);
+            Controls.Add(cityBuildingsControls1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-            Name = "CityBuildings";
+            Name = "Buildings";
             Text = "City Buildings";
             ResumeLayout(false);
         }
 
         #endregion
 
-        private View.Panels.CityBuildingsControls cityBuildingsControls2;
+        private View.Panels.CityBuildingsControls cityBuildingsControls1;
     }
 }

@@ -13,12 +13,16 @@ namespace CityBuildings.Model
         private string _adress;
         private string _category;
         private double _rating;
+        private int _id;
+        private static int _allCityBuildingsCount;
+        public static int AllCityBuildingsCount { set { _allCityBuildingsCount = value; } }
+        public int Id { get { return _id; } }
         public string Title
         {
             get { return _title; }
             set
             {
-                if (!string.IsNullOrEmpty(value) || Validator.AssertOnLengthRange(value, 200))
+                if (Validator.AssertOnLengthRange(value, 200))
                 {
                     _title = value;
                 }
@@ -29,7 +33,7 @@ namespace CityBuildings.Model
             get { return _adress; }
             set
             {
-                if (!string.IsNullOrEmpty(value) || Validator.AssertOnLengthRange(value, 100))
+                if (Validator.AssertOnLengthRange(value, 100))
                 {
                     _adress = value;
                 }
@@ -53,6 +57,8 @@ namespace CityBuildings.Model
             Adress = adress;
             Category = category;
             Rating = rating;
+            _allCityBuildingsCount++;
+            _id = _allCityBuildingsCount;
         }
         public Building()
         {

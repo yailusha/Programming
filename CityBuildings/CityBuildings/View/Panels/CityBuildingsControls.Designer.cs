@@ -30,7 +30,8 @@
         {
             CityBuildingsListBox = new ListBox();
             groupBox1 = new GroupBox();
-            CategoryComboBox = new ComboBox();
+            label5 = new Label();
+            categoryComboBox = new ComboBox();
             adressTextBox = new TextBox();
             ratingTextBox = new TextBox();
             titleTextBox = new TextBox();
@@ -52,10 +53,12 @@
             CityBuildingsListBox.Name = "CityBuildingsListBox";
             CityBuildingsListBox.Size = new Size(196, 364);
             CityBuildingsListBox.TabIndex = 0;
+            CityBuildingsListBox.SelectedIndexChanged += CityBuildingsListBox_SelectedIndexChanged;
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(CategoryComboBox);
+            groupBox1.Controls.Add(label5);
+            groupBox1.Controls.Add(categoryComboBox);
             groupBox1.Controls.Add(adressTextBox);
             groupBox1.Controls.Add(ratingTextBox);
             groupBox1.Controls.Add(titleTextBox);
@@ -70,15 +73,25 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "City Buildings";
             // 
-            // CategoryComboBox
+            // label5
             // 
-            CategoryComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            CategoryComboBox.FormattingEnabled = true;
-            CategoryComboBox.Items.AddRange(new object[] { "Cafe", "Restaurant", "Municipal", "Autonomous", "Club" });
-            CategoryComboBox.Location = new Point(69, 80);
-            CategoryComboBox.Name = "CategoryComboBox";
-            CategoryComboBox.Size = new Size(281, 23);
-            CategoryComboBox.TabIndex = 7;
+            label5.AutoSize = true;
+            label5.Location = new Point(236, 135);
+            label5.Name = "label5";
+            label5.Size = new Size(114, 15);
+            label5.TabIndex = 8;
+            label5.Text = "(Ex.: 4,4. But not 4.4)\r\n";
+            // 
+            // categoryComboBox
+            // 
+            categoryComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            categoryComboBox.FormattingEnabled = true;
+            categoryComboBox.Items.AddRange(new object[] { "Cafe", "Restaurant", "Municipal", "Autonomous", "Club" });
+            categoryComboBox.Location = new Point(69, 80);
+            categoryComboBox.Name = "categoryComboBox";
+            categoryComboBox.Size = new Size(281, 23);
+            categoryComboBox.TabIndex = 7;
+            categoryComboBox.SelectedIndexChanged += CategoryComboBox_SelectedIndexChanged;
             // 
             // adressTextBox
             // 
@@ -86,6 +99,7 @@
             adressTextBox.Name = "adressTextBox";
             adressTextBox.Size = new Size(281, 23);
             adressTextBox.TabIndex = 6;
+            adressTextBox.TextChanged += adressTextBox_TextChanged;
             // 
             // ratingTextBox
             // 
@@ -101,6 +115,7 @@
             titleTextBox.Name = "titleTextBox";
             titleTextBox.Size = new Size(281, 23);
             titleTextBox.TabIndex = 4;
+            titleTextBox.TextChanged += titleTextBox_TextChanged;
             // 
             // label4
             // 
@@ -146,6 +161,7 @@
             AddButton.TabIndex = 2;
             AddButton.Text = "Add";
             AddButton.UseVisualStyleBackColor = true;
+            AddButton.Click += AddButton_Click;
             // 
             // EditButton
             // 
@@ -164,6 +180,7 @@
             DeleteButton.TabIndex = 4;
             DeleteButton.Text = "Delete";
             DeleteButton.UseVisualStyleBackColor = true;
+            DeleteButton.Click += DeleteButton_Click;
             // 
             // CityBuildingsControls
             // 
@@ -189,12 +206,13 @@
         private Label label3;
         private Label label2;
         private Label label1;
-        private ComboBox CategoryComboBox;
+        private ComboBox categoryComboBox;
         private TextBox adressTextBox;
         private TextBox ratingTextBox;
         private TextBox titleTextBox;
         private Button AddButton;
         private Button EditButton;
         private Button DeleteButton;
+        private Label label5;
     }
 }
