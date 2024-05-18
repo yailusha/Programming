@@ -18,13 +18,17 @@ namespace CityBuildings.View.Panels
         private readonly List<Building> _cityBuildings = new List<Building>();
         private Building _currentBuilding;
         private bool _changesMade = false;
+        private string _filePath = @"C:\Users\Илья\source\repos\CityBuildings\CityBuildings\Model\Buildings.txt";
         public CityBuildingsControls()
         {
             InitializeComponent();
-            string filePath = "Buildings.txt";
+            ReadInfoFromFile();
+        }
+        private void ReadInfoFromFile()
+        {
             try
             {
-                using (StreamReader sr = new StreamReader(filePath))
+                using (StreamReader sr = new StreamReader(_filePath, true))
                 {
                     string line;
                     while ((line = sr.ReadLine()) != null)
@@ -38,17 +42,50 @@ namespace CityBuildings.View.Panels
                             Rating = double.Parse(parts[3])
                         };
                         _cityBuildings.Add(building);
+                        CityBuildingsListBox.Items.Add($"{building.Category} - {building.Title}");
                     }
                 }
             }
             catch { }
         }
-        private void WriteInfoInFile()
+        private void EditFile(int selectedLine)
         {
-
+            string[] lines = File.ReadAllLines( _filePath);
+            string[] parts = lines[selectedLine].Split(';');
+            Building building = new Building
+            {
+                Title = parts[0],
+                Adress = parts[1],
+                Category = parts[2],
+                Rating = double.Parse(parts[3])
+            };
+            lines[selectedLine] = $"{building.Title};{building.Adress};{building.Category};{building.Rating}";
+        }
+        private void ClearFile()
+        {
+            using (FileStream fs = new FileStream(_filePath, FileMode.Truncate))
+            {
+                fs.SetLength(0);
+            }
+        }
+        private void DeleteLineFromFile(int selectedLine)
+        {
+            string[] lines = File.ReadAllLines(_filePath);
+            var linesList = new List<string>(lines);
+            linesList.RemoveAt(selectedLine);
+            lines = linesList.ToArray();
+            SortBuildingsListBox();
+        }
+        private void WriteInfoInFile(Building building)
+        {
+            using (StreamWriter write = new StreamWriter(_filePath, true))
+            {
+                write.WriteLine($"{building.Title};{building.Adress};{building.Category};{building.Rating}");
+            }
         }
         private void SortBuildingsListBox()
         {
+            ClearFile();
             CityBuildingsListBox.Items.Clear();
             _cityBuildings.Sort((x, y) =>
             {
@@ -62,6 +99,7 @@ namespace CityBuildings.View.Panels
             foreach (Building building in _cityBuildings)
             {
                 CityBuildingsListBox.Items.Add($"{building.Category} - {building.Title}");
+                WriteInfoInFile(building);
             }
         }
         private void ClearBuildingInfo()
@@ -223,6 +261,7 @@ namespace CityBuildings.View.Panels
                 ClearBuildingInfo();
                 CityBuildingsListBox.Items.RemoveAt(selectedIndex);
                 _cityBuildings.RemoveAt(selectedIndex);
+                DeleteLineFromFile(selectedIndex);
             }
         }
 
@@ -250,6 +289,7 @@ namespace CityBuildings.View.Panels
                 _cityBuildings[selectedIndex].Adress = _currentBuilding.Adress;
                 _cityBuildings[selectedIndex].Category = _currentBuilding.Category;
                 _cityBuildings[selectedIndex].Rating = _currentBuilding.Rating;
+                EditFile(selectedIndex);
                 UpdateBuildingListBox();
             }
         }
