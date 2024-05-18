@@ -21,6 +21,31 @@ namespace CityBuildings.View.Panels
         public CityBuildingsControls()
         {
             InitializeComponent();
+            string filePath = "Buildings.txt";
+            try
+            {
+                using (StreamReader sr = new StreamReader(filePath))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        string[] parts = line.Split(';');
+                        Building building = new Building
+                        {
+                            Title = parts[0],
+                            Adress = parts[1],
+                            Category = parts[2],
+                            Rating = double.Parse(parts[3])
+                        };
+                        _cityBuildings.Add(building);
+                    }
+                }
+            }
+            catch { }
+        }
+        private void WriteInfoInFile()
+        {
+
         }
         private void SortBuildingsListBox()
         {
