@@ -171,6 +171,7 @@
             EditButton.TabIndex = 3;
             EditButton.Text = "Edit";
             EditButton.UseVisualStyleBackColor = true;
+            EditButton.Click += EditButton_Click;
             // 
             // DeleteButton
             // 
@@ -192,7 +193,7 @@
             Controls.Add(groupBox1);
             Controls.Add(CityBuildingsListBox);
             Name = "CityBuildingsControls";
-            Size = new Size(656, 417);
+            Size = new Size(656, 405);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);

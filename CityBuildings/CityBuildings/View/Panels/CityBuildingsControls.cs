@@ -17,11 +17,12 @@ namespace CityBuildings.View.Panels
     {
         private readonly List<Building> _cityBuildings = new List<Building>();
         private Building _currentBuilding;
+        private bool _changesMade = false;
         public CityBuildingsControls()
         {
             InitializeComponent();
         }
-        private void SortListBox()
+        private void SortBuildingsListBox()
         {
             CityBuildingsListBox.Items.Clear();
             _cityBuildings.Sort((x, y) =>
@@ -45,6 +46,15 @@ namespace CityBuildings.View.Panels
             ratingTextBox.Text = "";
             categoryComboBox.SelectedIndex = -1;
         }
+        private void UpdateBuildingListBox()
+        {
+            CityBuildingsListBox.Items.Clear();
+            foreach (Building building in _cityBuildings)
+            {
+                CityBuildingsListBox.Items.Add($"{building.Category} - {building.Title}");
+            }
+            SortBuildingsListBox();
+        }
         private void RatingTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -56,8 +66,16 @@ namespace CityBuildings.View.Panels
                     {
                         throw new FormatException();
                     }
-                    _currentBuilding.Rating = rating;
-                    ratingTextBox.BackColor = AppColors.ValidatorTrueColor;
+                    if (!_changesMade)
+                    {
+                        TextBox currentTextBox = (TextBox)sender;
+                        string originalText = (string)currentTextBox.Tag;
+                        if (currentTextBox.Text != originalText)
+                        {
+                            _currentBuilding.Rating = rating;
+                            ratingTextBox.BackColor = AppColors.ValidatorTrueColor;
+                        }
+                    }
                 }
                 else if (rating < 0 || rating > 5)
                 {
@@ -82,8 +100,16 @@ namespace CityBuildings.View.Panels
                     {
                         throw new FormatException();
                     }
-                    _currentBuilding.Title = title;
-                    titleTextBox.BackColor = AppColors.ValidatorTrueColor;
+                    if (!_changesMade)
+                    {
+                        TextBox currentTextBox = (TextBox)sender;
+                        string originalText = (string)currentTextBox.Tag;
+                        if (currentTextBox.Text != originalText)
+                        {
+                            _currentBuilding.Title = title;
+                            titleTextBox.BackColor = AppColors.ValidatorTrueColor;
+                        }
+                    }
                 }
                 else if (string.IsNullOrEmpty(title) || title.Length > 200)
                 {
@@ -108,8 +134,16 @@ namespace CityBuildings.View.Panels
                     {
                         throw new FormatException();
                     }
-                    _currentBuilding.Adress = adress;
-                    adressTextBox.BackColor = AppColors.ValidatorTrueColor;
+                    if (!_changesMade)
+                    {
+                        TextBox currentTextBox = (TextBox)sender;
+                        string originalText = (string)currentTextBox.Tag;
+                        if (currentTextBox.Text != originalText)
+                        {
+                            _currentBuilding.Adress = adress;
+                            adressTextBox.BackColor = AppColors.ValidatorTrueColor;
+                        }
+                    }
                 }
                 else if (string.IsNullOrEmpty(adress) || adress.Length > 100)
                 {
@@ -124,7 +158,19 @@ namespace CityBuildings.View.Panels
         }
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int selectedIndex = categoryComboBox.SelectedIndex;
+            string category = (string)categoryComboBox.SelectedItem;
+            if (_currentBuilding != null)
+            {
+                if (!_changesMade)
+                {
+                    ComboBox currentCategoryComboBox = (ComboBox)sender;
+                    string originalChoose = (string)categoryComboBox.Tag;
+                    if (currentCategoryComboBox.Text != originalChoose)
+                    {
+                        _currentBuilding.Category = category;
+                    }
+                }
+            }
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -139,7 +185,8 @@ namespace CityBuildings.View.Panels
                 double rating = double.Parse(ratingTextBox.Text);
                 Building building = new Building(title, adress, category, rating);
                 _cityBuildings.Add(building);
-                SortListBox();
+                SortBuildingsListBox();
+                ClearBuildingInfo();
             }
         }
 
@@ -164,6 +211,21 @@ namespace CityBuildings.View.Panels
                 adressTextBox.Text = _currentBuilding.Adress;
                 categoryComboBox.SelectedItem = _currentBuilding.Category;
                 ratingTextBox.Text = _currentBuilding.Rating.ToString();
+                _changesMade = true;
+            }
+        }
+
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = CityBuildingsListBox.SelectedIndex;
+            if (selectedIndex != - 1)
+            {
+                _changesMade = false;
+                _cityBuildings[selectedIndex].Title = _currentBuilding.Title;
+                _cityBuildings[selectedIndex].Adress = _currentBuilding.Adress;
+                _cityBuildings[selectedIndex].Category = _currentBuilding.Category;
+                _cityBuildings[selectedIndex].Rating = _currentBuilding.Rating;
+                UpdateBuildingListBox();
             }
         }
     }
