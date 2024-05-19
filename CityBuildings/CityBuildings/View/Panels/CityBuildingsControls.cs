@@ -1,4 +1,5 @@
 ﻿using CityBuildings.Model;
+using CityBuildings.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,6 +28,8 @@ namespace CityBuildings.View.Panels
         public CityBuildingsControls()
         {
             InitializeComponent();
+            string[] categoriesArray = Enum.GetNames(typeof(Categories));
+            categoryComboBox.Items.AddRange(categoriesArray);
             ReadInfoFromFile();
         }
         /// <summary>
@@ -238,6 +241,14 @@ namespace CityBuildings.View.Panels
             catch (FormatException)
             {
                 ratingTextBox.BackColor = AppColors.ValidatorFalseColor;
+                if (!string.IsNullOrEmpty(ratingTextBox.Text))
+                {
+                    MessageBox.Show("Value must be from 0 to 5. For real numbers you have to write with \",\".");
+                }
+                else
+                {
+                    MessageBox.Show("Value can not be empty.");
+                }
             }
         }
         /// <summary>
@@ -276,6 +287,14 @@ namespace CityBuildings.View.Panels
             catch (FormatException)
             {
                 titleTextBox.BackColor = AppColors.ValidatorFalseColor;
+                if (!string.IsNullOrEmpty(titleTextBox.Text))
+                {
+                    MessageBox.Show("Title can contain line with only less than 200 symbols.");
+                }
+                else
+                {
+                    MessageBox.Show("Title can not be empty.");
+                }
             }
         }
         /// <summary>
@@ -314,6 +333,14 @@ namespace CityBuildings.View.Panels
             catch (FormatException)
             {
                 adressTextBox.BackColor = AppColors.ValidatorFalseColor;
+                if (!string.IsNullOrEmpty(adressTextBox.Text))
+                {
+                    MessageBox.Show("Adress can contain line with only less than 100 symbols.");
+                }
+                else
+                {
+                    MessageBox.Show("Adress can not be empty.");
+                }
             }
         }
         /// <summary>
@@ -335,6 +362,10 @@ namespace CityBuildings.View.Panels
                 _cityBuildings.Add(building);
                 SortBuildingsListBox();
                 ClearBuildingInfo();
+            }
+            else
+            {
+                MessageBox.Show("Not all data is entered.");
             }
         }
         /// <summary>

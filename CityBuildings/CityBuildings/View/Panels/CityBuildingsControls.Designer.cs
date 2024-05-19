@@ -86,7 +86,6 @@
             // 
             categoryComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             categoryComboBox.FormattingEnabled = true;
-            categoryComboBox.Items.AddRange(new object[] { "Cafe", "Restaurant", "Municipal", "Autonomous", "Club" });
             categoryComboBox.Location = new Point(69, 80);
             categoryComboBox.Name = "categoryComboBox";
             categoryComboBox.Size = new Size(281, 23);

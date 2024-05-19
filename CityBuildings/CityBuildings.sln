@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityBuildings", "CityBuildings\CityBuildings.csproj", "{B1271FE5-772E-487A-91DA-32CC34F13066}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CityBuildings", "CityBuildings\CityBuildings.csproj", "{B1271FE5-772E-487A-91DA-32CC34F13066}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CityBuildingsSetup", "CityBuildingsSetup\CityBuildingsSetup.vdproj", "{3D19DAB4-B57E-4461-9E0D-F805B599D21D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,8 @@ Global
 		{B1271FE5-772E-487A-91DA-32CC34F13066}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1271FE5-772E-487A-91DA-32CC34F13066}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1271FE5-772E-487A-91DA-32CC34F13066}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D19DAB4-B57E-4461-9E0D-F805B599D21D}.Debug|Any CPU.ActiveCfg = Debug
+		{3D19DAB4-B57E-4461-9E0D-F805B599D21D}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
