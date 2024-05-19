@@ -180,10 +180,6 @@ namespace CityBuildings.View.Panels
                     }
                 }
             }
-            else
-            {
-                MessageBox.Show("Choose the building that you want to edit");
-            }
         }
         /// <summary>
         /// Выбор категории.
