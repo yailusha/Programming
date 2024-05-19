@@ -7,16 +7,46 @@ using System.Threading.Tasks;
 
 namespace CityBuildings.Model
 {
+    /// <summary>
+    /// Хранит данные о городском строении.
+    /// </summary>
     internal class Building
     {
+        /// <summary>
+        /// Название заведения.
+        /// </summary>
         private string _title;
+        /// <summary>
+        /// Адрес заведения.
+        /// </summary>
         private string _adress;
+        /// <summary>
+        /// Категория заведения.
+        /// </summary>
         private string _category;
+        /// <summary>
+        /// Рейтинг заведения.
+        /// </summary>
         private double _rating;
+        /// <summary>
+        /// Уникальный идентификатор заведения.
+        /// </summary>
         private int _id;
+        /// <summary>
+        /// Количество заведений.
+        /// </summary>
         private static int _allCityBuildingsCount;
+        /// <summary>
+        /// Задает количесво заведений.
+        /// </summary>
         public static int AllCityBuildingsCount { set { _allCityBuildingsCount = value; } }
+        /// <summary>
+        /// Возвращает уникальный идентификатор заведения.
+        /// </summary>
         public int Id { get { return _id; } }
+        /// <summary>
+        /// Возвращает и задает название заведения.
+        /// </summary>
         public string Title
         {
             get { return _title; }
@@ -28,6 +58,9 @@ namespace CityBuildings.Model
                 }
             }
         }
+        /// <summary>
+        /// Возвращает и задает адрес заведения.
+        /// </summary>
         public string Adress
         {
             get { return _adress; }
@@ -39,7 +72,13 @@ namespace CityBuildings.Model
                 }
             }
         }
+        /// <summary>
+        /// Возвращает и задает категорию заведения.
+        /// </summary>
         public string Category { get; set; }
+        /// <summary>
+        /// Возвращает и задает рейтинг заведения.
+        /// </summary>
         public double Rating
         {
             get { return _rating; }
@@ -51,6 +90,13 @@ namespace CityBuildings.Model
                 }
             }
         }
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Building"/>
+        /// </summary>
+        /// <param name="title">Название. Не может быть пустым или иметь длину более 200 символов.</param>
+        /// <param name="adress">Адрес. Не может быть пустым или иметь длину более 100 символов.</param>
+        /// <param name="category">Категория.</param>
+        /// <param name="rating">Рейтинг. Должен быть в интервале от 0 до 5.</param>
         public Building(string title, string adress, string category, double rating)
         {
             Title = title;

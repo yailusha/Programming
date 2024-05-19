@@ -6,8 +6,18 @@ using System.Threading.Tasks;
 
 namespace CityBuildings.Model
 {
+    /// <summary>
+    /// Хранит методы для валидаций значений полей.
+    /// </summary>
     static class Validator
     {
+        /// <summary>
+        /// Проверяет, находится ли число в заданном диапазоне.
+        /// </summary>
+        /// <param name="value">Проверяемое значение.</param>
+        /// <param name="min">Минимальное значение.</param>
+        /// <param name="max">Максимальное значение.</param>
+        /// <returns>Возвращает true, если значение находится в заданном диапазоне.</returns>
         public static bool AssertValueInRange(double value, double min, double max)
         {
             if (value < min || value > max)
@@ -17,6 +27,12 @@ namespace CityBuildings.Model
             }
             return true;
         }
+        /// <summary>
+        /// Проверяет длину строки.
+        /// </summary>
+        /// <param name="value">Проверяемая строка.</param>
+        /// <param name="max">Максимально допустимая длина строки.</param>
+        /// <returns>Возвращает true, если длина менее максимально допустимой длины.</returns>
         public static bool AssertOnLengthRange(string value, int max)
         {
             if (value.Length > max)

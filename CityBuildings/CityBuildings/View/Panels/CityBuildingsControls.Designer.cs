@@ -39,9 +39,9 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            AddButton = new Button();
-            EditButton = new Button();
-            DeleteButton = new Button();
+            addButton = new Button();
+            editButton = new Button();
+            deleteButton = new Button();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -153,43 +153,43 @@
             label1.TabIndex = 0;
             label1.Text = "Title:";
             // 
-            // AddButton
+            // addButton
             // 
-            AddButton.Location = new Point(3, 373);
-            AddButton.Name = "AddButton";
-            AddButton.Size = new Size(62, 23);
-            AddButton.TabIndex = 2;
-            AddButton.Text = "Add";
-            AddButton.UseVisualStyleBackColor = true;
-            AddButton.Click += AddButton_Click;
+            addButton.Location = new Point(3, 373);
+            addButton.Name = "addButton";
+            addButton.Size = new Size(62, 23);
+            addButton.TabIndex = 2;
+            addButton.Text = "Add";
+            addButton.UseVisualStyleBackColor = true;
+            addButton.Click += addButton_Click;
             // 
-            // EditButton
+            // editButton
             // 
-            EditButton.Location = new Point(71, 373);
-            EditButton.Name = "EditButton";
-            EditButton.Size = new Size(62, 23);
-            EditButton.TabIndex = 3;
-            EditButton.Text = "Edit";
-            EditButton.UseVisualStyleBackColor = true;
-            EditButton.Click += EditButton_Click;
+            editButton.Location = new Point(71, 373);
+            editButton.Name = "editButton";
+            editButton.Size = new Size(62, 23);
+            editButton.TabIndex = 3;
+            editButton.Text = "Edit";
+            editButton.UseVisualStyleBackColor = true;
+            editButton.Click += editButton_Click;
             // 
-            // DeleteButton
+            // deleteButton
             // 
-            DeleteButton.Location = new Point(137, 373);
-            DeleteButton.Name = "DeleteButton";
-            DeleteButton.Size = new Size(62, 23);
-            DeleteButton.TabIndex = 4;
-            DeleteButton.Text = "Delete";
-            DeleteButton.UseVisualStyleBackColor = true;
-            DeleteButton.Click += DeleteButton_Click;
+            deleteButton.Location = new Point(137, 373);
+            deleteButton.Name = "deleteButton";
+            deleteButton.Size = new Size(62, 23);
+            deleteButton.TabIndex = 4;
+            deleteButton.Text = "Delete";
+            deleteButton.UseVisualStyleBackColor = true;
+            deleteButton.Click += deleteButton_Click;
             // 
             // CityBuildingsControls
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(DeleteButton);
-            Controls.Add(EditButton);
-            Controls.Add(AddButton);
+            Controls.Add(deleteButton);
+            Controls.Add(editButton);
+            Controls.Add(addButton);
             Controls.Add(groupBox1);
             Controls.Add(CityBuildingsListBox);
             Name = "CityBuildingsControls";
@@ -211,9 +211,9 @@
         private TextBox adressTextBox;
         private TextBox ratingTextBox;
         private TextBox titleTextBox;
-        private Button AddButton;
-        private Button EditButton;
-        private Button DeleteButton;
+        private Button addButton;
+        private Button editButton;
+        private Button deleteButton;
         private Label label5;
     }
 }

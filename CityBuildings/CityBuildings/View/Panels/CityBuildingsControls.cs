@@ -13,17 +13,25 @@ using System.Windows.Forms;
 
 namespace CityBuildings.View.Panels
 {
+    /// <summary>
+    /// Хранит данные о строениях.
+    /// </summary>
     public partial class CityBuildingsControls : UserControl
     {
         private readonly List<Building> _cityBuildings = new List<Building>();
         private Building _currentBuilding;
         private bool _changesMade = false;
+        private bool _confirmChanges = false;
         private string _filePath = @"C:\Users\Илья\source\repos\CityBuildings\CityBuildings\Model\Buildings.txt";
+        private int _allowedIndex = -1;
         public CityBuildingsControls()
         {
             InitializeComponent();
             ReadInfoFromFile();
         }
+        /// <summary>
+        /// Считывает информацию с файла и добавляет в список и ListBox.
+        /// </summary>
         private void ReadInfoFromFile()
         {
             try
@@ -48,6 +56,10 @@ namespace CityBuildings.View.Panels
             }
             catch { }
         }
+        /// <summary>
+        /// Редактирует выбранную строку в файле.
+        /// </summary>
+        /// <param name="selectedLine">Выбранная строка.</param>
         private void EditFile(int selectedLine)
         {
             string[] lines = File.ReadAllLines( _filePath);
@@ -61,6 +73,9 @@ namespace CityBuildings.View.Panels
             };
             lines[selectedLine] = $"{building.Title};{building.Adress};{building.Category};{building.Rating}";
         }
+        /// <summary>
+        /// Полностью очищает файл.
+        /// </summary>
         private void ClearFile()
         {
             using (FileStream fs = new FileStream(_filePath, FileMode.Truncate))
@@ -68,6 +83,10 @@ namespace CityBuildings.View.Panels
                 fs.SetLength(0);
             }
         }
+        /// <summary>
+        /// Удаляет выбранную строку из файла.
+        /// </summary>
+        /// <param name="selectedLine">Выбранная строка.</param>
         private void DeleteLineFromFile(int selectedLine)
         {
             string[] lines = File.ReadAllLines(_filePath);
@@ -76,6 +95,10 @@ namespace CityBuildings.View.Panels
             lines = linesList.ToArray();
             SortBuildingsListBox();
         }
+        /// <summary>
+        /// Записывает новую информацию в файл.
+        /// </summary>
+        /// <param name="building">Переданная информация.</param>
         private void WriteInfoInFile(Building building)
         {
             using (StreamWriter write = new StreamWriter(_filePath, true))
@@ -83,6 +106,9 @@ namespace CityBuildings.View.Panels
                 write.WriteLine($"{building.Title};{building.Adress};{building.Category};{building.Rating}");
             }
         }
+        /// <summary>
+        /// Сортирует значения в ListBox по принципу "Категория - Название"
+        /// </summary>
         private void SortBuildingsListBox()
         {
             ClearFile();
@@ -102,6 +128,9 @@ namespace CityBuildings.View.Panels
                 WriteInfoInFile(building);
             }
         }
+        /// <summary>
+        /// Очищает информацию о заведении в TextBox и ComboBox.
+        /// </summary>
         private void ClearBuildingInfo()
         {
             titleTextBox.Text = "";
@@ -109,6 +138,9 @@ namespace CityBuildings.View.Panels
             ratingTextBox.Text = "";
             categoryComboBox.SelectedIndex = -1;
         }
+        /// <summary>
+        /// Обновляет значения в ListBox.
+        /// </summary>
         private void UpdateBuildingListBox()
         {
             CityBuildingsListBox.Items.Clear();
@@ -118,6 +150,67 @@ namespace CityBuildings.View.Panels
             }
             SortBuildingsListBox();
         }
+        /// <summary>
+        /// Отображает данные заведения.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CityBuildingsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = CityBuildingsListBox.SelectedIndex;
+            if (selectedIndex != -1)
+            {
+                _currentBuilding = _cityBuildings[selectedIndex];
+                titleTextBox.Text = _currentBuilding.Title;
+                adressTextBox.Text = _currentBuilding.Adress;
+                categoryComboBox.SelectedItem = _currentBuilding.Category;
+                ratingTextBox.Text = _currentBuilding.Rating.ToString();
+                _changesMade = true;
+                if (_confirmChanges)
+                {
+                    if (selectedIndex != _allowedIndex)
+                    {
+                        MessageBox.Show($"You did not confirm changes. Choose {_allowedIndex + 1} building and press Edit to confirm chages.");
+                        editButton.Enabled = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Press Edit to confirm changes");
+                        editButton.Enabled = true;
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Choose the building that you want to edit");
+            }
+        }
+        /// <summary>
+        /// Выбор категории.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string category = (string)categoryComboBox.SelectedItem;
+            if (_currentBuilding != null)
+            {
+                if (!_changesMade)
+                {
+                    ComboBox currentCategoryComboBox = (ComboBox)sender;
+                    string originalChoose = (string)categoryComboBox.Tag;
+                    if (currentCategoryComboBox.Text != originalChoose)
+                    {
+                        _currentBuilding.Category = category;
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// Изменение и сохранение нового рейтинга заведения с его валидацией.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RatingTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -151,7 +244,11 @@ namespace CityBuildings.View.Panels
                 ratingTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
-
+        /// <summary>
+        /// Изменение и сохранение нового названия заведения с его валидацией. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void titleTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -185,7 +282,11 @@ namespace CityBuildings.View.Panels
                 titleTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
-
+        /// <summary>
+        /// Изменение и сохранение нового адреса заведения с его валидацией.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void adressTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -219,24 +320,12 @@ namespace CityBuildings.View.Panels
                 adressTextBox.BackColor = AppColors.ValidatorFalseColor;
             }
         }
-        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string category = (string)categoryComboBox.SelectedItem;
-            if (_currentBuilding != null)
-            {
-                if (!_changesMade)
-                {
-                    ComboBox currentCategoryComboBox = (ComboBox)sender;
-                    string originalChoose = (string)categoryComboBox.Tag;
-                    if (currentCategoryComboBox.Text != originalChoose)
-                    {
-                        _currentBuilding.Category = category;
-                    }
-                }
-            }
-        }
-
-        private void AddButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Добавляет новое заведение в ListBox и файл.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void addButton_Click(object sender, EventArgs e)
         {
             int selectedIndex = categoryComboBox.SelectedIndex;
             string title = titleTextBox.Text;
@@ -252,8 +341,12 @@ namespace CityBuildings.View.Panels
                 ClearBuildingInfo();
             }
         }
-
-        private void DeleteButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Удаляет выбранное заведение из ListBox'а и файла.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void deleteButton_Click(object sender, EventArgs e)
         {
             if (CityBuildingsListBox.SelectedIndex != -1)
             {
@@ -263,23 +356,17 @@ namespace CityBuildings.View.Panels
                 _cityBuildings.RemoveAt(selectedIndex);
                 DeleteLineFromFile(selectedIndex);
             }
-        }
-
-        private void CityBuildingsListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int selectedIndex = CityBuildingsListBox.SelectedIndex;
-            if (selectedIndex != -1)
+            else
             {
-                _currentBuilding = _cityBuildings[selectedIndex];
-                titleTextBox.Text = _currentBuilding.Title;
-                adressTextBox.Text = _currentBuilding.Adress;
-                categoryComboBox.SelectedItem = _currentBuilding.Category;
-                ratingTextBox.Text = _currentBuilding.Rating.ToString();
-                _changesMade = true;
+                MessageBox.Show("Choose the building that you want to delete");
             }
         }
-
-        private void EditButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Редактирует значения выбранного заведения в ListBox'е и файле.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void editButton_Click(object sender, EventArgs e)
         {
             int selectedIndex = CityBuildingsListBox.SelectedIndex;
             if (selectedIndex != - 1)
@@ -291,6 +378,20 @@ namespace CityBuildings.View.Panels
                 _cityBuildings[selectedIndex].Rating = _currentBuilding.Rating;
                 EditFile(selectedIndex);
                 UpdateBuildingListBox();
+                _allowedIndex = selectedIndex;
+                if (!_confirmChanges)
+                {
+                    _confirmChanges = true;
+                    addButton.Enabled = false;
+                    deleteButton.Enabled = false;
+                }
+                else
+                {
+                    addButton.Enabled = true;
+                    deleteButton.Enabled = true;
+                    _confirmChanges = false;
+                    _allowedIndex = -1;
+                }
             }
         }
     }
