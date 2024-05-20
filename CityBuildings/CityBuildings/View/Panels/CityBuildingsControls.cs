@@ -408,6 +408,10 @@ namespace CityBuildings.View.Panels
                     _allowedIndex = -1;
                 }
             }
+            else
+            {
+                MessageBox.Show("Choose the building in which you want to edit data.");
+            }
         }
     }
 }
