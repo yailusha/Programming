@@ -106,7 +106,7 @@
             ratingTextBox.Name = "ratingTextBox";
             ratingTextBox.Size = new Size(281, 23);
             ratingTextBox.TabIndex = 5;
-            ratingTextBox.TextChanged += RatingTextBox_TextChanged;
+            ratingTextBox.TextChanged += ratingTextBox_TextChanged;
             // 
             // titleTextBox
             // 

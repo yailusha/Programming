@@ -210,7 +210,7 @@ namespace CityBuildings.View.Panels
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void RatingTextBox_TextChanged(object sender, EventArgs e)
+        private void ratingTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -353,7 +353,7 @@ namespace CityBuildings.View.Panels
             }
             else
             {
-                MessageBox.Show("Not all data is entered.");
+                MessageBox.Show("Not all data is entered or you try to add building with wrong data.");
             }
         }
         /// <summary>
