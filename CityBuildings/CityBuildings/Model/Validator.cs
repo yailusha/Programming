@@ -22,8 +22,7 @@ namespace CityBuildings.Model
         {
             if (value < min || value > max)
             {
-                MessageBox.Show($"Value not in range from 0 to 5, current value: {value}");
-                return false;
+                throw new Exception();
             }
             return true;
         }
@@ -37,8 +36,7 @@ namespace CityBuildings.Model
         {
             if (value.Length > max)
             {
-                MessageBox.Show("The value is too high.");
-                return false;
+                throw new Exception();
             }
             return true;
         }
