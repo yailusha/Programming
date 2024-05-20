@@ -245,10 +245,6 @@ namespace CityBuildings.View.Panels
                 {
                     MessageBox.Show("Value must be from 0 to 5. For real numbers you have to write with \",\".");
                 }
-                else
-                {
-                    MessageBox.Show("Value can not be empty.");
-                }
             }
         }
         /// <summary>
@@ -291,10 +287,6 @@ namespace CityBuildings.View.Panels
                 {
                     MessageBox.Show("Title can contain line with only less than 200 symbols.");
                 }
-                else
-                {
-                    MessageBox.Show("Title can not be empty.");
-                }
             }
         }
         /// <summary>
@@ -336,10 +328,6 @@ namespace CityBuildings.View.Panels
                 if (!string.IsNullOrEmpty(adressTextBox.Text))
                 {
                     MessageBox.Show("Adress can contain line with only less than 100 symbols.");
-                }
-                else
-                {
-                    MessageBox.Show("Adress can not be empty.");
                 }
             }
         }

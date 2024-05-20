@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CityBuildings.Model.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
@@ -23,7 +24,7 @@ namespace CityBuildings.Model
         /// <summary>
         /// Категория заведения.
         /// </summary>
-        private string _category;
+        private Categories _category;
         /// <summary>
         /// Рейтинг заведения.
         /// </summary>
