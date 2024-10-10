@@ -41,11 +41,13 @@
             AddButton = new Button();
             ItemsListBox = new ListBox();
             label1 = new Label();
+            label7 = new Label();
+            categoryComboBox = new ComboBox();
             SuspendLayout();
             // 
             // DescriptionTextBox
             // 
-            DescriptionTextBox.Location = new Point(358, 251);
+            DescriptionTextBox.Location = new Point(358, 276);
             DescriptionTextBox.Multiline = true;
             DescriptionTextBox.Name = "DescriptionTextBox";
             DescriptionTextBox.Size = new Size(367, 77);
@@ -54,7 +56,7 @@
             // 
             // NameTextBox
             // 
-            NameTextBox.Location = new Point(358, 118);
+            NameTextBox.Location = new Point(358, 143);
             NameTextBox.Multiline = true;
             NameTextBox.Name = "NameTextBox";
             NameTextBox.Size = new Size(367, 112);
@@ -80,7 +82,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(358, 233);
+            label6.Location = new Point(358, 258);
             label6.Name = "label6";
             label6.Size = new Size(70, 15);
             label6.TabIndex = 38;
@@ -89,7 +91,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(358, 100);
+            label5.Location = new Point(358, 125);
             label5.Name = "label5";
             label5.Size = new Size(42, 15);
             label5.TabIndex = 37;
@@ -163,10 +165,30 @@
             label1.TabIndex = 30;
             label1.Text = "Items";
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(358, 97);
+            label7.Name = "label7";
+            label7.Size = new Size(58, 15);
+            label7.TabIndex = 43;
+            label7.Text = "Category:";
+            // 
+            // categoryComboBox
+            // 
+            categoryComboBox.FormattingEnabled = true;
+            categoryComboBox.Location = new Point(427, 94);
+            categoryComboBox.Name = "categoryComboBox";
+            categoryComboBox.Size = new Size(134, 23);
+            categoryComboBox.TabIndex = 44;
+            categoryComboBox.SelectedIndexChanged += categoryComboBox_SelectedIndexChanged;
+            // 
             // ItemsTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(categoryComboBox);
+            Controls.Add(label7);
             Controls.Add(DescriptionTextBox);
             Controls.Add(NameTextBox);
             Controls.Add(CostTextBox);
@@ -206,5 +228,7 @@
         private Button AddButton;
         private ListBox ItemsListBox;
         private Label label1;
+        private Label label7;
+        private ComboBox categoryComboBox;
     }
 }

@@ -14,6 +14,8 @@ namespace ObjectOrientedPractics.Model
         private string _name;
         private string _info;
         private double _cost;
+        private Category _category;
+        public Category Category { get; set; } 
         public int Id { get { return _id; } }
         public static int AllItemsCount { set { _allItemsCount = value; } }
         public string Name
@@ -49,11 +51,12 @@ namespace ObjectOrientedPractics.Model
                 }
             }
         }
-        public Item(string name, string info, double cost)
+        public Item(string name, string info, double cost, Category category)
         {
             Name = name;
             Info = info;
             Cost = cost;
+            Category = category;
             _allItemsCount++;
             _id = _allItemsCount;
         }

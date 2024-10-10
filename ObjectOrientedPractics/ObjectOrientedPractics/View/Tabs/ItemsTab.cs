@@ -21,6 +21,10 @@ namespace ObjectOrientedPractics.View.Tabs
         public ItemsTab()
         {
             InitializeComponent();
+            foreach (Category category in Enum.GetValues(typeof(Category)))
+            {
+                categoryComboBox.Items.Add(category);
+            }
         }
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -29,6 +33,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _currentItem = _items[selectedIndex];
                 IdTextBox.Text = _currentItem.Id.ToString();
+                categoryComboBox.SelectedItem = _currentItem.Category;
                 CostTextBox.Text = _currentItem.Cost.ToString();
                 NameTextBox.Text = _currentItem.Name;
                 DescriptionTextBox.Text = _currentItem.Info;
@@ -91,9 +96,10 @@ namespace ObjectOrientedPractics.View.Tabs
             double cost = double.Parse(CostTextBox.Text);
             string name = NameTextBox.Text;
             string description = DescriptionTextBox.Text;
+            Category category = (Category)categoryComboBox.SelectedItem;
             if (name != "" && description != "")
             {
-                Item item = new Item(name, description, cost);
+                Item item = new Item(name, description, cost, category);
                 _items.Add(item);
                 ItemsListBox.Items.Add($"{item.Name} - {item.Cost}");
             }
@@ -111,7 +117,13 @@ namespace ObjectOrientedPractics.View.Tabs
                 NameTextBox.Text = "";
                 CostTextBox.Text = "";
                 DescriptionTextBox.Text = "";
+                categoryComboBox.SelectedItem = null;
             }
+        }
+
+        private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
