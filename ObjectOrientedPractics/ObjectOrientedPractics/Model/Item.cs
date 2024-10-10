@@ -10,12 +10,12 @@ namespace ObjectOrientedPractics.Model
     internal class Item
     {
         private readonly int _id;
-        private static int _allProductsId;
+        private static int _allItemsCount;
         private string _name;
         private string _info;
         private double _cost;
         public int Id { get { return _id; } }
-        public static int AllProductsId { set { _allProductsId = value; } }
+        public static int AllItemsCount { set { _allItemsCount = value; } }
         public string Name
         {
             get { return _name; }
@@ -54,8 +54,8 @@ namespace ObjectOrientedPractics.Model
             Name = name;
             Info = info;
             Cost = cost;
-            _id = IdGenerator.GetNextId();
-            _allProductsId = _id;
+            _allItemsCount++;
+            _id = _allItemsCount;
         }
         public Item ()
         {

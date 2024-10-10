@@ -10,11 +10,11 @@ namespace ObjectOrientedPractics.Model
     internal class Customer
     {
         private readonly int _id;
-        private static int _allCustomersId;
+        private static int _allCustomersCount;
         private string _fullname;
         private string _address;
         public int Id { get { return _id; } }
-        public static int AllCustomersId { set { _allCustomersId = value; } }
+        public static int AllCustomersCount { set { _allCustomersCount = value; } }
         public string Fullname
         {
             get { return _fullname; }
@@ -41,8 +41,8 @@ namespace ObjectOrientedPractics.Model
         {
             _fullname = fullname;
             _address = address;
-            _id = IdGenerator.GetNextId();
-            _allCustomersId = _id;
+            _allCustomersCount++;
+            _id = _allCustomersCount;
         }
     }
 }

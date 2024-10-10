@@ -30,8 +30,12 @@
         {
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            itemsTab1 = new View.Tabs.ItemsTab();
             tabPage2 = new TabPage();
+            customersTab1 = new View.Tabs.CustomersTab();
             tabControl1.SuspendLayout();
+            tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -47,6 +51,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(itemsTab1);
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
@@ -55,8 +60,16 @@
             tabPage1.Text = "Items";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // itemsTab1
+            // 
+            itemsTab1.Location = new Point(0, 0);
+            itemsTab1.Name = "itemsTab1";
+            itemsTab1.Size = new Size(746, 493);
+            itemsTab1.TabIndex = 0;
+            // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(customersTab1);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
@@ -64,6 +77,13 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Customers";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // customersTab1
+            // 
+            customersTab1.Location = new Point(-4, 0);
+            customersTab1.Name = "customersTab1";
+            customersTab1.Size = new Size(754, 501);
+            customersTab1.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -74,6 +94,8 @@
             Name = "MainForm";
             Text = "MainForm";
             tabControl1.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tabPage2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -82,5 +104,7 @@
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
+        private View.Tabs.ItemsTab itemsTab1;
+        private View.Tabs.CustomersTab customersTab1;
     }
 }

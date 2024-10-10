@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -38,13 +39,17 @@ namespace ObjectOrientedPractics.View.Tabs
             try
             {
                 double cost = double.Parse(CostTextBox.Text);
-                if (!ValueValidator.AssertValueInRange(cost, 0, 100000, "cost"))
+                if (cost < 0 || cost > 100000)
                 {
-                    throw new FormatException();
+                    throw new ArgumentOutOfRangeException();
                 }
                 CostTextBox.BackColor = Color.White;
             }
             catch (FormatException)
+            {
+                CostTextBox.BackColor = Color.LightPink;
+            }
+            catch (ArgumentOutOfRangeException)
             {
                 CostTextBox.BackColor = Color.LightPink;
             }
@@ -54,7 +59,7 @@ namespace ObjectOrientedPractics.View.Tabs
             try
             {
                 string name = NameTextBox.Text;
-                if (!ValueValidator.AssertStringOnLength(name, 200, "name"))
+                if (name.Length > 200 || name.Length == 0)
                 {
                     throw new FormatException();
                 }
@@ -69,16 +74,16 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             try
             {
-                string info = NameTextBox.Text;
-                if (!ValueValidator.AssertStringOnLength(info, 1000, "info"))
+                string info = DescriptionTextBox.Text;
+                if (info.Length > 1000 || info.Length == 0)
                 {
                     throw new FormatException();
                 }
-                NameTextBox.BackColor = Color.White;
+                DescriptionTextBox.BackColor = Color.White;
             }
             catch (FormatException)
             {
-                NameTextBox.BackColor = Color.LightPink;
+                DescriptionTextBox.BackColor = Color.LightPink;
             }
         }
         private void AddButton_Click(object sender, EventArgs e)
@@ -108,7 +113,5 @@ namespace ObjectOrientedPractics.View.Tabs
                 DescriptionTextBox.Text = "";
             }
         }
-
-
     }
 }

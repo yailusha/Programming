@@ -45,116 +45,122 @@
             // 
             // DescriptionTextBox
             // 
-            DescriptionTextBox.Location = new Point(368, 260);
+            DescriptionTextBox.Location = new Point(358, 251);
             DescriptionTextBox.Multiline = true;
             DescriptionTextBox.Name = "DescriptionTextBox";
             DescriptionTextBox.Size = new Size(367, 77);
-            DescriptionTextBox.TabIndex = 29;
+            DescriptionTextBox.TabIndex = 42;
+            DescriptionTextBox.TextChanged += DescriptionTextBox_TextChanged;
             // 
             // NameTextBox
             // 
-            NameTextBox.Location = new Point(368, 127);
+            NameTextBox.Location = new Point(358, 118);
             NameTextBox.Multiline = true;
             NameTextBox.Name = "NameTextBox";
             NameTextBox.Size = new Size(367, 112);
-            NameTextBox.TabIndex = 28;
+            NameTextBox.TabIndex = 41;
+            NameTextBox.TextChanged += NameTextBox_TextChanged;
             // 
             // CostTextBox
             // 
-            CostTextBox.Location = new Point(426, 72);
+            CostTextBox.Location = new Point(427, 63);
             CostTextBox.Name = "CostTextBox";
             CostTextBox.Size = new Size(134, 23);
-            CostTextBox.TabIndex = 27;
+            CostTextBox.TabIndex = 40;
+            CostTextBox.TextChanged += CostTextBox_TextChanged;
             // 
             // IdTextBox
             // 
-            IdTextBox.Location = new Point(426, 42);
+            IdTextBox.Location = new Point(427, 34);
             IdTextBox.Name = "IdTextBox";
             IdTextBox.ReadOnly = true;
             IdTextBox.Size = new Size(134, 23);
-            IdTextBox.TabIndex = 26;
+            IdTextBox.TabIndex = 39;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(368, 242);
+            label6.Location = new Point(358, 233);
             label6.Name = "label6";
             label6.Size = new Size(70, 15);
-            label6.TabIndex = 25;
+            label6.TabIndex = 38;
             label6.Text = "Description:";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(368, 109);
+            label5.Location = new Point(358, 100);
             label5.Name = "label5";
             label5.Size = new Size(42, 15);
-            label5.TabIndex = 24;
+            label5.TabIndex = 37;
             label5.Text = "Name:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(368, 75);
+            label4.Location = new Point(358, 66);
             label4.Name = "label4";
             label4.Size = new Size(34, 15);
-            label4.TabIndex = 23;
+            label4.TabIndex = 36;
             label4.Text = "Cost:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(368, 45);
+            label3.Location = new Point(358, 36);
             label3.Name = "label3";
             label3.Size = new Size(21, 15);
-            label3.TabIndex = 22;
+            label3.TabIndex = 35;
             label3.Text = "ID:";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label2.Location = new Point(378, 9);
+            label2.Location = new Point(368, 0);
             label2.Name = "label2";
             label2.Size = new Size(88, 15);
-            label2.TabIndex = 21;
+            label2.TabIndex = 34;
             label2.Text = "Selected Item";
             // 
             // RemoveButton
             // 
-            RemoveButton.Location = new Point(136, 427);
+            RemoveButton.Location = new Point(126, 418);
             RemoveButton.Name = "RemoveButton";
             RemoveButton.Size = new Size(117, 61);
-            RemoveButton.TabIndex = 20;
+            RemoveButton.TabIndex = 33;
             RemoveButton.Text = "Remove";
             RemoveButton.UseVisualStyleBackColor = true;
+            RemoveButton.Click += RemoveButton_Click;
             // 
             // AddButton
             // 
-            AddButton.Location = new Point(13, 427);
+            AddButton.Location = new Point(3, 418);
             AddButton.Name = "AddButton";
             AddButton.Size = new Size(117, 61);
-            AddButton.TabIndex = 19;
+            AddButton.TabIndex = 32;
             AddButton.Text = "Add";
             AddButton.UseVisualStyleBackColor = true;
+            AddButton.Click += AddButton_Click;
             // 
             // ItemsListBox
             // 
             ItemsListBox.FormattingEnabled = true;
             ItemsListBox.ItemHeight = 15;
-            ItemsListBox.Location = new Point(13, 27);
+            ItemsListBox.Location = new Point(3, 18);
             ItemsListBox.Name = "ItemsListBox";
             ItemsListBox.Size = new Size(349, 394);
-            ItemsListBox.TabIndex = 18;
+            ItemsListBox.TabIndex = 31;
+            ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label1.Location = new Point(13, 9);
+            label1.Location = new Point(3, 0);
             label1.Name = "label1";
             label1.Size = new Size(40, 15);
-            label1.TabIndex = 17;
+            label1.TabIndex = 30;
             label1.Text = "Items";
             // 
             // ItemsTab
@@ -175,9 +181,14 @@
             Controls.Add(ItemsListBox);
             Controls.Add(label1);
             Name = "ItemsTab";
-            Size = new Size(758, 539);
+            Size = new Size(746, 493);
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        private void AddButton_Click1(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
