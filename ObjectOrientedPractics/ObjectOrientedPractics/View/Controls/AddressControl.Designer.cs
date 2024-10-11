@@ -36,11 +36,11 @@
             label6 = new Label();
             label7 = new Label();
             postIndexTextBox = new TextBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
+            countryTextBox = new TextBox();
+            cityTextBox = new TextBox();
+            streetTextBox = new TextBox();
+            buildingTextBox = new TextBox();
+            apartmentTextBox = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -113,51 +113,57 @@
             postIndexTextBox.Name = "postIndexTextBox";
             postIndexTextBox.Size = new Size(131, 23);
             postIndexTextBox.TabIndex = 7;
+            postIndexTextBox.TextChanged += postIndexTextBox_TextChanged;
             // 
-            // textBox1
+            // countryTextBox
             // 
-            textBox1.Location = new Point(86, 63);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(181, 23);
-            textBox1.TabIndex = 8;
+            countryTextBox.Location = new Point(86, 63);
+            countryTextBox.Name = "countryTextBox";
+            countryTextBox.Size = new Size(181, 23);
+            countryTextBox.TabIndex = 8;
+            countryTextBox.TextChanged += countryTextBox_TextChanged;
             // 
-            // textBox2
+            // cityTextBox
             // 
-            textBox2.Location = new Point(328, 68);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(181, 23);
-            textBox2.TabIndex = 9;
+            cityTextBox.Location = new Point(328, 68);
+            cityTextBox.Name = "cityTextBox";
+            cityTextBox.Size = new Size(181, 23);
+            cityTextBox.TabIndex = 9;
+            cityTextBox.TextChanged += cityTextBox_TextChanged;
             // 
-            // textBox3
+            // streetTextBox
             // 
-            textBox3.Location = new Point(86, 99);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(423, 23);
-            textBox3.TabIndex = 10;
+            streetTextBox.Location = new Point(86, 99);
+            streetTextBox.Name = "streetTextBox";
+            streetTextBox.Size = new Size(423, 23);
+            streetTextBox.TabIndex = 10;
+            streetTextBox.TextChanged += streetTextBox_TextChanged;
             // 
-            // textBox4
+            // buildingTextBox
             // 
-            textBox4.Location = new Point(86, 130);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(95, 23);
-            textBox4.TabIndex = 11;
+            buildingTextBox.Location = new Point(86, 130);
+            buildingTextBox.Name = "buildingTextBox";
+            buildingTextBox.Size = new Size(95, 23);
+            buildingTextBox.TabIndex = 11;
+            buildingTextBox.TextChanged += buildingTextBox_TextChanged;
             // 
-            // textBox5
+            // apartmentTextBox
             // 
-            textBox5.Location = new Point(260, 130);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(95, 23);
-            textBox5.TabIndex = 12;
+            apartmentTextBox.Location = new Point(260, 130);
+            apartmentTextBox.Name = "apartmentTextBox";
+            apartmentTextBox.Size = new Size(95, 23);
+            apartmentTextBox.TabIndex = 12;
+            apartmentTextBox.TextChanged += apartmentTextBox_TextChanged;
             // 
             // AddressControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(apartmentTextBox);
+            Controls.Add(buildingTextBox);
+            Controls.Add(streetTextBox);
+            Controls.Add(cityTextBox);
+            Controls.Add(countryTextBox);
             Controls.Add(postIndexTextBox);
             Controls.Add(label7);
             Controls.Add(label6);
@@ -182,10 +188,10 @@
         private Label label6;
         private Label label7;
         private TextBox postIndexTextBox;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
+        private TextBox countryTextBox;
+        private TextBox cityTextBox;
+        private TextBox streetTextBox;
+        private TextBox buildingTextBox;
+        private TextBox apartmentTextBox;
     }
 }
