@@ -33,6 +33,7 @@
             itemsTab1 = new View.Tabs.ItemsTab();
             tabPage2 = new TabPage();
             customersTab1 = new View.Tabs.CustomersTab();
+            tabPage3 = new TabPage();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -42,6 +43,7 @@
             // 
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(tabPage3);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
@@ -85,6 +87,15 @@
             customersTab1.Size = new Size(754, 501);
             customersTab1.TabIndex = 0;
             // 
+            // tabPage3
+            // 
+            tabPage3.Location = new Point(4, 24);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Size = new Size(769, 535);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "tabPage3";
+            tabPage3.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -106,5 +117,6 @@
         private TabPage tabPage2;
         private View.Tabs.ItemsTab itemsTab1;
         private View.Tabs.CustomersTab customersTab1;
+        private TabPage tabPage3;
     }
 }
