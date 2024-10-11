@@ -91,7 +91,7 @@ namespace ObjectOrientedPractics.View.Controls
                 streetTextBox.Text = street.ToString();
                 streetTextBox.BackColor = Color.White;
             }
-            catch(FormatException)
+            catch (FormatException)
             {
                 streetTextBox.BackColor = Color.LightPink;
             }
@@ -102,10 +102,10 @@ namespace ObjectOrientedPractics.View.Controls
             try
             {
                 string building = buildingTextBox.Text;
-                if (building.Length > 10  || building.Length == 0)
+                if (building.Length > 10 || building.Length == 0)
                 {
                     throw new FormatException();
-                }    
+                }
                 buildingTextBox.Text = building.ToString();
                 buildingTextBox.BackColor = Color.White;
             }
@@ -120,7 +120,7 @@ namespace ObjectOrientedPractics.View.Controls
             try
             {
                 string apartment = apartmentTextBox.Text;
-                if (apartment.Length > 10 ||  apartment.Length == 0)
+                if (apartment.Length > 10 || apartment.Length == 0)
                 {
                     throw new FormatException();
                 }
