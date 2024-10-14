@@ -14,6 +14,9 @@ using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Хранит данные о товарах.
+    /// </summary>
     public partial class ItemsTab : UserControl
     {
         private readonly List<Item> _items = new();
@@ -23,80 +26,116 @@ namespace ObjectOrientedPractics.View.Tabs
             InitializeComponent();
             foreach (Category category in Enum.GetValues(typeof(Category)))
             {
-                categoryComboBox.Items.Add(category);
+                CategoryComboBox.Items.Add(category);
             }
         }
+        private void UpdateItemsListBox()
+        {
+            ItemsListBox.Items.Clear();
+            foreach (Item item in _items)
+            {
+                ItemsListBox.Items.Add($"{item.Name} - {item.Cost}");
+            }
+        }
+        /// <summary>
+        /// Отображает данные товара.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = ItemsListBox.SelectedIndex;
             if (selectedIndex != -1)
             {
                 _currentItem = _items[selectedIndex];
-                IdTextBox.Text = _currentItem.Id.ToString();
-                categoryComboBox.SelectedItem = _currentItem.Category;
-                CostTextBox.Text = _currentItem.Cost.ToString();
-                NameTextBox.Text = _currentItem.Name;
-                DescriptionTextBox.Text = _currentItem.Info;
+                idTextBox.Text = _currentItem.Id.ToString();
+                CategoryComboBox.SelectedItem = _currentItem.Category;
+                costTextBox.Text = _currentItem.Cost.ToString();
+                nameTextBox.Text = _currentItem.Name;
+                descriptionTextBox.Text = _currentItem.Info;
             }
         }
-        private void CostTextBox_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Выбор категории товара.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        /// <summary>
+        /// Изменение и сохранение новой стоимости товара.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void costTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (ItemsListBox.SelectedIndex == -1) return;
+            try
+            {
+                costTextBox.BackColor = Color.White;
+                double cost = double.Parse(costTextBox.Text);
+                _currentItem.Cost = cost;
+                UpdateItemsListBox();
+            }
+            catch 
+            {
+                costTextBox.BackColor = Color.LightPink;
+            }
+        }
+        /// <summary>
+        /// Сохранение и изменение нового названия товара.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void nameTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                double cost = double.Parse(CostTextBox.Text);
-                if (cost < 0 || cost > 100000)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-                CostTextBox.BackColor = Color.White;
+                if (ItemsListBox.SelectedIndex == -1) return;
+                nameTextBox.BackColor = Color.White;
+                string name = nameTextBox.Text;
+                _currentItem.Name = name;
+                UpdateItemsListBox();
+                
             }
             catch (FormatException)
             {
-                CostTextBox.BackColor = Color.LightPink;
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                CostTextBox.BackColor = Color.LightPink;
+                nameTextBox.BackColor = Color.LightPink;
             }
         }
-        private void NameTextBox_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Сохранение и изменения нового описания товара.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void descriptionTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (ItemsListBox.SelectedIndex == -1) return;
             try
             {
-                string name = NameTextBox.Text;
-                if (name.Length > 200 || name.Length == 0)
-                {
-                    throw new FormatException();
-                }
-                NameTextBox.BackColor = Color.White;
+                descriptionTextBox.BackColor = Color.White;
+                string info = descriptionTextBox.Text;
+                _currentItem.Info = info;
+                UpdateItemsListBox();
             }
             catch (FormatException)
             {
-                NameTextBox.BackColor = Color.LightPink;
+                descriptionTextBox.BackColor = Color.LightPink;
             }
         }
-        private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Добавляет новый товар в ListBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void addButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string info = DescriptionTextBox.Text;
-                if (info.Length > 1000 || info.Length == 0)
-                {
-                    throw new FormatException();
-                }
-                DescriptionTextBox.BackColor = Color.White;
-            }
-            catch (FormatException)
-            {
-                DescriptionTextBox.BackColor = Color.LightPink;
-            }
-        }
-        private void AddButton_Click(object sender, EventArgs e)
-        {
-            double cost = double.Parse(CostTextBox.Text);
-            string name = NameTextBox.Text;
-            string description = DescriptionTextBox.Text;
-            Category category = (Category)categoryComboBox.SelectedItem;
+            double cost = double.Parse(costTextBox.Text);
+            string name = nameTextBox.Text;
+            string description = descriptionTextBox.Text;
+            Category category = (Category)CategoryComboBox.SelectedItem;
             if (name != "" && description != "")
             {
                 Item item = new Item(name, description, cost, category);
@@ -105,25 +144,24 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
         }
-
-        private void RemoveButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Убирает выбранный товар.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void removeButton_Click(object sender, EventArgs e)
         {
             if (ItemsListBox.SelectedIndex != -1)
             {
                 int selectedIndex = ItemsListBox.SelectedIndex;
                 ItemsListBox.Items.RemoveAt(selectedIndex);
                 _items.RemoveAt(selectedIndex);
-                IdTextBox.Text = "";
-                NameTextBox.Text = "";
-                CostTextBox.Text = "";
-                DescriptionTextBox.Text = "";
-                categoryComboBox.SelectedItem = null;
+                idTextBox.Text = "";
+                nameTextBox.Text = "";
+                costTextBox.Text = "";
+                descriptionTextBox.Text = "";
+                CategoryComboBox.SelectedItem = null;
             }
-        }
-
-        private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

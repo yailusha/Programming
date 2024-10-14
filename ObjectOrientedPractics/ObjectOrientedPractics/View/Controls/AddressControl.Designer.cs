@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             apartmentTextBox = new TextBox();
             buildingTextBox = new TextBox();
             streetTextBox = new TextBox();
@@ -41,6 +42,7 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            toolTip1 = new ToolTip(components);
             SuspendLayout();
             // 
             // apartmentTextBox
@@ -69,7 +71,7 @@
             // 
             // cityTextBox
             // 
-            cityTextBox.Location = new Point(316, 66);
+            cityTextBox.Location = new Point(316, 61);
             cityTextBox.Name = "cityTextBox";
             cityTextBox.Size = new Size(181, 23);
             cityTextBox.TabIndex = 22;
@@ -198,5 +200,6 @@
         private Label label3;
         private Label label2;
         private Label label1;
+        private ToolTip toolTip1;
     }
 }

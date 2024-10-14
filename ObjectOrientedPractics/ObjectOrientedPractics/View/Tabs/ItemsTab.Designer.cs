@@ -28,56 +28,56 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DescriptionTextBox = new TextBox();
-            NameTextBox = new TextBox();
-            CostTextBox = new TextBox();
-            IdTextBox = new TextBox();
+            descriptionTextBox = new TextBox();
+            nameTextBox = new TextBox();
+            costTextBox = new TextBox();
+            idTextBox = new TextBox();
             label6 = new Label();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
-            RemoveButton = new Button();
-            AddButton = new Button();
+            removeButton = new Button();
+            addButton = new Button();
             ItemsListBox = new ListBox();
             label1 = new Label();
             label7 = new Label();
-            categoryComboBox = new ComboBox();
+            CategoryComboBox = new ComboBox();
             SuspendLayout();
             // 
-            // DescriptionTextBox
+            // descriptionTextBox
             // 
-            DescriptionTextBox.Location = new Point(358, 276);
-            DescriptionTextBox.Multiline = true;
-            DescriptionTextBox.Name = "DescriptionTextBox";
-            DescriptionTextBox.Size = new Size(367, 77);
-            DescriptionTextBox.TabIndex = 42;
-            DescriptionTextBox.TextChanged += DescriptionTextBox_TextChanged;
+            descriptionTextBox.Location = new Point(358, 276);
+            descriptionTextBox.Multiline = true;
+            descriptionTextBox.Name = "descriptionTextBox";
+            descriptionTextBox.Size = new Size(367, 77);
+            descriptionTextBox.TabIndex = 42;
+            descriptionTextBox.TextChanged += descriptionTextBox_TextChanged;
             // 
-            // NameTextBox
+            // nameTextBox
             // 
-            NameTextBox.Location = new Point(358, 143);
-            NameTextBox.Multiline = true;
-            NameTextBox.Name = "NameTextBox";
-            NameTextBox.Size = new Size(367, 112);
-            NameTextBox.TabIndex = 41;
-            NameTextBox.TextChanged += NameTextBox_TextChanged;
+            nameTextBox.Location = new Point(358, 143);
+            nameTextBox.Multiline = true;
+            nameTextBox.Name = "nameTextBox";
+            nameTextBox.Size = new Size(367, 112);
+            nameTextBox.TabIndex = 41;
+            nameTextBox.TextChanged += nameTextBox_TextChanged;
             // 
-            // CostTextBox
+            // costTextBox
             // 
-            CostTextBox.Location = new Point(427, 63);
-            CostTextBox.Name = "CostTextBox";
-            CostTextBox.Size = new Size(134, 23);
-            CostTextBox.TabIndex = 40;
-            CostTextBox.TextChanged += CostTextBox_TextChanged;
+            costTextBox.Location = new Point(427, 63);
+            costTextBox.Name = "costTextBox";
+            costTextBox.Size = new Size(134, 23);
+            costTextBox.TabIndex = 40;
+            costTextBox.TextChanged += costTextBox_TextChanged;
             // 
-            // IdTextBox
+            // idTextBox
             // 
-            IdTextBox.Location = new Point(427, 34);
-            IdTextBox.Name = "IdTextBox";
-            IdTextBox.ReadOnly = true;
-            IdTextBox.Size = new Size(134, 23);
-            IdTextBox.TabIndex = 39;
+            idTextBox.Location = new Point(427, 34);
+            idTextBox.Name = "idTextBox";
+            idTextBox.ReadOnly = true;
+            idTextBox.Size = new Size(134, 23);
+            idTextBox.TabIndex = 39;
             // 
             // label6
             // 
@@ -125,25 +125,25 @@
             label2.TabIndex = 34;
             label2.Text = "Selected Item";
             // 
-            // RemoveButton
+            // removeButton
             // 
-            RemoveButton.Location = new Point(126, 418);
-            RemoveButton.Name = "RemoveButton";
-            RemoveButton.Size = new Size(117, 61);
-            RemoveButton.TabIndex = 33;
-            RemoveButton.Text = "Remove";
-            RemoveButton.UseVisualStyleBackColor = true;
-            RemoveButton.Click += RemoveButton_Click;
+            removeButton.Location = new Point(126, 418);
+            removeButton.Name = "removeButton";
+            removeButton.Size = new Size(117, 61);
+            removeButton.TabIndex = 33;
+            removeButton.Text = "Remove";
+            removeButton.UseVisualStyleBackColor = true;
+            removeButton.Click += removeButton_Click;
             // 
-            // AddButton
+            // addButton
             // 
-            AddButton.Location = new Point(3, 418);
-            AddButton.Name = "AddButton";
-            AddButton.Size = new Size(117, 61);
-            AddButton.TabIndex = 32;
-            AddButton.Text = "Add";
-            AddButton.UseVisualStyleBackColor = true;
-            AddButton.Click += AddButton_Click;
+            addButton.Location = new Point(3, 418);
+            addButton.Name = "addButton";
+            addButton.Size = new Size(117, 61);
+            addButton.TabIndex = 32;
+            addButton.Text = "Add";
+            addButton.UseVisualStyleBackColor = true;
+            addButton.Click += addButton_Click;
             // 
             // ItemsListBox
             // 
@@ -174,32 +174,32 @@
             label7.TabIndex = 43;
             label7.Text = "Category:";
             // 
-            // categoryComboBox
+            // CategoryComboBox
             // 
-            categoryComboBox.FormattingEnabled = true;
-            categoryComboBox.Location = new Point(427, 94);
-            categoryComboBox.Name = "categoryComboBox";
-            categoryComboBox.Size = new Size(134, 23);
-            categoryComboBox.TabIndex = 44;
-            categoryComboBox.SelectedIndexChanged += categoryComboBox_SelectedIndexChanged;
+            CategoryComboBox.FormattingEnabled = true;
+            CategoryComboBox.Location = new Point(427, 94);
+            CategoryComboBox.Name = "CategoryComboBox";
+            CategoryComboBox.Size = new Size(134, 23);
+            CategoryComboBox.TabIndex = 44;
+            CategoryComboBox.SelectedIndexChanged += CategoryComboBox_SelectedIndexChanged;
             // 
             // ItemsTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(categoryComboBox);
+            Controls.Add(CategoryComboBox);
             Controls.Add(label7);
-            Controls.Add(DescriptionTextBox);
-            Controls.Add(NameTextBox);
-            Controls.Add(CostTextBox);
-            Controls.Add(IdTextBox);
+            Controls.Add(descriptionTextBox);
+            Controls.Add(nameTextBox);
+            Controls.Add(costTextBox);
+            Controls.Add(idTextBox);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(RemoveButton);
-            Controls.Add(AddButton);
+            Controls.Add(removeButton);
+            Controls.Add(addButton);
             Controls.Add(ItemsListBox);
             Controls.Add(label1);
             Name = "ItemsTab";
@@ -215,20 +215,20 @@
 
         #endregion
 
-        private TextBox DescriptionTextBox;
-        private TextBox NameTextBox;
-        private TextBox CostTextBox;
-        private TextBox IdTextBox;
+        private TextBox descriptionTextBox;
+        private TextBox nameTextBox;
+        private TextBox costTextBox;
+        private TextBox idTextBox;
         private Label label6;
         private Label label5;
         private Label label4;
         private Label label3;
         private Label label2;
-        private Button RemoveButton;
-        private Button AddButton;
+        private Button removeButton;
+        private Button addButton;
         private ListBox ItemsListBox;
         private Label label1;
         private Label label7;
-        private ComboBox categoryComboBox;
+        private ComboBox CategoryComboBox;
     }
 }
