@@ -47,20 +47,25 @@ namespace ObjectOrientedPractics.View.Controls
             apartmentTextBox.Clear();
             _address = new Address();
         }
+        private Address Address { get; set; }
 
         private void postIndexTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 postIndexTextBox.BackColor = Color.White;
-                int postIndex = int.Parse(postIndexTextBox.Text);                
+                int postIndex = int.Parse(postIndexTextBox.Text);
                 _address.Index = postIndex;
-            }
+                }
             catch 
             {
                 postIndexTextBox.BackColor = Color.LightPink;
                 this.toolTip1.SetToolTip(this.postIndexTextBox, "Почтовый индекс должен быть шестизначным числом");
                 
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                postIndexTextBox.BackColor = Color.LightPink;
             }
         }
 
@@ -69,7 +74,7 @@ namespace ObjectOrientedPractics.View.Controls
             try
             {
                 countryTextBox.BackColor = Color.White;
-                string country = countryTextBox.Text;                
+                string country = countryTextBox.Text;
                 _address.Country = country;
             }
             catch
@@ -83,6 +88,12 @@ namespace ObjectOrientedPractics.View.Controls
         {
             try
             {
+                string city = cityTextBox.Text;
+                if (city.Length > 50 || city.Length == 0)
+                {
+                    throw new FormatException();
+                }
+                cityTextBox.Text = city.ToString();
                 cityTextBox.BackColor = Color.White;
                 string city = cityTextBox.Text;               
                 _address.City = city;
@@ -98,6 +109,12 @@ namespace ObjectOrientedPractics.View.Controls
         {
             try
             {
+                string street = streetTextBox.Text;
+                if (street.Length > 100 || street.Length == 0)
+                {
+                    throw new FormatException();
+                }
+                streetTextBox.Text = street.ToString();
                 streetTextBox.BackColor = Color.White;
                 string street = streetTextBox.Text;                
                 _address.Street = street;
@@ -113,6 +130,12 @@ namespace ObjectOrientedPractics.View.Controls
         {
             try
             {
+                string building = buildingTextBox.Text;
+                if (building.Length > 10  || building.Length == 0)
+                {
+                    throw new FormatException();
+                }    
+                buildingTextBox.Text = building.ToString();
                 buildingTextBox.BackColor = Color.White;
                 string building = buildingTextBox.Text;
                 _address.Building = building;
@@ -128,6 +151,12 @@ namespace ObjectOrientedPractics.View.Controls
         {
             try
             {
+                string apartment = apartmentTextBox.Text;
+                if (apartment.Length > 10 ||  apartment.Length == 0)
+                {
+                    throw new FormatException();
+                }
+                apartmentTextBox.Text = apartment.ToString();
                 apartmentTextBox.BackColor = Color.White;
                 string apartment = apartmentTextBox.Text;               
                 _address.Apartment = apartment;
