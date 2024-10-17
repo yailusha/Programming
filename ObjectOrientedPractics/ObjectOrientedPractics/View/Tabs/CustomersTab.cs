@@ -20,8 +20,18 @@ namespace ObjectOrientedPractics.View.Tabs
     /// </summary>
     internal partial class CustomersTab : UserControl
     {
-        private readonly List<Customer> _customers = new List<Customer>();
+        private List<Customer> _customers = new List<Customer>();
         private Customer _currentCustomer = new Customer();
+        public List<Customer> Customers
+        {
+            get { return _customers; }
+            set
+            {
+                _customers = value;
+                CustomersListBox.Items.AddRange(_customers.ToArray());
+                UpdateCustomersListBox();
+            }
+        }
         public CustomersTab()
         {
             InitializeComponent();

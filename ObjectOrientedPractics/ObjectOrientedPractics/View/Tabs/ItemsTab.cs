@@ -17,10 +17,20 @@ namespace ObjectOrientedPractics.View.Tabs
     /// <summary>
     /// Хранит данные о товарах.
     /// </summary>
-    public partial class ItemsTab : UserControl
+    internal partial class ItemsTab : UserControl
     {
-        private readonly List<Item> _items = new();
+        private List<Item> _items = new List<Item>();
         private Item _currentItem;
+        public List<Item> Items
+        {
+            get { return _items; }
+            set
+            {
+                _items = value;
+                ItemsListBox.Items.AddRange(_items.ToArray());
+                UpdateItemsListBox();
+            }
+        }
         public ItemsTab()
         {
             InitializeComponent();
