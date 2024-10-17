@@ -7,17 +7,54 @@ using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.Model
 {
+    /// <summary>
+    /// Хранит данные о товаре.
+    /// </summary>
     internal class Item
     {
+        /// <summary>
+        /// Уникальный идентификатор товара.
+        /// </summary>
         private readonly int _id;
+        /// <summary>
+        /// Количество товаров.
+        /// </summary>
         private static int _allItemsCount;
+        /// <summary>
+        /// Название товара.
+        /// </summary>
         private string _name;
+        /// <summary>
+        /// Описание товара.
+        /// </summary>
         private string _info;
+        /// <summary>
+        /// Стоимость товара.
+        /// </summary>
         private double _cost;
+        /// <summary>
+        /// Категория товара.
+        /// </summary>
         private Category _category;
+        /// <summary>
+        /// Возвращает и задает категорию товара.
+        /// </summary>
         public Category Category { get; set; } 
+        /// <summary>
+        /// Задает уникальный идентификатор товара.
+        /// </summary>
         public int Id { get { return _id; } }
+        /// <summary>
+        /// Задает количество товаров.
+        /// </summary>
         public static int AllItemsCount { set { _allItemsCount = value; } }
+        public void AddMethod()
+        {
+
+        }
+        /// <summary>
+        /// Возвращает и задает название товара.
+        /// </summary>
         public string Name
         {
             get { return _name; }
@@ -29,6 +66,9 @@ namespace ObjectOrientedPractics.Model
                 }
             }
         }
+        /// <summary>
+        /// Возвращает и задает описание товара.
+        /// </summary>
         public string Info
         {
             get { return _info; }
@@ -40,6 +80,9 @@ namespace ObjectOrientedPractics.Model
                 }
             }
         }
+        /// <summary>
+        /// Возвращает и задает стоимость товара.
+        /// </summary>
         public double Cost
         {
             get { return _cost; }
@@ -51,6 +94,13 @@ namespace ObjectOrientedPractics.Model
                 }
             }
         }
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Item"/>
+        /// </summary>
+        /// <param name="name">Название. Не может быть пустым или иметь длину более 200 символов.</param>
+        /// <param name="info">Описание. Не может быть пустмы или иметь длину более 1000 символов.</param>
+        /// <param name="cost">Стоимость. Должна быть в интервале от 0 до 100000.</param>
+        /// <param name="category">Категория. Может содержать категорию, указанную в перечислении.</param>
         public Item(string name, string info, double cost, Category category)
         {
             Name = name;

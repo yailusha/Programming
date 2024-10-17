@@ -11,83 +11,102 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Services;
+using ObjectOrientedPractics.View.Controls;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
-    public partial class CustomersTab : UserControl
+    /// <summary>
+    /// Хранит данные о покупателях.
+    /// </summary>
+    internal partial class CustomersTab : UserControl
     {
-        private readonly List<Customer> _customers = new();
-        private Customer _currentCustomer;
+        private readonly List<Customer> _customers = new List<Customer>();
+        private Customer _currentCustomer = new Customer();
         public CustomersTab()
         {
             InitializeComponent();
         }
+        private void UpdateCustomersListBox()
+        {
+            CustomersListBox.Items.Clear();
+            foreach (Customer customer in _customers)
+            {
+                CustomersListBox.Items.Add($"{customer.Id}. {customer.Fullname}");
+            }
+        }
+        private void ClearInfo()
+        {
+            idTextBox.Clear();
+            fullnameTextBox.Clear();
+            addressControl1.ClearInfo();
+        }
+        /// <summary>
+        /// Отображает данные покупателей.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CustomersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = CustomersListBox.SelectedIndex;
             if (selectedIndex != -1)
             {
                 _currentCustomer = _customers[selectedIndex];
-                IdTextBox.Text = _currentCustomer.Id.ToString();
-                AddressTextBox.Text = _currentCustomer.Address;
-                FullnameTextBox.Text = _currentCustomer.Fullname;
+                idTextBox.Text = _currentCustomer.Id.ToString();
+                fullnameTextBox.Text = _currentCustomer.Fullname;
+                addressControl1.Address = _currentCustomer.Address;
+                
             }
         }
-        private void FullnameTextBox_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Изменение и сохранение нового полного имени покупателя с его валидацией.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void fullnameTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (CustomersListBox.SelectedIndex == -1) return;
             try
             {
-                string fullname = FullnameTextBox.Text;
-                if (fullname.Length > 200 || fullname.Length == 0)
-                {
-                    throw new FormatException();
-                }
-                FullnameTextBox.BackColor = Color.White;
+                fullnameTextBox.BackColor = Color.White;
+                string fullname = fullnameTextBox.Text;
+                _currentCustomer.Fullname = fullname;
+                UpdateCustomersListBox();
             }
-            catch (FormatException)
+            catch 
             {
-                FullnameTextBox.BackColor = Color.LightPink;
+                fullnameTextBox.BackColor = Color.LightPink;
             }
         }
-        private void AddressTextBox_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Добавляет нового покупателя в LixtBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void addButton_Click(object sender, EventArgs e)
         {
-            try
+            string fullname = fullnameTextBox.Text;
+            Address address = addressControl1.Address;
+            if (fullname != "" && address != null)
             {
-                string address = AddressTextBox.Text;
-                if (address.Length > 500 || address.Length == 0)
-                {
-                    throw new FormatException();
-                }
-                AddressTextBox.BackColor = Color.White;
-            }
-            catch (FormatException)
-            {
-                AddressTextBox.BackColor = Color.LightPink;
+                _currentCustomer = new Customer (fullname, address);
+                _customers.Add(_currentCustomer);
+                CustomersListBox.Items.Add($"{_currentCustomer.Id}. {_currentCustomer.Fullname}");
+                ClearInfo();
             }
         }
-        private void AddButton_Click(object sender, EventArgs e)
-        {
-            string fullname = FullnameTextBox.Text;
-            string address = AddressTextBox.Text;
-            if (fullname != "" && address != "")
-            {
-                Customer customer = new Customer(fullname, address);
-                _customers.Add(customer);
-                CustomersListBox.Items.Add($"{customer.Fullname} - {customer.Address}");
-            }
-
-        }
-
-        private void RemoveButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Убирает выбранного покупателя из ListBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void removeButton_Click(object sender, EventArgs e)
         {
             if (CustomersListBox.SelectedIndex != -1)
             {
                 int selectedIndex = CustomersListBox.SelectedIndex;
                 CustomersListBox.Items.RemoveAt(selectedIndex);
                 _customers.RemoveAt(selectedIndex);
-                IdTextBox.Text = "";
-                AddressTextBox.Text = "";
-                FullnameTextBox.Text = "";
+                ClearInfo();
             }
         }
     }

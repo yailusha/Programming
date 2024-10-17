@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
+    /// <summary>
+    /// Хранит список категорий товаров.
+    /// </summary>
     enum Category
     {
         Fish,
