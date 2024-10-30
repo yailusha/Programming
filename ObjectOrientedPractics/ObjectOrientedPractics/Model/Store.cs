@@ -33,7 +33,7 @@ namespace ObjectOrientedPractics.Model
         public Store()
         {
             List<Item> Items = new List<Item>();
-            List<Customer> Customers = new List<Customer>(); 
+            List<Customer> Customers = new List<Customer>();
         }
     }
 }

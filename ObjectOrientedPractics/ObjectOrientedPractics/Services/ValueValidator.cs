@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace ObjectOrientedPractics.Services
         /// <param name="propertyName">Название свойства.</param>
         /// <returns>Возвращает true, если длина менее максимально допустимой длины.</returns>
         /// <exception cref="ArgumentException"></exception>
-        public static bool AssertStringOnLength (string value, int maxLength, string propertyName)
+        public static bool AssertStringOnLength(string value, int maxLength, string propertyName)
         {
             if (value.Length > maxLength || value.Length == 0)
             {

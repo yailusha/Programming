@@ -1,5 +1,4 @@
 using ObjectOrientedPractics.Model;
-
 namespace ObjectOrientedPractics
 {
     public partial class MainForm : Form

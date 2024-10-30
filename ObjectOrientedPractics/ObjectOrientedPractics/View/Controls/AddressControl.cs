@@ -55,11 +55,11 @@ namespace ObjectOrientedPractics.View.Controls
                 int postIndex = int.Parse(postIndexTextBox.Text);
                 _address.Index = postIndex;
             }
-            catch 
+            catch
             {
                 postIndexTextBox.BackColor = Color.LightPink;
                 this.toolTip1.SetToolTip(this.postIndexTextBox, "Почтовый индекс должен быть шестизначным числом");
-                
+
             }
         }
 
@@ -84,10 +84,10 @@ namespace ObjectOrientedPractics.View.Controls
             {
                 cityTextBox.BackColor = Color.White;
                 string city = cityTextBox.Text;
-                cityTextBox.Text = city.ToString();              
+                cityTextBox.Text = city.ToString();
                 _address.City = city;
             }
-            catch 
+            catch
             {
                 cityTextBox.BackColor = Color.LightPink;
                 this.toolTip1.SetToolTip(this.countryTextBox, "Длина строки может содержать максимум 50 символов");
@@ -100,7 +100,7 @@ namespace ObjectOrientedPractics.View.Controls
             {
                 streetTextBox.BackColor = Color.White;
                 string street = streetTextBox.Text;
-                streetTextBox.Text = street.ToString();                          
+                streetTextBox.Text = street.ToString();
                 _address.Street = street;
             }
             catch
@@ -115,11 +115,11 @@ namespace ObjectOrientedPractics.View.Controls
             try
             {
                 buildingTextBox.BackColor = Color.White;
-                string building = buildingTextBox.Text;  
+                string building = buildingTextBox.Text;
                 buildingTextBox.Text = building.ToString();
                 _address.Building = building;
             }
-            catch 
+            catch
             {
                 buildingTextBox.BackColor = Color.LightPink;
                 this.toolTip1.SetToolTip(this.buildingTextBox, "Длина строки может содержать максимум 10 символов");
@@ -132,10 +132,10 @@ namespace ObjectOrientedPractics.View.Controls
             {
                 apartmentTextBox.BackColor = Color.White;
                 string apartment = apartmentTextBox.Text;
-                apartmentTextBox.Text = apartment.ToString();             
+                apartmentTextBox.Text = apartment.ToString();
                 _address.Apartment = apartment;
             }
-            catch 
+            catch
             {
                 apartmentTextBox.BackColor = Color.LightPink;
                 this.toolTip1.SetToolTip(apartmentTextBox, "Длина строки может содержать максимум 10 символов");

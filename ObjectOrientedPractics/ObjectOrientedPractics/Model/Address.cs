@@ -129,7 +129,7 @@ namespace ObjectOrientedPractics.Model
         /// <param name="street">Улица. Не может быть пустым или содрежать более 100 символов.</param>
         /// <param name="building">Номер дома. Не может быть пустым или содрежать более 10 символов.</param>
         /// <param name="apartment">Номер квартиры. Не может быть пустым или содрежать более 10 символов.</param>
-        public Address (int index, string country, string city, string street, string building, string apartment)
+        public Address(int index, string country, string city, string street, string building, string apartment)
         {
             Index = index;
             Country = country;

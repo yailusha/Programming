@@ -60,7 +60,7 @@ namespace ObjectOrientedPractics.Model
             get { return _name; }
             set
             {
-                if(ValueValidator.AssertStringOnLength(value, 200, nameof(Name)))
+                if (ValueValidator.AssertStringOnLength(value, 200, nameof(Name)))
                 {
                     _name = value;
                 }
@@ -74,7 +74,7 @@ namespace ObjectOrientedPractics.Model
             get { return _info; }
             set
             {
-                if(ValueValidator.AssertStringOnLength(value, 1000, nameof(Info)))
+                if (ValueValidator.AssertStringOnLength(value, 1000, nameof(Info)))
                 {
                     _info = value;
                 }
@@ -88,7 +88,7 @@ namespace ObjectOrientedPractics.Model
             get { return _cost; }
             set
             {
-                if(ValueValidator.AssertValueInRange(value, 0, 100000, nameof(Cost)))
+                if (ValueValidator.AssertValueInRange(value, 0, 100000, nameof(Cost)))
                 {
                     _cost = value;
                 }
@@ -110,7 +110,7 @@ namespace ObjectOrientedPractics.Model
             _allItemsCount++;
             _id = _allItemsCount;
         }
-        public Item ()
+        public Item()
         {
 
         }
