@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             tabPage2 = new TabPage();
             customersTab1 = new View.Tabs.CustomersTab();
             tabPage1 = new TabPage();
             itemsTab1 = new View.Tabs.ItemsTab();
             tabControl1 = new TabControl();
+            tabPage3 = new TabPage();
             tabPage2.SuspendLayout();
             tabPage1.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -78,12 +80,22 @@
             // 
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(tabPage3);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(883, 517);
             tabControl1.TabIndex = 0;
+            // 
+            // tabPage3
+            // 
+            tabPage3.Location = new Point(4, 24);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Size = new Size(875, 489);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "Carts";
+            tabPage3.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -106,5 +118,6 @@
         private TabPage tabPage1;
         private View.Tabs.ItemsTab itemsTab1;
         private TabControl tabControl1;
+        private TabPage tabPage3;
     }
 }
