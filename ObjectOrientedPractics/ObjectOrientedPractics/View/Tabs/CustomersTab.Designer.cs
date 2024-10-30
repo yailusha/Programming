@@ -28,52 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            AddressTextBox = new TextBox();
-            FullnameTextBox = new TextBox();
-            IdTextBox = new TextBox();
-            label11 = new Label();
+            fullnameTextBox = new TextBox();
+            idTextBox = new TextBox();
             label10 = new Label();
             label9 = new Label();
             label8 = new Label();
-            RemoveButton = new Button();
-            AddButton = new Button();
+            removeButton = new Button();
+            addButton = new Button();
             CustomersListBox = new ListBox();
             label7 = new Label();
+            addressControl1 = new Controls.AddressControl();
             SuspendLayout();
             // 
-            // AddressTextBox
+            // fullnameTextBox
             // 
-            AddressTextBox.Location = new Point(424, 98);
-            AddressTextBox.Multiline = true;
-            AddressTextBox.Name = "AddressTextBox";
-            AddressTextBox.Size = new Size(314, 139);
-            AddressTextBox.TabIndex = 27;
-            AddressTextBox.TextChanged += AddressTextBox_TextChanged;
+            fullnameTextBox.Location = new Point(424, 63);
+            fullnameTextBox.Name = "fullnameTextBox";
+            fullnameTextBox.Size = new Size(314, 23);
+            fullnameTextBox.TabIndex = 26;
+            fullnameTextBox.TextChanged += fullnameTextBox_TextChanged;
             // 
-            // FullnameTextBox
+            // idTextBox
             // 
-            FullnameTextBox.Location = new Point(424, 63);
-            FullnameTextBox.Name = "FullnameTextBox";
-            FullnameTextBox.Size = new Size(314, 23);
-            FullnameTextBox.TabIndex = 26;
-            FullnameTextBox.TextChanged += FullnameTextBox_TextChanged;
-            // 
-            // IdTextBox
-            // 
-            IdTextBox.Location = new Point(424, 34);
-            IdTextBox.Name = "IdTextBox";
-            IdTextBox.ReadOnly = true;
-            IdTextBox.Size = new Size(134, 23);
-            IdTextBox.TabIndex = 25;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(355, 100);
-            label11.Name = "label11";
-            label11.Size = new Size(52, 15);
-            label11.TabIndex = 24;
-            label11.Text = "Address:";
+            idTextBox.Location = new Point(424, 34);
+            idTextBox.Name = "idTextBox";
+            idTextBox.ReadOnly = true;
+            idTextBox.Size = new Size(134, 23);
+            idTextBox.TabIndex = 25;
             // 
             // label10
             // 
@@ -103,25 +84,25 @@
             label8.TabIndex = 21;
             label8.Text = "Selected Customer";
             // 
-            // RemoveButton
+            // removeButton
             // 
-            RemoveButton.Location = new Point(123, 418);
-            RemoveButton.Name = "RemoveButton";
-            RemoveButton.Size = new Size(117, 61);
-            RemoveButton.TabIndex = 20;
-            RemoveButton.Text = "Remove";
-            RemoveButton.UseVisualStyleBackColor = true;
-            RemoveButton.Click += RemoveButton_Click;
+            removeButton.Location = new Point(123, 418);
+            removeButton.Name = "removeButton";
+            removeButton.Size = new Size(117, 61);
+            removeButton.TabIndex = 20;
+            removeButton.Text = "Remove";
+            removeButton.UseVisualStyleBackColor = true;
+            removeButton.Click += removeButton_Click;
             // 
-            // AddButton
+            // addButton
             // 
-            AddButton.Location = new Point(0, 418);
-            AddButton.Name = "AddButton";
-            AddButton.Size = new Size(117, 61);
-            AddButton.TabIndex = 19;
-            AddButton.Text = "Add";
-            AddButton.UseVisualStyleBackColor = true;
-            AddButton.Click += AddButton_Click;
+            addButton.Location = new Point(0, 418);
+            addButton.Name = "addButton";
+            addButton.Size = new Size(117, 61);
+            addButton.TabIndex = 19;
+            addButton.Text = "Add";
+            addButton.UseVisualStyleBackColor = true;
+            addButton.Click += addButton_Click;
             // 
             // CustomersListBox
             // 
@@ -143,39 +124,43 @@
             label7.TabIndex = 17;
             label7.Text = "Customers";
             // 
+            // addressControl1
+            // 
+            addressControl1.Location = new Point(355, 92);
+            addressControl1.Name = "addressControl1";
+            addressControl1.Size = new Size(520, 181);
+            addressControl1.TabIndex = 27;
+            // 
             // CustomersTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(AddressTextBox);
-            Controls.Add(FullnameTextBox);
-            Controls.Add(IdTextBox);
-            Controls.Add(label11);
+            Controls.Add(addressControl1);
+            Controls.Add(fullnameTextBox);
+            Controls.Add(idTextBox);
             Controls.Add(label10);
             Controls.Add(label9);
             Controls.Add(label8);
-            Controls.Add(RemoveButton);
-            Controls.Add(AddButton);
+            Controls.Add(removeButton);
+            Controls.Add(addButton);
             Controls.Add(CustomersListBox);
             Controls.Add(label7);
             Name = "CustomersTab";
-            Size = new Size(754, 497);
+            Size = new Size(881, 497);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private TextBox AddressTextBox;
-        private TextBox FullnameTextBox;
-        private TextBox IdTextBox;
-        private Label label11;
+        private TextBox fullnameTextBox;
+        private TextBox idTextBox;
         private Label label10;
         private Label label9;
         private Label label8;
-        private Button RemoveButton;
-        private Button AddButton;
+        private Button removeButton;
+        private Button addButton;
         private ListBox CustomersListBox;
         private Label label7;
+        private Controls.AddressControl addressControl1;
     }
 }
