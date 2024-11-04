@@ -14,14 +14,11 @@ namespace ObjectOrientedPractics.Model
     /// </summary>
     internal class Customer
     {
+        private static IdGenerator _idGenerator = new IdGenerator();
         /// <summary>
-        /// Уникальный идентификатор покупателя.
+        /// Возвращает уникальный идентификатор покупателя.
         /// </summary>
-        private readonly int _id;
-        /// <summary>
-        /// Все покупатели.
-        /// </summary>
-        private static int _allCustomersCount;
+        public int Id { get; private set; }
         /// <summary>
         /// Полное имя.
         /// </summary>
@@ -31,18 +28,10 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private Address _address;
         /// <summary>
-        /// Возвращает уникальный идентификатор покупателя.
-        /// </summary>
-        public int Id { get { return _id; } }
-        /// <summary>
         /// Корзина товаров.
         /// </summary>
         private Cart _cart;
         private List<Order> _orders;
-        /// <summary>
-        /// Задает количество покупателей.
-        /// </summary>
-        public static int AllCustomersCount { set { _allCustomersCount = value; } }
         /// <summary>
         /// Возвращает и задает полное имя пользователя.
         /// </summary>
@@ -85,12 +74,15 @@ namespace ObjectOrientedPractics.Model
             Address = address;
             Cart = new Cart();
             _orders = new List<Order>();
-            _allCustomersCount++;
-            _id = _allCustomersCount;
+            Id = _idGenerator.GetNextId();
         }
         public Customer ()
         {
-
+            
+        }
+        public static void SetId(int value)
+        {
+            _idGenerator.SetId(value);
         }
     }
 }

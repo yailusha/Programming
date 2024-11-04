@@ -39,6 +39,15 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 CategoryComboBox.Items.Add(category);
             }
+            ItemsListBox.Items.AddRange(_items.ToArray());
+        }
+        private void ClearInfo()
+        {
+            costTextBox.Clear();
+            nameTextBox.Clear();
+            descriptionTextBox.Clear();
+            CategoryComboBox.SelectedItem = null;
+            idTextBox.Clear();
         }
         private void UpdateItemsListBox()
         {
@@ -152,6 +161,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 Item item = new Item(name, description, cost, category);
                 _items.Add(item);
                 ItemsListBox.Items.Add($"{item.Name} - {item.Cost}");
+                ClearInfo();
             }
 
         }
@@ -167,11 +177,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 int selectedIndex = ItemsListBox.SelectedIndex;
                 ItemsListBox.Items.RemoveAt(selectedIndex);
                 _items.RemoveAt(selectedIndex);
-                idTextBox.Text = "";
-                nameTextBox.Text = "";
-                costTextBox.Text = "";
-                descriptionTextBox.Text = "";
-                CategoryComboBox.SelectedItem = null;
+                ClearInfo();
             }
         }
     }

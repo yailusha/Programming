@@ -12,14 +12,11 @@ namespace ObjectOrientedPractics.Model
     /// </summary>
     internal class Item
     {
+        private static IdGenerator _idGenerator = new IdGenerator();
         /// <summary>
-        /// Уникальный идентификатор товара.
+        /// Возвращает уникальный идентификатор товара.
         /// </summary>
-        private readonly int _id;
-        /// <summary>
-        /// Количество товаров.
-        /// </summary>
-        private static int _allItemsCount;
+        public int Id { get; private set; }
         /// <summary>
         /// Название товара.
         /// </summary>
@@ -40,18 +37,6 @@ namespace ObjectOrientedPractics.Model
         /// Возвращает и задает категорию товара.
         /// </summary>
         public Category Category { get; set; } 
-        /// <summary>
-        /// Задает уникальный идентификатор товара.
-        /// </summary>
-        public int Id { get { return _id; } }
-        /// <summary>
-        /// Задает количество товаров.
-        /// </summary>
-        public static int AllItemsCount { set { _allItemsCount = value; } }
-        public void AddMethod()
-        {
-
-        }
         /// <summary>
         /// Возвращает и задает название товара.
         /// </summary>
@@ -107,12 +92,15 @@ namespace ObjectOrientedPractics.Model
             Info = info;
             Cost = cost;
             Category = category;
-            _allItemsCount++;
-            _id = _allItemsCount;
+            Id = _idGenerator.GetNextId();
         }
         public Item()
         {
 
+        }
+        public static void SetId(int value)
+        {
+            _idGenerator.SetId(value);
         }
     }
 }

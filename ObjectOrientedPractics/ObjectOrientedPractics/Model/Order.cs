@@ -20,9 +20,9 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private static int _allOrdersCount;
         /// <summary>
-        /// Дата создания заказа.
+        /// Возвращает дату создания заказа.
         /// </summary>
-        private readonly string _date;
+        public DateTime OrderCreationDate { get; private set; }
         /// <summary>
         /// Адрес доставки.
         /// </summary>
@@ -43,10 +43,6 @@ namespace ObjectOrientedPractics.Model
         /// Задает количество заказов.
         /// </summary>
         public int AllOrdersCount { set { _allOrdersCount = value; } }
-        /// <summary>
-        /// Задает и возвращает дату заказа.
-        /// </summary>
-        public string Date { get { return _date; } }
         /// <summary>
         /// Задает и возвращает адрес доставки.
         /// </summary>
@@ -74,9 +70,11 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Создает экземпляр класса <see cref="Order"/>
         /// </summary>
-        public Order()
+        public Order(Address address, List<Item> items)
         {
-            _items = new List<Item>();
+            Items = items;
+            Address = address;
+            OrderCreationDate = DateTime.Now;
             _allOrdersCount++;
             _id = _allOrdersCount;
         }
