@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using ObjectOrientedPractics.Services;
@@ -10,12 +11,14 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит данные о товаре.
     /// </summary>
+    [DataContract]
     internal class Item
     {
         private static IdGenerator _idGenerator = new IdGenerator();
         /// <summary>
         /// Возвращает уникальный идентификатор товара.
         /// </summary>
+        [DataMember]
         public int Id { get; private set; }
         /// <summary>
         /// Название товара.
@@ -32,14 +35,16 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Категория товара.
         /// </summary>
+        [DataMember]
         private Category _category;
         /// <summary>
         /// Возвращает и задает категорию товара.
         /// </summary>
-        public Category Category { get; set; } 
+        public Category Category { get; set; }
         /// <summary>
         /// Возвращает и задает название товара.
         /// </summary>
+        [DataMember]
         public string Name
         {
             get { return _name; }
@@ -54,6 +59,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает и задает описание товара.
         /// </summary>
+        [DataMember]
         public string Info
         {
             get { return _info; }
@@ -68,6 +74,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает и задает стоимость товара.
         /// </summary>
+        [DataMember]
         public double Cost
         {
             get { return _cost; }
@@ -101,6 +108,10 @@ namespace ObjectOrientedPractics.Model
         public static void SetId(int value)
         {
             _idGenerator.SetId(value);
+        }
+        public override string ToString()
+        {
+            return $"{Name} - {Cost}руб.";
         }
     }
 }

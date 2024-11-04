@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,6 +10,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит данные о корзине товаров покупателя.
     /// </summary>
+    [DataContract]
     internal class Cart
     {
         /// <summary>
@@ -22,7 +24,12 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает и задает количество товаров.
         /// </summary>
-        public List<Item> Items { get; set; }
+        [DataMember]
+        public List<Item> Items
+        {
+            get { return _items; }
+            set { _items = value; }
+        }
         /// <summary>
         /// Возвращает общую стоимость товаров.
         /// </summary>

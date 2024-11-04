@@ -12,12 +12,14 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит данные о покупателе.
     /// </summary>
+    [DataContract]
     internal class Customer
     {
         private static IdGenerator _idGenerator = new IdGenerator();
         /// <summary>
         /// Возвращает уникальный идентификатор покупателя.
         /// </summary>
+        [DataMember]
         public int Id { get; private set; }
         /// <summary>
         /// Полное имя.
@@ -35,6 +37,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает и задает полное имя пользователя.
         /// </summary>
+        [DataMember]
         public string Fullname
         {
             get { return _fullname; }
@@ -49,6 +52,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает и задает адрес покупателя.
         /// </summary>
+        [DataMember]
         public Address Address
         {
             get { return _address; }
@@ -60,7 +64,9 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает и задает корзину товаров.
         /// </summary>
+        [DataMember]
         public Cart Cart { get; set; }
+        [DataMember]
         public List<Order> Orders { get; set; }
         /// <summary>
         /// Создает экземпляр класса <see cref="Customer"/>
@@ -83,6 +89,10 @@ namespace ObjectOrientedPractics.Model
         public static void SetId(int value)
         {
             _idGenerator.SetId(value);
+        }
+        public override string ToString()
+        {
+            return Fullname;
         }
     }
 }

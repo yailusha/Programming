@@ -13,10 +13,10 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     internal partial class CartsTab : UserControl
     {
-        private List<Item> _items = new List<Item>();
-        private List<Customer> _customers = new List<Customer>();
-        private Item _currentItem;
-        private Customer _currentCustomer;
+        List<Item> _items = new List<Item>();
+        List<Customer> _customers = new List<Customer>();
+        Item _currentItem = new Item();
+        Customer _currentCustomer = new Customer();
         public List<Item> Items
         {
             get { return _items; }
@@ -71,7 +71,6 @@ namespace ObjectOrientedPractics.View.Tabs
             _currentCustomer.Cart.Items.RemoveAt(CartListBox.SelectedIndex);
             CartListBox.Items.RemoveAt(CartListBox.SelectedIndex);
             amountLabel.Text = _currentCustomer.Cart.Amount.ToString();
-
         }
 
         private void createButton_Click(object sender, EventArgs e)
@@ -82,6 +81,13 @@ namespace ObjectOrientedPractics.View.Tabs
             _currentCustomer.Cart.Items.Clear();
             CartListBox.Items.Clear();
             amountLabel.Text = "0";
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            _currentCustomer.Cart.Items.Clear();
+            amountLabel.Text = "0";
+            CartListBox.Items.Clear();
         }
     }
 }

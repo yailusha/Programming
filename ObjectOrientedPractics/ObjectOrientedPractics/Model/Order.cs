@@ -1,6 +1,8 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,19 +11,19 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит данные о заказе.
     /// </summary>
+    [DataContract]
     internal class Order
     {
+        private static IdGenerator _idGenerator = new IdGenerator();
         /// <summary>
-        /// Уникальный идентификатор.
+        /// Возвращает уникальный идентификатор.
         /// </summary>
-        private readonly int _id;
-        /// <summary>
-        /// Общее количество заказов.
-        /// </summary>
-        private static int _allOrdersCount;
+        [DataMember]
+        public int Id { get; private set; }
         /// <summary>
         /// Возвращает дату создания заказа.
         /// </summary>
+        [DataMember]
         public DateTime OrderCreationDate { get; private set; }
         /// <summary>
         /// Адрес доставки.
@@ -36,20 +38,14 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private double _amount;
         /// <summary>
-        /// Возвращает уникальный идентификатор заказа.
-        /// </summary>
-        public int Id { get { return _id; } }
-        /// <summary>
-        /// Задает количество заказов.
-        /// </summary>
-        public int AllOrdersCount { set { _allOrdersCount = value; } }
-        /// <summary>
         /// Задает и возвращает адрес доставки.
         /// </summary>
+        [DataMember]
         public Address Address { get; set; }
         /// <summary>
         /// Задает и возвращает список товаров.
         /// </summary>
+        [DataMember]
         public List<Item> Items { get; set; }
         /// <summary>
         /// Возвращает общую стоиость товаров.
@@ -75,8 +71,7 @@ namespace ObjectOrientedPractics.Model
             Items = items;
             Address = address;
             OrderCreationDate = DateTime.Now;
-            _allOrdersCount++;
-            _id = _allOrdersCount;
+            Id = _idGenerator.GetNextId();
         }
     }
 }

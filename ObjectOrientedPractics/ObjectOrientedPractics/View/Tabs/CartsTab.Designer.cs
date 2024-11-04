@@ -34,9 +34,8 @@
             label2 = new Label();
             CustomerComboBox = new ComboBox();
             label3 = new Label();
+            label10 = new Label();
             amountLabel = new Label();
-            label5 = new Label();
-            label6 = new Label();
             clearButton = new Button();
             removeButton = new Button();
             createButton = new Button();
@@ -104,38 +103,27 @@
             label3.TabIndex = 5;
             label3.Text = "Cart:";
             // 
+            // label10
+            // 
+            label10.Anchor = AnchorStyles.Right;
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label10.Location = new Point(593, 284);
+            label10.Name = "label10";
+            label10.Size = new Size(60, 15);
+            label10.TabIndex = 7;
+            label10.Text = "Amount:";
+            // 
             // amountLabel
             // 
-            amountLabel.Anchor = AnchorStyles.Right;
+            amountLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             amountLabel.AutoSize = true;
-            amountLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            amountLabel.Location = new Point(593, 268);
+            amountLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            amountLabel.Location = new Point(593, 309);
             amountLabel.Name = "amountLabel";
-            amountLabel.Size = new Size(60, 15);
-            amountLabel.TabIndex = 7;
-            amountLabel.Text = "Amount:";
-            // 
-            // label5
-            // 
-            label5.Anchor = AnchorStyles.Right;
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label5.Location = new Point(584, 294);
-            label5.Name = "label5";
-            label5.Size = new Size(69, 15);
-            label5.TabIndex = 8;
-            label5.Text = "Customer:";
-            // 
-            // label6
-            // 
-            label6.Anchor = AnchorStyles.Right;
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label6.Location = new Point(631, 309);
-            label6.Name = "label6";
-            label6.Size = new Size(25, 30);
-            label6.TabIndex = 9;
-            label6.Text = "0";
+            amountLabel.Size = new Size(25, 30);
+            amountLabel.TabIndex = 9;
+            amountLabel.Text = "0";
             // 
             // clearButton
             // 
@@ -146,6 +134,7 @@
             clearButton.TabIndex = 10;
             clearButton.Text = "Clear Cart";
             clearButton.UseVisualStyleBackColor = true;
+            clearButton.Click += clearButton_Click;
             // 
             // removeButton
             // 
@@ -187,9 +176,8 @@
             Controls.Add(createButton);
             Controls.Add(removeButton);
             Controls.Add(clearButton);
-            Controls.Add(label6);
-            Controls.Add(label5);
             Controls.Add(amountLabel);
+            Controls.Add(label10);
             Controls.Add(label3);
             Controls.Add(CustomerComboBox);
             Controls.Add(label2);
@@ -210,9 +198,8 @@
         private Label label2;
         private ComboBox CustomerComboBox;
         private Label label3;
+        private Label label10;
         private Label amountLabel;
-        private Label label5;
-        private Label label6;
         private Button clearButton;
         private Button removeButton;
         private Button createButton;

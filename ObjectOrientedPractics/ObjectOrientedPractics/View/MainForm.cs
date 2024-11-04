@@ -10,8 +10,16 @@ namespace ObjectOrientedPractics
             InitializeComponent();
             _store.Items = new List<Item>();
             _store.Customers = new List<Customer>();
+
+            ReadFileCustomers();
+            ReadFileItems();
+
             itemsTab1.Items = _store.Items;
             customersTab1.Customers = _store.Customers;
+
+            cartsTab1.Customers = _store.Customers;
+            cartsTab1.Items = _store.Items;
+
         }
         private void tabControl1_SelectedTabChanged(object sender, EventArgs e)
         {
