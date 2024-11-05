@@ -32,6 +32,12 @@ namespace ObjectOrientedPractics.View.Controls
                 apartmentTextBox.Text = _address.Apartment;
             }
         }
+        public string PostIndexValue { get; set; }
+        public string CountryValue { get; set; } 
+        public string CityValue { get; set; }
+        public string StreetValue { get; set; }
+        public string ApartmentValue { get; set; }
+        public string BuildingValue { get; set; }  
         public AddressControl()
         {
             InitializeComponent();
@@ -140,6 +146,15 @@ namespace ObjectOrientedPractics.View.Controls
                 apartmentTextBox.BackColor = Color.LightPink;
                 this.toolTip1.SetToolTip(apartmentTextBox, "Длина строки может содержать максимум 10 символов");
             }
+        }
+        public void ReadOnly()
+        {
+            postIndexTextBox.ReadOnly = true;
+            countryTextBox.ReadOnly = true;
+            cityTextBox.ReadOnly = true;
+            streetTextBox.ReadOnly = true;
+            buildingTextBox.ReadOnly = true;
+            apartmentTextBox.ReadOnly = true;
         }
 
     }

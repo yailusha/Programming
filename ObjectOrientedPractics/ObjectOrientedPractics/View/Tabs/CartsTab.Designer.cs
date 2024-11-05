@@ -116,10 +116,10 @@
             // 
             // amountLabel
             // 
-            amountLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            amountLabel.Anchor = AnchorStyles.Right;
             amountLabel.AutoSize = true;
             amountLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            amountLabel.Location = new Point(593, 309);
+            amountLabel.Location = new Point(593, 299);
             amountLabel.Name = "amountLabel";
             amountLabel.Size = new Size(25, 30);
             amountLabel.TabIndex = 9;
@@ -128,7 +128,7 @@
             // clearButton
             // 
             clearButton.Anchor = AnchorStyles.Right;
-            clearButton.Location = new Point(546, 342);
+            clearButton.Location = new Point(546, 380);
             clearButton.Name = "clearButton";
             clearButton.Size = new Size(107, 45);
             clearButton.TabIndex = 10;
@@ -139,7 +139,7 @@
             // removeButton
             // 
             removeButton.Anchor = AnchorStyles.Right;
-            removeButton.Location = new Point(433, 342);
+            removeButton.Location = new Point(433, 380);
             removeButton.Name = "removeButton";
             removeButton.Size = new Size(107, 45);
             removeButton.TabIndex = 11;
@@ -150,7 +150,7 @@
             // createButton
             // 
             createButton.Anchor = AnchorStyles.Left;
-            createButton.Location = new Point(252, 342);
+            createButton.Location = new Point(252, 380);
             createButton.Name = "createButton";
             createButton.Size = new Size(107, 45);
             createButton.TabIndex = 12;

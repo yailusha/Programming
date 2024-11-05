@@ -23,7 +23,7 @@ namespace ObjectOrientedPractics
         }
         private void tabControl1_SelectedTabChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == 2)
+            if (tabControl1.SelectedIndex == 2 || tabControl1.SelectedIndex == 3)
             {
                 cartsTab1.RefreshData();
             }
@@ -98,7 +98,7 @@ namespace ObjectOrientedPractics
                 }
             }
         }
-        private void MainForm_FromClosing(object sender, FormClosingEventArgs e)
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (_store.Items.Count == 0 && _store.Customers.Count == 0) return;
             string filePathItems = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "items.json");

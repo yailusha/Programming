@@ -25,6 +25,8 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         [DataMember]
         public DateTime OrderCreationDate { get; private set; }
+        [DataMember]
+        public OrderStatus Status { get; set; }
         /// <summary>
         /// Адрес доставки.
         /// </summary>
@@ -72,6 +74,8 @@ namespace ObjectOrientedPractics.Model
             Address = address;
             OrderCreationDate = DateTime.Now;
             Id = _idGenerator.GetNextId();
+            Status = 0;
         }
+        public Order() { }
     }
 }

@@ -141,11 +141,11 @@ namespace ObjectOrientedPractics.Model
         public Address()
         {
             Index = 100000;
-            Country = "Страна";
-            City = "Город";
-            Street = "Улица";
-            Building = "0";
-            Apartment = "0";
+            Country = "Country";
+            City = "City";
+            Street = "Street";
+            Building = "Building";
+            Apartment = "Apartment";
         }
     }
 }
