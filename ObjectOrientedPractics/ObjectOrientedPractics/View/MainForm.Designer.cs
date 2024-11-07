@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            Model.Address address2 = new Model.Address();
+            Model.Address address1 = new Model.Address();
             customerPage = new TabPage();
             customersTab1 = new View.Tabs.CustomersTab();
             itemsPage = new TabPage();
@@ -50,31 +50,29 @@
             // customerPage
             // 
             customerPage.Controls.Add(customersTab1);
-            customerPage.Location = new Point(4, 29);
-            customerPage.Margin = new Padding(3, 4, 3, 4);
+            customerPage.Location = new Point(4, 24);
             customerPage.Name = "customerPage";
-            customerPage.Padding = new Padding(3, 4, 3, 4);
-            customerPage.Size = new Size(993, 822);
+            customerPage.Padding = new Padding(3, 3, 3, 3);
+            customerPage.Size = new Size(868, 613);
             customerPage.TabIndex = 1;
             customerPage.Text = "Customers";
             customerPage.UseVisualStyleBackColor = true;
             // 
             // customersTab1
             // 
-            customersTab1.Location = new Point(-5, 8);
-            customersTab1.Margin = new Padding(3, 5, 3, 5);
+            customersTab1.Location = new Point(-4, 6);
+            customersTab1.Margin = new Padding(3, 4, 3, 4);
             customersTab1.Name = "customersTab1";
-            customersTab1.Size = new Size(1007, 663);
+            customersTab1.Size = new Size(881, 497);
             customersTab1.TabIndex = 0;
             // 
             // itemsPage
             // 
             itemsPage.Controls.Add(itemsTab1);
-            itemsPage.Location = new Point(4, 29);
-            itemsPage.Margin = new Padding(3, 4, 3, 4);
+            itemsPage.Location = new Point(4, 24);
             itemsPage.Name = "itemsPage";
-            itemsPage.Padding = new Padding(3, 4, 3, 4);
-            itemsPage.Size = new Size(993, 822);
+            itemsPage.Padding = new Padding(3, 3, 3, 3);
+            itemsPage.Size = new Size(868, 613);
             itemsPage.TabIndex = 0;
             itemsPage.Text = "Items";
             itemsPage.UseVisualStyleBackColor = true;
@@ -82,9 +80,9 @@
             // itemsTab1
             // 
             itemsTab1.Location = new Point(0, 0);
-            itemsTab1.Margin = new Padding(3, 5, 3, 5);
+            itemsTab1.Margin = new Padding(3, 4, 3, 4);
             itemsTab1.Name = "itemsTab1";
-            itemsTab1.Size = new Size(853, 657);
+            itemsTab1.Size = new Size(746, 493);
             itemsTab1.TabIndex = 0;
             // 
             // tabControl1
@@ -95,20 +93,18 @@
             tabControl1.Controls.Add(ordersPage);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
-            tabControl1.Margin = new Padding(3, 4, 3, 4);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1001, 855);
+            tabControl1.Size = new Size(876, 641);
             tabControl1.TabIndex = 0;
             tabControl1.SelectedIndexChanged += tabControl1_SelectedTabChanged;
             // 
             // cartsPage
             // 
             cartsPage.Controls.Add(cartsTab1);
-            cartsPage.Location = new Point(4, 29);
-            cartsPage.Margin = new Padding(3, 4, 3, 4);
+            cartsPage.Location = new Point(4, 24);
             cartsPage.Name = "cartsPage";
-            cartsPage.Size = new Size(993, 822);
+            cartsPage.Size = new Size(868, 613);
             cartsPage.TabIndex = 2;
             cartsPage.Text = "Carts";
             cartsPage.UseVisualStyleBackColor = true;
@@ -117,31 +113,30 @@
             // 
             cartsTab1.Dock = DockStyle.Fill;
             cartsTab1.Location = new Point(0, 0);
-            cartsTab1.Margin = new Padding(3, 5, 3, 5);
+            cartsTab1.Margin = new Padding(3, 4, 3, 4);
             cartsTab1.Name = "cartsTab1";
-            cartsTab1.Size = new Size(993, 822);
+            cartsTab1.Size = new Size(868, 613);
             cartsTab1.TabIndex = 0;
             // 
             // ordersPage
             // 
             ordersPage.Controls.Add(ordersTab2);
-            ordersPage.Location = new Point(4, 29);
-            ordersPage.Margin = new Padding(3, 4, 3, 4);
+            ordersPage.Location = new Point(4, 24);
             ordersPage.Name = "ordersPage";
-            ordersPage.Size = new Size(993, 822);
+            ordersPage.Size = new Size(868, 613);
             ordersPage.TabIndex = 3;
             ordersPage.Text = "Orders";
             ordersPage.UseVisualStyleBackColor = true;
             // 
             // addressControl1
             // 
-            address2.Apartment = "Apartment";
-            address2.Building = "Building";
-            address2.City = "City";
-            address2.Country = "Country";
-            address2.Index = 100000;
-            address2.Street = "Street";
-            addressControl1.Address = address2;
+            address1.Apartment = "Apartment";
+            address1.Building = "Building";
+            address1.City = "City";
+            address1.Country = "Country";
+            address1.Index = 100000;
+            address1.Street = "Street";
+            addressControl1.Address = address1;
             addressControl1.ApartmentValue = null;
             addressControl1.BuildingValue = null;
             addressControl1.CityValue = null;
@@ -156,19 +151,17 @@
             // 
             // ordersTab2
             // 
-            ordersTab2.Location = new Point(0, 0);
-            ordersTab2.Margin = new Padding(3, 4, 3, 4);
+            ordersTab2.Location = new Point(-1, 3);
             ordersTab2.Name = "ordersTab2";
-            ordersTab2.Size = new Size(1248, 1149);
+            ordersTab2.Size = new Size(873, 689);
             ordersTab2.TabIndex = 0;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1001, 855);
+            ClientSize = new Size(876, 641);
             Controls.Add(tabControl1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "MainForm";
             Text = "MainForm";
             FormClosing += MainForm_FormClosing;
