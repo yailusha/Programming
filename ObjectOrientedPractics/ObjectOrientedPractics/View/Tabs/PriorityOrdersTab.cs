@@ -22,6 +22,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
         public PriorityOrdersTab()
         {
+            InitializeComponent();
             foreach (var time in Enum.GetValues(typeof(DeliveryTimeRange)))
                 DeliveryTimeComboBox.Items.Add(time);
             foreach (var status in Enum.GetValues(typeof(OrderStatus)))
@@ -32,7 +33,7 @@ namespace ObjectOrientedPractics.View.Tabs
             StatusComboBox.SelectedItem = _priorityOrder.Status;
             addressControl1.Address = _priorityOrder.Address;
             OrderItemsListBox.Items.AddRange(_priorityOrder.Items.ToArray());
-            InitializeComponent();
+            
         }
         private void UpdateInfo()
         {
@@ -55,7 +56,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            _priorityOrder = null;
+            //_priorityOrder = null;
             _priorityOrder = new PriorityOrder(false);
             UpdateInfo();
             idTextBox.Text = _priorityOrder.Id.ToString();

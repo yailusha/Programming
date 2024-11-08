@@ -39,12 +39,15 @@
             cartsTab1 = new View.Tabs.CartsTab();
             ordersPage = new TabPage();
             ordersTab1 = new View.Tabs.OrdersTab();
+            Priority = new TabPage();
             addressControl1 = new View.Controls.AddressControl();
+            priorityOrdersTab1 = new View.Tabs.PriorityOrdersTab();
             customerPage.SuspendLayout();
             itemsPage.SuspendLayout();
             tabControl1.SuspendLayout();
             cartsPage.SuspendLayout();
             ordersPage.SuspendLayout();
+            Priority.SuspendLayout();
             SuspendLayout();
             // 
             // customerPage
@@ -53,7 +56,7 @@
             customerPage.Location = new Point(4, 24);
             customerPage.Name = "customerPage";
             customerPage.Padding = new Padding(3);
-            customerPage.Size = new Size(868, 613);
+            customerPage.Size = new Size(942, 699);
             customerPage.TabIndex = 1;
             customerPage.Text = "Customers";
             customerPage.UseVisualStyleBackColor = true;
@@ -72,7 +75,7 @@
             itemsPage.Location = new Point(4, 24);
             itemsPage.Name = "itemsPage";
             itemsPage.Padding = new Padding(3);
-            itemsPage.Size = new Size(868, 613);
+            itemsPage.Size = new Size(942, 699);
             itemsPage.TabIndex = 0;
             itemsPage.Text = "Items";
             itemsPage.UseVisualStyleBackColor = true;
@@ -91,6 +94,7 @@
             tabControl1.Controls.Add(customerPage);
             tabControl1.Controls.Add(cartsPage);
             tabControl1.Controls.Add(ordersPage);
+            tabControl1.Controls.Add(Priority);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
@@ -104,7 +108,7 @@
             cartsPage.Controls.Add(cartsTab1);
             cartsPage.Location = new Point(4, 24);
             cartsPage.Name = "cartsPage";
-            cartsPage.Size = new Size(868, 613);
+            cartsPage.Size = new Size(942, 699);
             cartsPage.TabIndex = 2;
             cartsPage.Text = "Carts";
             cartsPage.UseVisualStyleBackColor = true;
@@ -115,7 +119,7 @@
             cartsTab1.Location = new Point(0, 0);
             cartsTab1.Margin = new Padding(3, 4, 3, 4);
             cartsTab1.Name = "cartsTab1";
-            cartsTab1.Size = new Size(868, 613);
+            cartsTab1.Size = new Size(942, 699);
             cartsTab1.TabIndex = 0;
             // 
             // ordersPage
@@ -136,6 +140,16 @@
             ordersTab1.Size = new Size(942, 699);
             ordersTab1.TabIndex = 0;
             // 
+            // Priority
+            // 
+            Priority.Controls.Add(priorityOrdersTab1);
+            Priority.Location = new Point(4, 24);
+            Priority.Name = "Priority";
+            Priority.Size = new Size(942, 699);
+            Priority.TabIndex = 4;
+            Priority.Text = "Priority";
+            Priority.UseVisualStyleBackColor = true;
+            // 
             // addressControl1
             // 
             address1.Apartment = "Apartment";
@@ -145,17 +159,24 @@
             address1.Index = 100000;
             address1.Street = "Street";
             addressControl1.Address = address1;
-            addressControl1.ApartmentValue = null;
-            addressControl1.BuildingValue = null;
-            addressControl1.CityValue = null;
-            addressControl1.CountryValue = null;
+            addressControl1.ApartmentValue = "";
+            addressControl1.BuildingValue = "";
+            addressControl1.CityValue = "";
+            addressControl1.CountryValue = "";
             addressControl1.Location = new Point(0, 0);
             addressControl1.Margin = new Padding(3, 4, 3, 4);
             addressControl1.Name = "addressControl1";
-            addressControl1.PostIndexValue = null;
+            addressControl1.PostIndexValue = "";
             addressControl1.Size = new Size(594, 241);
-            addressControl1.StreetValue = null;
+            addressControl1.StreetValue = "";
             addressControl1.TabIndex = 0;
+            // 
+            // priorityOrdersTab1
+            // 
+            priorityOrdersTab1.Location = new Point(8, 3);
+            priorityOrdersTab1.Name = "priorityOrdersTab1";
+            priorityOrdersTab1.Size = new Size(505, 678);
+            priorityOrdersTab1.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -165,12 +186,12 @@
             Controls.Add(tabControl1);
             Name = "MainForm";
             Text = "MainForm";
-            //FormClosing += MainForm_FormClosing;
             customerPage.ResumeLayout(false);
             itemsPage.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
             cartsPage.ResumeLayout(false);
             ordersPage.ResumeLayout(false);
+            Priority.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -186,5 +207,7 @@
         private TabPage ordersPage;
         private View.Controls.AddressControl addressControl1;
         private View.Tabs.OrdersTab ordersTab1;
+        private TabPage Priority;
+        private View.Tabs.PriorityOrdersTab priorityOrdersTab1;
     }
 }
