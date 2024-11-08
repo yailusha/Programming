@@ -12,6 +12,7 @@ namespace ObjectOrientedPractics.Model
     /// Хранит данные о заказе.
     /// </summary>
     [DataContract]
+    [KnownType(typeof(PriorityOrder))]
     internal class Order
     {
         private static IdGenerator _idGenerator = new IdGenerator();
@@ -82,17 +83,23 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Создает экземпляр класса <see cref="Order"/>
         /// </summary>
-        public Order(Address address, List<Item> items)
+        public Order(Address address, List<Item> items, bool isId)
         {
+            if (isId)
+            {
+                Id = _idGenerator.GetNextId();
+            }
             Items = items;
             Address = address;
             OrderCreationDate = DateTime.Now;
-            Id = _idGenerator.GetNextId();
             Status = 0;
         }
-        public Order()
+        public Order(bool isId)
         {
-            Id = _idGenerator.GetNextId();
+            if (isId)
+            {
+                Id = _idGenerator.GetNextId();
+            }            
             OrderCreationDate = DateTime.Now;
             Items = new List<Item>();
             Address = new Address();

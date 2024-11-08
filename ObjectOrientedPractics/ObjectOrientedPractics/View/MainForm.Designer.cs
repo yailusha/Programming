@@ -165,7 +165,7 @@
             Controls.Add(tabControl1);
             Name = "MainForm";
             Text = "MainForm";
-            FormClosing += MainForm_FormClosing;
+            //FormClosing += MainForm_FormClosing;
             customerPage.ResumeLayout(false);
             itemsPage.ResumeLayout(false);
             tabControl1.ResumeLayout(false);

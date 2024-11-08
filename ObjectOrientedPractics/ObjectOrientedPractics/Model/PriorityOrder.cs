@@ -25,10 +25,12 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <param name="desiredDeliveryDate">Желаемая дата доставки.</param>
         /// <param name="desiredDeliveryTime">Желаемое время доставки.</param>
-        public PriorityOrder (DateTime desiredDeliveryDate, DeliveryTimeRange desiredDeliveryTime)
+        public PriorityOrder (Address address, List<Item> items, bool isId) : base (address, items, isId)
         {
-            DesiredDeliveryDate = desiredDeliveryDate;
-            DesiredDeliveryTime = desiredDeliveryTime;
+            DesiredDeliveryDate = DateTime.MaxValue;
+            DesiredDeliveryTime = 0;
         }
+        public PriorityOrder(bool isID) : base (isID) { }
+
     }
 }

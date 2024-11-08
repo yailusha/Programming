@@ -15,7 +15,7 @@ namespace ObjectOrientedPractics.View.Tabs
     {
         List<Customer> _customers = new List<Customer>();
         List<Order> _orders = new List<Order>();
-        Order _currentOrder = new Order();
+        Order _currentOrder = new Order(false);
         public List<Customer> Customers
         {
             get { return _customers; }

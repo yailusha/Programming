@@ -16,7 +16,7 @@ namespace ObjectOrientedPractics.View.Tabs
         List<Item> _items = new List<Item>();
         List<Customer> _customers = new List<Customer>();
         Item _currentItem = new Item();
-        Customer _currentCustomer = new Customer();
+        Customer _currentCustomer = new Customer(false);
         public List<Item> Items
         {
             get { return _items; }
@@ -76,7 +76,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void createButton_Click(object sender, EventArgs e)
         {
             if (_currentCustomer == null) return;
-            Order order = new Order(_currentCustomer.Address, new List<Item>(_currentCustomer.Cart.Items));
+            Order order = new Order(_currentCustomer.Address, new List<Item>(_currentCustomer.Cart.Items), false);
             _currentCustomer.Orders.Add(order);
             _currentCustomer.Cart.Items.Clear();
             CartListBox.Items.Clear();

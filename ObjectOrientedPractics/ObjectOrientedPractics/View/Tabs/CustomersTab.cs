@@ -21,7 +21,7 @@ namespace ObjectOrientedPractics.View.Tabs
     internal partial class CustomersTab : UserControl
     {
         private List<Customer> _customers = new List<Customer>();
-        private Customer _currentCustomer = new Customer();
+        private Customer _currentCustomer = new Customer(false);
         public List<Customer> Customers
         {
             get { return _customers; }
@@ -98,7 +98,7 @@ namespace ObjectOrientedPractics.View.Tabs
             Address address = addressControl1.Address;
             if (fullname != "" && address != null)
             {
-                _currentCustomer = new Customer (fullname, address);
+                _currentCustomer = new Customer (fullname, address, false);
                 _customers.Add(_currentCustomer);
                 CustomersListBox.Items.Add($"{_currentCustomer.Id}. {_currentCustomer.Fullname}");
                 ClearInfo();

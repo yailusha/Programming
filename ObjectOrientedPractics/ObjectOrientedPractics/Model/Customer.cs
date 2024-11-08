@@ -91,15 +91,18 @@ namespace ObjectOrientedPractics.Model
         /// <param name="fullname">Полное имя. Не может быть пустым или иметь длину более 200 символов.</param>
         /// <param name="address">Адрес. Должен содержать все критерии.</param>
         /// <param name="cart">Корзина товаров.</param>
-        public Customer (string fullname, Address address)
+        public Customer (string fullname, Address address, bool isId)
         {
+            if (isId)
+            {
+                Id = _idGenerator.GetNextId();
+            }
             Fullname = fullname;
             Address = address;
             Cart = new Cart();
             Orders = new List<Order>();
-            Id = _idGenerator.GetNextId();
         }
-        public Customer ()
+        public Customer (bool isId)
         {
             
         }
