@@ -33,6 +33,9 @@ namespace ObjectOrientedPractics.Model
         /// Корзина товаров.
         /// </summary>
         private Cart _cart;
+        /// <summary>
+        /// Список заказов.
+        /// </summary>
         private List<Order> _orders;
         /// <summary>
         /// Возвращает и задает полное имя пользователя.
@@ -65,9 +68,23 @@ namespace ObjectOrientedPractics.Model
         /// Возвращает и задает корзину товаров.
         /// </summary>
         [DataMember]
-        public Cart Cart { get; set; }
+        public Cart Cart
+        {
+            get { return _cart; }
+            set
+            {
+                _cart = value;
+            }
+        }   
         [DataMember]
-        public List<Order> Orders { get; set; }
+        public List<Order> Orders
+        {
+            get { return _orders; }
+            set
+            {
+                _orders = value;
+            }
+        }
         /// <summary>
         /// Создает экземпляр класса <see cref="Customer"/>
         /// </summary>
@@ -79,7 +96,7 @@ namespace ObjectOrientedPractics.Model
             Fullname = fullname;
             Address = address;
             Cart = new Cart();
-            _orders = new List<Order>();
+            Orders = new List<Order>();
             Id = _idGenerator.GetNextId();
         }
         public Customer ()

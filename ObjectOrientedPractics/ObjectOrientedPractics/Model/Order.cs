@@ -43,12 +43,26 @@ namespace ObjectOrientedPractics.Model
         /// Задает и возвращает адрес доставки.
         /// </summary>
         [DataMember]
-        public Address Address { get; set; }
+        public Address Address
+        {
+            get { return _address; }
+            set
+            {
+                _address = value;
+            }
+        }
         /// <summary>
         /// Задает и возвращает список товаров.
         /// </summary>
         [DataMember]
-        public List<Item> Items { get; set; }
+        public List<Item> Items
+        {
+            get { return _items; }
+            set
+            {
+                _items = value;
+            }
+        }
         /// <summary>
         /// Возвращает общую стоиость товаров.
         /// </summary>
@@ -76,6 +90,13 @@ namespace ObjectOrientedPractics.Model
             Id = _idGenerator.GetNextId();
             Status = 0;
         }
-        public Order() { }
+        public Order()
+        {
+            Id = _idGenerator.GetNextId();
+            OrderCreationDate = DateTime.Now;
+            Items = new List<Item>();
+            Address = new Address();
+            Status = 0;
+        }
     }
 }

@@ -144,8 +144,8 @@ namespace ObjectOrientedPractics.Model
             Country = "Country";
             City = "City";
             Street = "Street";
-            Building = "Building";
-            Apartment = "Apartment";
+            Building = "0";
+            Apartment = "0";
         }
     }
 }

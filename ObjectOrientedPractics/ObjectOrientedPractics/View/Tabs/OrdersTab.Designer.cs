@@ -68,6 +68,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             OrdersDataGrid.AllowUserToAddRows = false;
             OrdersDataGrid.AllowUserToDeleteRows = false;
+            OrdersDataGrid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             OrdersDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             OrdersDataGrid.Columns.AddRange(new DataGridViewColumn[] { IdColumn, CreatedColumn, FullnameColumn, AddressColumn, AmountColumn, StatusColumn });
             OrdersDataGrid.Location = new Point(3, 18);
@@ -153,7 +154,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // idTextBox
             // 
-            idTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            idTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             idTextBox.Location = new Point(411, 29);
             idTextBox.Name = "idTextBox";
             idTextBox.ReadOnly = true;
@@ -162,7 +163,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // createdTextBox
             // 
-            createdTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            createdTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             createdTextBox.Location = new Point(411, 63);
             createdTextBox.Name = "createdTextBox";
             createdTextBox.ReadOnly = true;
@@ -171,7 +172,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // StatusComboBox
             // 
-            StatusComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            StatusComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             StatusComboBox.FormattingEnabled = true;
             StatusComboBox.Location = new Point(411, 97);
             StatusComboBox.Name = "StatusComboBox";
@@ -180,6 +181,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // label6
             // 
+            label6.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
             label6.Location = new Point(355, 310);
@@ -190,7 +192,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // OrderItemsListBox
             // 
-            OrderItemsListBox.Anchor = AnchorStyles.Right;
+            OrderItemsListBox.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             OrderItemsListBox.FormattingEnabled = true;
             OrderItemsListBox.ItemHeight = 15;
             OrderItemsListBox.Location = new Point(355, 328);
@@ -229,7 +231,7 @@ namespace ObjectOrientedPractics.View.Tabs
             address1.Index = 100000;
             address1.Street = "Street";
             addressControl1.Address = address1;
-            addressControl1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            addressControl1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             addressControl1.ApartmentValue = null;
             addressControl1.BuildingValue = null;
             addressControl1.CityValue = null;

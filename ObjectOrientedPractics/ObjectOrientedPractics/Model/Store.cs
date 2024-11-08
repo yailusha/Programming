@@ -22,18 +22,32 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Задает и возвращает список объектов класса Item
         /// </summary>
-        public List<Item> Items { get; set; }
+        public List<Item> Items
+        {
+            get { return _items; }
+            set
+            {
+                _items = value;
+            }
+        }
         /// <summary>
         /// Задает и возвращает список объектов класса Customer
         /// </summary>
-        public List<Customer> Customers { get; set; }
+        public List<Customer> Customers
+        {
+            get { return _customers; }
+            set
+            {
+                _customers = value;
+            }
+        }
         /// <summary>
         /// Создает экземпляр класса <see cref="Store"/>
         /// </summary>
         public Store()
         {
-            List<Item> Items = new List<Item>();
-            List<Customer> Customers = new List<Customer>();
+            Items = new List<Item>();
+            Customers = new List<Customer>();
         }
     }
 }

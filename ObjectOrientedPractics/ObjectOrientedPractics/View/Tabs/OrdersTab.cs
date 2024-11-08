@@ -13,9 +13,9 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     internal partial class OrdersTab : UserControl
     {
-        private List<Customer> _customers = new List<Customer>();
-        private List<Order> _orders = new List<Order>();
-        private Order _currentOrder = new Order();
+        List<Customer> _customers = new List<Customer>();
+        List<Order> _orders = new List<Order>();
+        Order _currentOrder = new Order();
         public List<Customer> Customers
         {
             get { return _customers; }
@@ -41,7 +41,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     int rowIndex = OrdersDataGrid.Rows.Add();
                     DataGridViewRow row = OrdersDataGrid.Rows[rowIndex];
                     row.Cells["IdColumn"].Value = order.Id;
-                    row.Cells["CreatedColumn"].Value = $"{order.OrderCreationDate.Day}.{order.OrderCreationDate.Month}.{order.OrderCreationDate.Year}";
+                    row.Cells["CreatedColumn"].Value = $"{order.OrderCreationDate.Day}:{order.OrderCreationDate.Month}:{order.OrderCreationDate.Year}";
                     row.Cells["FullnameColumn"].Value = customer.Fullname;
                     row.Cells["AddressColumn"].Value = order.Address.ToString();
                     row.Cells["AmountColumn"].Value = order.Amount;
