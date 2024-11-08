@@ -182,7 +182,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // label6
             // 
-            label6.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            label6.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
             label6.Location = new Point(355, 310);
@@ -193,7 +193,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // OrderItemsListBox
             // 
-            OrderItemsListBox.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            OrderItemsListBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             OrderItemsListBox.FormattingEnabled = true;
             OrderItemsListBox.ItemHeight = 15;
             OrderItemsListBox.Location = new Point(355, 328);
@@ -232,16 +232,16 @@ namespace ObjectOrientedPractics.View.Tabs
             address1.Index = 100000;
             address1.Street = "Street";
             addressControl1.Address = address1;
-            addressControl1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            addressControl1.ApartmentValue = null;
-            addressControl1.BuildingValue = null;
-            addressControl1.CityValue = null;
-            addressControl1.CountryValue = null;
+            addressControl1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            addressControl1.ApartmentValue = "";
+            addressControl1.BuildingValue = "";
+            addressControl1.CityValue = "";
+            addressControl1.CountryValue = "";
             addressControl1.Location = new Point(355, 126);
             addressControl1.Name = "addressControl1";
-            addressControl1.PostIndexValue = null;
+            addressControl1.PostIndexValue = "";
             addressControl1.Size = new Size(520, 181);
-            addressControl1.StreetValue = null;
+            addressControl1.StreetValue = "";
             addressControl1.TabIndex = 14;
             addressControl1.Load += addressControl1_Load;
             // 
