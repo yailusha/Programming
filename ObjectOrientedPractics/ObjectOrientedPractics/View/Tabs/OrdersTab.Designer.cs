@@ -33,6 +33,7 @@ namespace ObjectOrientedPractics.View.Tabs
             Model.Address address1 = new Model.Address();
             label1 = new Label();
             OrdersDataGrid = new DataGridView();
+            Priority = new DataGridViewTextBoxColumn();
             IdColumn = new DataGridViewTextBoxColumn();
             CreatedColumn = new DataGridViewTextBoxColumn();
             FullnameColumn = new DataGridViewTextBoxColumn();
@@ -51,7 +52,12 @@ namespace ObjectOrientedPractics.View.Tabs
             label7 = new Label();
             amountLabel = new Label();
             addressControl1 = new Controls.AddressControl();
+            label8 = new Label();
+            label9 = new Label();
+            DeliveryTimeComboBox = new ComboBox();
+            PriorityPanel = new Panel();
             ((System.ComponentModel.ISupportInitialize)OrdersDataGrid).BeginInit();
+            PriorityPanel.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -71,13 +77,18 @@ namespace ObjectOrientedPractics.View.Tabs
             OrdersDataGrid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             OrdersDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             OrdersDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            OrdersDataGrid.Columns.AddRange(new DataGridViewColumn[] { IdColumn, CreatedColumn, FullnameColumn, AddressColumn, AmountColumn, StatusColumn });
+            OrdersDataGrid.Columns.AddRange(new DataGridViewColumn[] { Priority, IdColumn, CreatedColumn, FullnameColumn, AddressColumn, AmountColumn, StatusColumn });
             OrdersDataGrid.Location = new Point(3, 18);
             OrdersDataGrid.MultiSelect = false;
             OrdersDataGrid.Name = "OrdersDataGrid";
             OrdersDataGrid.Size = new Size(340, 651);
             OrdersDataGrid.TabIndex = 13;
             OrdersDataGrid.RowHeaderMouseClick += OrdersDataGrid_RowHeaderMouseClick;
+            // 
+            // Priority
+            // 
+            Priority.HeaderText = "";
+            Priority.Name = "Priority";
             // 
             // IdColumn
             // 
@@ -174,7 +185,6 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             StatusComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             StatusComboBox.FormattingEnabled = true;
-            StatusComboBox.Items.AddRange(new object[] { "New", "Processing", "Assembly", "Sent", "Delivered,", "Returned", "Abandoned" });
             StatusComboBox.Location = new Point(411, 97);
             StatusComboBox.Name = "StatusComboBox";
             StatusComboBox.Size = new Size(157, 23);
@@ -245,10 +255,53 @@ namespace ObjectOrientedPractics.View.Tabs
             addressControl1.TabIndex = 14;
             addressControl1.Load += addressControl1_Load;
             // 
+            // label8
+            // 
+            label8.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label8.Location = new Point(0, 0);
+            label8.Name = "label8";
+            label8.Size = new Size(104, 15);
+            label8.TabIndex = 15;
+            label8.Text = "Priority Options";
+            // 
+            // label9
+            // 
+            label9.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label9.AutoSize = true;
+            label9.Location = new Point(0, 32);
+            label9.Name = "label9";
+            label9.Size = new Size(81, 15);
+            label9.TabIndex = 16;
+            label9.Text = "Delivery Time:";
+            // 
+            // DeliveryTimeComboBox
+            // 
+            DeliveryTimeComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            DeliveryTimeComboBox.FormattingEnabled = true;
+            DeliveryTimeComboBox.Location = new Point(87, 29);
+            DeliveryTimeComboBox.Name = "DeliveryTimeComboBox";
+            DeliveryTimeComboBox.Size = new Size(157, 23);
+            DeliveryTimeComboBox.TabIndex = 17;
+            DeliveryTimeComboBox.SelectedIndexChanged += DeliveryTimeComboBox_SelectedIndexChanged;
+            // 
+            // PriorityPanel
+            // 
+            PriorityPanel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            PriorityPanel.Controls.Add(label8);
+            PriorityPanel.Controls.Add(DeliveryTimeComboBox);
+            PriorityPanel.Controls.Add(label9);
+            PriorityPanel.Location = new Point(619, 0);
+            PriorityPanel.Name = "PriorityPanel";
+            PriorityPanel.Size = new Size(251, 78);
+            PriorityPanel.TabIndex = 18;
+            // 
             // OrdersTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(PriorityPanel);
             Controls.Add(addressControl1);
             Controls.Add(amountLabel);
             Controls.Add(label7);
@@ -266,6 +319,8 @@ namespace ObjectOrientedPractics.View.Tabs
             Name = "OrdersTab";
             Size = new Size(873, 689);
             ((System.ComponentModel.ISupportInitialize)OrdersDataGrid).EndInit();
+            PriorityPanel.ResumeLayout(false);
+            PriorityPanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -273,12 +328,6 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private Label label1;
         private DataGridView OrdersDataGrid;
-        private DataGridViewTextBoxColumn IdColumn;
-        private DataGridViewTextBoxColumn CreatedColumn;
-        private DataGridViewTextBoxColumn FullnameColumn;
-        private DataGridViewTextBoxColumn AddressColumn;
-        private DataGridViewTextBoxColumn AmountColumn;
-        private DataGridViewTextBoxColumn StatusColumn;
         private Label label2;
         private Label label3;
         private Label label4;
@@ -291,5 +340,16 @@ namespace ObjectOrientedPractics.View.Tabs
         private Label label7;
         private Label amountLabel;
         private Controls.AddressControl addressControl1;
+        private Label label8;
+        private Label label9;
+        private ComboBox DeliveryTimeComboBox;
+        private Panel PriorityPanel;
+        private DataGridViewTextBoxColumn Priority;
+        private DataGridViewTextBoxColumn IdColumn;
+        private DataGridViewTextBoxColumn CreatedColumn;
+        private DataGridViewTextBoxColumn FullnameColumn;
+        private DataGridViewTextBoxColumn AddressColumn;
+        private DataGridViewTextBoxColumn AmountColumn;
+        private DataGridViewTextBoxColumn StatusColumn;
     }
 }

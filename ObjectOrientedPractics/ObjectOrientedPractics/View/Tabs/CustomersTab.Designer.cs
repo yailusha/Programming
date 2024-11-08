@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Model.Address address1 = new Model.Address();
             fullnameTextBox = new TextBox();
             idTextBox = new TextBox();
             label10 = new Label();
@@ -38,6 +39,7 @@
             CustomersListBox = new ListBox();
             label7 = new Label();
             addressControl1 = new Controls.AddressControl();
+            IsPriorityCheckBox = new CheckBox();
             SuspendLayout();
             // 
             // fullnameTextBox
@@ -126,15 +128,39 @@
             // 
             // addressControl1
             // 
-            addressControl1.Location = new Point(355, 92);
+            address1.Apartment = "0";
+            address1.Building = "0";
+            address1.City = "City";
+            address1.Country = "Country";
+            address1.Index = 100000;
+            address1.Street = "Street";
+            addressControl1.Address = address1;
+            addressControl1.ApartmentValue = "";
+            addressControl1.BuildingValue = "";
+            addressControl1.CityValue = "";
+            addressControl1.CountryValue = "";
+            addressControl1.Location = new Point(355, 116);
             addressControl1.Name = "addressControl1";
+            addressControl1.PostIndexValue = "";
             addressControl1.Size = new Size(520, 181);
+            addressControl1.StreetValue = "";
             addressControl1.TabIndex = 27;
+            // 
+            // IsPriorityCheckBox
+            // 
+            IsPriorityCheckBox.AutoSize = true;
+            IsPriorityCheckBox.Location = new Point(428, 92);
+            IsPriorityCheckBox.Name = "IsPriorityCheckBox";
+            IsPriorityCheckBox.Size = new Size(75, 19);
+            IsPriorityCheckBox.TabIndex = 28;
+            IsPriorityCheckBox.Text = "Is Priority";
+            IsPriorityCheckBox.UseVisualStyleBackColor = true;
             // 
             // CustomersTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(IsPriorityCheckBox);
             Controls.Add(addressControl1);
             Controls.Add(fullnameTextBox);
             Controls.Add(idTextBox);
@@ -162,5 +188,6 @@
         private ListBox CustomersListBox;
         private Label label7;
         private Controls.AddressControl addressControl1;
+        private CheckBox IsPriorityCheckBox;
     }
 }

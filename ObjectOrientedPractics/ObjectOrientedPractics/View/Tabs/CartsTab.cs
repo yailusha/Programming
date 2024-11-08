@@ -75,9 +75,17 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void createButton_Click(object sender, EventArgs e)
         {
-            if (_currentCustomer == null) return;
-            Order order = new Order(_currentCustomer.Address, new List<Item>(_currentCustomer.Cart.Items), false);
-            _currentCustomer.Orders.Add(order);
+            if (_currentCustomer == null || amountLabel.Text == "0") return;
+            if (_currentCustomer.IsPriority)
+            {
+                PriorityOrder order = new PriorityOrder(_currentCustomer.Address, new List<Item>(_currentCustomer.Cart.Items), true);
+                _currentCustomer.Orders.Add(order);
+            }
+            else
+            {
+                Order order = new Order(_currentCustomer.Address, new List<Item>(_currentCustomer.Cart.Items), true);
+                _currentCustomer.Orders.Add(order);
+            }            
             _currentCustomer.Cart.Items.Clear();
             CartListBox.Items.Clear();
             amountLabel.Text = "0";

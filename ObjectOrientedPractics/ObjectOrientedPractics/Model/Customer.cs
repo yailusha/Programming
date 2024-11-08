@@ -38,6 +38,11 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private List<Order> _orders;
         /// <summary>
+        /// Возвращает и задает, является ли покупатель приоритетным.
+        /// </summary>
+        [DataMember]
+        public bool IsPriority { get; set; }
+        /// <summary>
         /// Возвращает и задает полное имя пользователя.
         /// </summary>
         [DataMember]

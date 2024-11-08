@@ -64,7 +64,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 idTextBox.Text = _currentCustomer.Id.ToString();
                 fullnameTextBox.Text = _currentCustomer.Fullname;
                 addressControl1.Address = _currentCustomer.Address;
-                
+                IsPriorityCheckBox.Checked = _currentCustomer.IsPriority;
             }
         }
         /// <summary>
@@ -82,7 +82,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _currentCustomer.Fullname = fullname;
                 UpdateCustomersListBox();
             }
-            catch 
+            catch
             {
                 fullnameTextBox.BackColor = Color.LightPink;
             }
@@ -98,7 +98,8 @@ namespace ObjectOrientedPractics.View.Tabs
             Address address = addressControl1.Address;
             if (fullname != "" && address != null)
             {
-                _currentCustomer = new Customer (fullname, address, false);
+                _currentCustomer = new Customer(fullname, address, true);
+                _currentCustomer.IsPriority = IsPriorityCheckBox.Checked;
                 _customers.Add(_currentCustomer);
                 CustomersListBox.Items.Add($"{_currentCustomer.Id}. {_currentCustomer.Fullname}");
                 ClearInfo();

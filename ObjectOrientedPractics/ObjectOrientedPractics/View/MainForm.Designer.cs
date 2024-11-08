@@ -39,15 +39,12 @@
             cartsTab1 = new View.Tabs.CartsTab();
             ordersPage = new TabPage();
             ordersTab1 = new View.Tabs.OrdersTab();
-            Priority = new TabPage();
-            priorityOrdersTab1 = new View.Tabs.PriorityOrdersTab();
             addressControl1 = new View.Controls.AddressControl();
             customerPage.SuspendLayout();
             itemsPage.SuspendLayout();
             tabControl1.SuspendLayout();
             cartsPage.SuspendLayout();
             ordersPage.SuspendLayout();
-            Priority.SuspendLayout();
             SuspendLayout();
             // 
             // customerPage
@@ -94,7 +91,6 @@
             tabControl1.Controls.Add(customerPage);
             tabControl1.Controls.Add(cartsPage);
             tabControl1.Controls.Add(ordersPage);
-            tabControl1.Controls.Add(Priority);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
@@ -140,24 +136,6 @@
             ordersTab1.Size = new Size(942, 699);
             ordersTab1.TabIndex = 0;
             // 
-            // Priority
-            // 
-            Priority.Controls.Add(priorityOrdersTab1);
-            Priority.Location = new Point(4, 24);
-            Priority.Name = "Priority";
-            Priority.Size = new Size(942, 699);
-            Priority.TabIndex = 4;
-            Priority.Text = "Priority";
-            Priority.UseVisualStyleBackColor = true;
-            // 
-            // priorityOrdersTab1
-            // 
-            priorityOrdersTab1.Dock = DockStyle.Fill;
-            priorityOrdersTab1.Location = new Point(0, 0);
-            priorityOrdersTab1.Name = "priorityOrdersTab1";
-            priorityOrdersTab1.Size = new Size(942, 699);
-            priorityOrdersTab1.TabIndex = 0;
-            // 
             // addressControl1
             // 
             address1.Apartment = "Apartment";
@@ -192,7 +170,6 @@
             tabControl1.ResumeLayout(false);
             cartsPage.ResumeLayout(false);
             ordersPage.ResumeLayout(false);
-            Priority.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -208,7 +185,5 @@
         private TabPage ordersPage;
         private View.Controls.AddressControl addressControl1;
         private View.Tabs.OrdersTab ordersTab1;
-        private TabPage Priority;
-        private View.Tabs.PriorityOrdersTab priorityOrdersTab1;
     }
 }
