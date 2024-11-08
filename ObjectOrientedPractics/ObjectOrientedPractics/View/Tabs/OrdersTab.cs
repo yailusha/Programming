@@ -49,7 +49,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
             }
         }
-        public void OrdersDataGrid_RowHeaderMouseClick(object sender, DataColumnChangeEventArgs e)
+        private void OrdersDataGrid_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             _currentOrder = _orders[OrdersDataGrid.SelectedCells[0].RowIndex];
             idTextBox.Text = _currentOrder.Id.ToString();

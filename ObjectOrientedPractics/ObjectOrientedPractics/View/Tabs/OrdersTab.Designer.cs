@@ -67,17 +67,17 @@ namespace ObjectOrientedPractics.View.Tabs
             // OrdersDataGrid
             // 
             OrdersDataGrid.AllowUserToAddRows = false;
-            OrdersDataGrid.AllowUserToDeleteRows = false;
+            OrdersDataGrid.AllowUserToResizeRows = false;
             OrdersDataGrid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            OrdersDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             OrdersDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             OrdersDataGrid.Columns.AddRange(new DataGridViewColumn[] { IdColumn, CreatedColumn, FullnameColumn, AddressColumn, AmountColumn, StatusColumn });
             OrdersDataGrid.Location = new Point(3, 18);
             OrdersDataGrid.MultiSelect = false;
             OrdersDataGrid.Name = "OrdersDataGrid";
-            OrdersDataGrid.ReadOnly = true;
-            OrdersDataGrid.Size = new Size(337, 668);
-            OrdersDataGrid.TabIndex = 1;
-            OrdersDataGrid.RowHeaderMouseClick += OrdersDataGrid_RowHeaderMouseClick1;
+            OrdersDataGrid.Size = new Size(340, 459);
+            OrdersDataGrid.TabIndex = 13;
+            OrdersDataGrid.RowHeaderMouseClick += OrdersDataGrid_RowHeaderMouseClick;
             // 
             // IdColumn
             // 
@@ -174,6 +174,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             StatusComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             StatusComboBox.FormattingEnabled = true;
+            StatusComboBox.Items.AddRange(new object[] { "New", "Processing", "Assembly", "Sent", "Delivered,", "Returned", "Abandoned" });
             StatusComboBox.Location = new Point(411, 97);
             StatusComboBox.Name = "StatusComboBox";
             StatusComboBox.Size = new Size(157, 23);
@@ -242,6 +243,7 @@ namespace ObjectOrientedPractics.View.Tabs
             addressControl1.Size = new Size(520, 181);
             addressControl1.StreetValue = null;
             addressControl1.TabIndex = 14;
+            addressControl1.Load += addressControl1_Load;
             // 
             // OrdersTab
             // 
@@ -267,12 +269,6 @@ namespace ObjectOrientedPractics.View.Tabs
             ResumeLayout(false);
             PerformLayout();
         }
-
-        private void OrdersDataGrid_RowHeaderMouseClick1(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         #endregion
 
         private Label label1;

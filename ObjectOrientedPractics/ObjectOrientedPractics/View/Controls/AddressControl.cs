@@ -32,12 +32,36 @@ namespace ObjectOrientedPractics.View.Controls
                 apartmentTextBox.Text = _address.Apartment;
             }
         }
-        public string PostIndexValue { get; set; }
-        public string CountryValue { get; set; } 
-        public string CityValue { get; set; }
-        public string StreetValue { get; set; }
-        public string ApartmentValue { get; set; }
-        public string BuildingValue { get; set; }  
+        public string PostIndexValue
+        {
+            get { return postIndexTextBox.Text; }
+            set { postIndexTextBox.Text = value; }
+        }
+        public string CountryValue
+        {
+            get { return countryTextBox.Text; }
+            set { countryTextBox.Text = value; }
+        }
+        public string CityValue
+        {
+            get { return cityTextBox.Text; }
+            set { cityTextBox.Text = value; }
+        }
+        public string StreetValue
+        {
+            get { return streetTextBox.Text; }
+            set { streetTextBox.Text = value; } 
+        }
+        public string ApartmentValue
+        {
+            get { return apartmentTextBox.Text; }
+            set {  apartmentTextBox.Text = value; }
+        }
+        public string BuildingValue
+        {
+            get { return buildingTextBox.Text; }
+            set {  buildingTextBox.Text = value; }
+        }
         public AddressControl()
         {
             InitializeComponent();
