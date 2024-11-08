@@ -48,6 +48,7 @@ namespace ObjectOrientedPractics.View.Controls
             // 
             // apartmentTextBox
             // 
+            apartmentTextBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             apartmentTextBox.Location = new Point(248, 128);
             apartmentTextBox.Name = "apartmentTextBox";
             apartmentTextBox.Size = new Size(95, 23);
@@ -56,6 +57,7 @@ namespace ObjectOrientedPractics.View.Controls
             // 
             // buildingTextBox
             // 
+            buildingTextBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             buildingTextBox.Location = new Point(74, 128);
             buildingTextBox.Name = "buildingTextBox";
             buildingTextBox.Size = new Size(95, 23);
@@ -64,6 +66,7 @@ namespace ObjectOrientedPractics.View.Controls
             // 
             // streetTextBox
             // 
+            streetTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             streetTextBox.Location = new Point(74, 97);
             streetTextBox.Name = "streetTextBox";
             streetTextBox.Size = new Size(423, 23);
@@ -72,6 +75,7 @@ namespace ObjectOrientedPractics.View.Controls
             // 
             // cityTextBox
             // 
+            cityTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             cityTextBox.Location = new Point(316, 61);
             cityTextBox.Name = "cityTextBox";
             cityTextBox.Size = new Size(181, 23);
@@ -80,6 +84,7 @@ namespace ObjectOrientedPractics.View.Controls
             // 
             // countryTextBox
             // 
+            countryTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             countryTextBox.Location = new Point(74, 61);
             countryTextBox.Name = "countryTextBox";
             countryTextBox.Size = new Size(181, 23);
@@ -88,6 +93,7 @@ namespace ObjectOrientedPractics.View.Controls
             // 
             // postIndexTextBox
             // 
+            postIndexTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             postIndexTextBox.Location = new Point(74, 30);
             postIndexTextBox.Name = "postIndexTextBox";
             postIndexTextBox.Size = new Size(131, 23);
@@ -96,6 +102,7 @@ namespace ObjectOrientedPractics.View.Controls
             // 
             // label7
             // 
+            label7.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label7.AutoSize = true;
             label7.Location = new Point(279, 69);
             label7.Name = "label7";
@@ -105,6 +112,7 @@ namespace ObjectOrientedPractics.View.Controls
             // 
             // label6
             // 
+            label6.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label6.AutoSize = true;
             label6.Location = new Point(175, 131);
             label6.Name = "label6";
@@ -114,6 +122,7 @@ namespace ObjectOrientedPractics.View.Controls
             // 
             // label5
             // 
+            label5.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label5.AutoSize = true;
             label5.Location = new Point(3, 131);
             label5.Name = "label5";

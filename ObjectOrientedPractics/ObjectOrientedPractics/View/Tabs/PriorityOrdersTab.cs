@@ -33,7 +33,7 @@ namespace ObjectOrientedPractics.View.Tabs
             StatusComboBox.SelectedItem = _priorityOrder.Status;
             addressControl1.Address = _priorityOrder.Address;
             OrderItemsListBox.Items.AddRange(_priorityOrder.Items.ToArray());
-            
+
         }
         private void UpdateInfo()
         {
@@ -72,6 +72,11 @@ namespace ObjectOrientedPractics.View.Tabs
         private void DeliveryTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             _priorityOrder.DesiredDeliveryTime = (DeliveryTimeRange)Enum.Parse(typeof(DeliveryTimeRange), DeliveryTimeComboBox.Text);
+        }
+
+        private void PriorityOrdersTab_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

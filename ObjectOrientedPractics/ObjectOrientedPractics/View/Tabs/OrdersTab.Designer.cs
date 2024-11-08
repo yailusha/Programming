@@ -75,7 +75,7 @@ namespace ObjectOrientedPractics.View.Tabs
             OrdersDataGrid.Location = new Point(3, 18);
             OrdersDataGrid.MultiSelect = false;
             OrdersDataGrid.Name = "OrdersDataGrid";
-            OrdersDataGrid.Size = new Size(340, 459);
+            OrdersDataGrid.Size = new Size(340, 651);
             OrdersDataGrid.TabIndex = 13;
             OrdersDataGrid.RowHeaderMouseClick += OrdersDataGrid_RowHeaderMouseClick;
             // 

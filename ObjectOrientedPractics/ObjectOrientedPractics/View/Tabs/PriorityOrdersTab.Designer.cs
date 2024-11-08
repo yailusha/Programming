@@ -88,6 +88,7 @@
             // 
             // idTextBox
             // 
+            idTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             idTextBox.Location = new Point(67, 27);
             idTextBox.Name = "idTextBox";
             idTextBox.ReadOnly = true;
@@ -96,6 +97,7 @@
             // 
             // createdTextBox
             // 
+            createdTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             createdTextBox.Location = new Point(67, 53);
             createdTextBox.Name = "createdTextBox";
             createdTextBox.ReadOnly = true;
@@ -104,6 +106,7 @@
             // 
             // StatusComboBox
             // 
+            StatusComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             StatusComboBox.FormattingEnabled = true;
             StatusComboBox.Location = new Point(67, 79);
             StatusComboBox.Name = "StatusComboBox";
@@ -113,6 +116,7 @@
             // 
             // label5
             // 
+            label5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
             label5.Location = new Point(258, 0);
@@ -123,6 +127,7 @@
             // 
             // label15
             // 
+            label15.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label15.AutoSize = true;
             label15.Location = new Point(258, 30);
             label15.Name = "label15";
@@ -132,6 +137,7 @@
             // 
             // DeliveryTimeComboBox
             // 
+            DeliveryTimeComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             DeliveryTimeComboBox.FormattingEnabled = true;
             DeliveryTimeComboBox.Location = new Point(345, 27);
             DeliveryTimeComboBox.Name = "DeliveryTimeComboBox";
@@ -148,6 +154,7 @@
             address1.Index = 100000;
             address1.Street = "Street";
             addressControl1.Address = address1;
+            addressControl1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             addressControl1.ApartmentValue = "";
             addressControl1.BuildingValue = "";
             addressControl1.CityValue = "";
@@ -171,6 +178,7 @@
             // 
             // OrderItemsListBox
             // 
+            OrderItemsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             OrderItemsListBox.FormattingEnabled = true;
             OrderItemsListBox.ItemHeight = 15;
             OrderItemsListBox.Location = new Point(3, 311);
@@ -180,6 +188,7 @@
             // 
             // label7
             // 
+            label7.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
             label7.Location = new Point(438, 543);
@@ -201,6 +210,7 @@
             // 
             // AddButton
             // 
+            AddButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             AddButton.Location = new Point(3, 604);
             AddButton.Name = "AddButton";
             AddButton.Size = new Size(125, 53);
@@ -211,6 +221,7 @@
             // 
             // RemoveButton
             // 
+            RemoveButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             RemoveButton.Location = new Point(134, 604);
             RemoveButton.Name = "RemoveButton";
             RemoveButton.Size = new Size(125, 53);
@@ -221,6 +232,7 @@
             // 
             // ClearButton
             // 
+            ClearButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             ClearButton.Location = new Point(373, 604);
             ClearButton.Name = "ClearButton";
             ClearButton.Size = new Size(125, 53);
@@ -253,6 +265,7 @@
             Controls.Add(label1);
             Name = "PriorityOrdersTab";
             Size = new Size(505, 678);
+            Load += PriorityOrdersTab_Load;
             ResumeLayout(false);
             PerformLayout();
         }

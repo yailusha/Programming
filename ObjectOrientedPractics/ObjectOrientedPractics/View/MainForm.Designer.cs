@@ -40,8 +40,8 @@
             ordersPage = new TabPage();
             ordersTab1 = new View.Tabs.OrdersTab();
             Priority = new TabPage();
-            addressControl1 = new View.Controls.AddressControl();
             priorityOrdersTab1 = new View.Tabs.PriorityOrdersTab();
+            addressControl1 = new View.Controls.AddressControl();
             customerPage.SuspendLayout();
             itemsPage.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -150,6 +150,14 @@
             Priority.Text = "Priority";
             Priority.UseVisualStyleBackColor = true;
             // 
+            // priorityOrdersTab1
+            // 
+            priorityOrdersTab1.Dock = DockStyle.Fill;
+            priorityOrdersTab1.Location = new Point(0, 0);
+            priorityOrdersTab1.Name = "priorityOrdersTab1";
+            priorityOrdersTab1.Size = new Size(942, 699);
+            priorityOrdersTab1.TabIndex = 0;
+            // 
             // addressControl1
             // 
             address1.Apartment = "Apartment";
@@ -170,13 +178,6 @@
             addressControl1.Size = new Size(594, 241);
             addressControl1.StreetValue = "";
             addressControl1.TabIndex = 0;
-            // 
-            // priorityOrdersTab1
-            // 
-            priorityOrdersTab1.Location = new Point(8, 3);
-            priorityOrdersTab1.Name = "priorityOrdersTab1";
-            priorityOrdersTab1.Size = new Size(505, 678);
-            priorityOrdersTab1.TabIndex = 0;
             // 
             // MainForm
             // 
