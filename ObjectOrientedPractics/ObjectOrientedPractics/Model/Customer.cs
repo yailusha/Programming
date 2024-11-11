@@ -1,4 +1,5 @@
 ﻿
+using ObjectOrientedPractics.Model.Discounts;
 using ObjectOrientedPractics.Model.Orders;
 using ObjectOrientedPractics.Services;
 using System;
@@ -38,6 +39,7 @@ namespace ObjectOrientedPractics.Model
         /// Список заказов.
         /// </summary>
         private List<Order> _orders;
+        public List<IDiscount> Discounts { get; set; }
         /// <summary>
         /// Возвращает и задает, является ли покупатель приоритетным.
         /// </summary>
@@ -96,7 +98,6 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <param name="fullname">Полное имя. Не может быть пустым или иметь длину более 200 символов.</param>
         /// <param name="address">Адрес. Должен содержать все критерии.</param>
-        /// <param name="cart">Корзина товаров.</param>
         public Customer (string fullname, Address address, bool isId)
         {
             if (isId)
@@ -107,6 +108,7 @@ namespace ObjectOrientedPractics.Model
             Address = address;
             Cart = new Cart();
             Orders = new List<Order>();
+            Discounts = new List<IDiscount>() { new PointsDiscount() }; 
         }
         public Customer (bool isId)
         {

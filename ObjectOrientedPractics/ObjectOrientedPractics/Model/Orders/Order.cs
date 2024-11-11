@@ -27,6 +27,9 @@ namespace ObjectOrientedPractics.Model.Orders
         /// </summary>
         [DataMember]
         public DateTime OrderCreationDate { get; private set; }
+        /// <summary>
+        /// Возвращает и задает статус заказа.
+        /// </summary>
         [DataMember]
         public OrderStatus Status { get; set; }
         /// <summary>
@@ -41,6 +44,29 @@ namespace ObjectOrientedPractics.Model.Orders
         /// Общая стоимость товаров.
         /// </summary>
         private double _amount;
+        /// <summary>
+        /// Конечная стоимость товаров с учетом скидки.
+        /// </summary>
+        private double _total;
+        /// <summary>
+        /// Возвращает конечную стоимость товаов с учетом скидки.
+        /// </summary>
+        public double Total
+        {
+            get
+            {
+                if (Amount - DIscountAmount < 0)
+                {
+                    throw new ArgumentException("Value must be positive.");
+                }
+                _total = Amount - DIscountAmount;
+                return _total;
+            }
+        }
+        /// <summary>
+        /// Возвращает и задает размер примененной скидки.
+        /// </summary>
+        public double DIscountAmount { get; set; }
         /// <summary>
         /// Задает и возвращает адрес доставки.
         /// </summary>
