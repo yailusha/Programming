@@ -1,4 +1,5 @@
-﻿using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Orders
 {
     /// <summary>
     /// Хранит данные о заказе.
@@ -99,7 +100,7 @@ namespace ObjectOrientedPractics.Model
             if (isId)
             {
                 Id = _idGenerator.GetNextId();
-            }            
+            }
             OrderCreationDate = DateTime.Now;
             Items = new List<Item>();
             Address = new Address();

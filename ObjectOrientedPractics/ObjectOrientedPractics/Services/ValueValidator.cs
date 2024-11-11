@@ -45,5 +45,21 @@ namespace ObjectOrientedPractics.Services
             }
             return true;
         }
+        /// <summary>
+        /// Проверяет, является ли число больше минимального значения.
+        /// </summary>
+        /// <param name="value">Проверяемое значение.</param>
+        /// <param name="min">Минимальное значение.</param>
+        /// <param name="propertyName">Название свойства.</param>
+        /// <returns>Возвращает true, если число больше или равно минимальному.</returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static bool AssertValueOnMin(int value, int min, string propertyName)
+        {
+            if (value < min)
+            {
+                throw new ArgumentException($"Value of {propertyName} must be more or be {min}.");
+            }
+            return true;
+        }
     }
 }
