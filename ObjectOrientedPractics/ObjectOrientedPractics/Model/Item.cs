@@ -13,7 +13,7 @@ namespace ObjectOrientedPractics.Model
     /// Хранит данные о товаре.
     /// </summary>
     [DataContract]
-    internal class Item
+    internal class Item : ICloneable, IEquatable<Item>, IComparable<Item>
     {
         private static IdGenerator _idGenerator = new IdGenerator();
         /// <summary>
@@ -109,6 +109,27 @@ namespace ObjectOrientedPractics.Model
             Info = "Описание";
             Cost = 0;
             Category = Category.Meat;
+        }
+        /// <inheritdoc/>
+        public object Clone()
+        {
+            return new Item(Name, Info, Cost, Category, true);
+        }
+        /// <inheritdoc/>
+        public bool Equals(Item? item2)
+        {
+            if (item2  == null) return false;
+            if (Object.ReferenceEquals(this, item2)) return true;
+            return (Id == item2.Id);
+        }
+        /// <inheritdoc/>
+        public int CompareTo(Item? item2)
+        {
+            if (item2 == null) return -1;
+            if (object.ReferenceEquals(this, item2)) return 0;
+            if (Cost < item2.Cost) return -1;
+            else if (Cost == item2.Cost) return 0;
+            return 1;
         }
         /// <summary>
         /// Позволяет выводить информацию об объекте класса в более удобной форме.

@@ -15,7 +15,7 @@ namespace ObjectOrientedPractics.Model.Orders
     /// </summary>
     [DataContract]
     [KnownType(typeof(PriorityOrder))]
-    internal class Order
+    internal class Order : IEquatable<Order>
     {
         private static IdGenerator _idGenerator = new IdGenerator();
         /// <summary>
@@ -145,6 +145,13 @@ namespace ObjectOrientedPractics.Model.Orders
             Items = items;
             Address = address;
             Status = 0;
+        }
+        /// <inheritdoc/>
+        public bool Equals(Order? order2)
+        {
+            if (order2 == null) return false;
+            if (object.ReferenceEquals(this, order2)) return true;
+            return (Id == order2.Id);
         }
     }
 }

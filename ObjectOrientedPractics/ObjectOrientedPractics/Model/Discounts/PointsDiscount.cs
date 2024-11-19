@@ -11,7 +11,7 @@ namespace ObjectOrientedPractics.Model.Discounts
     /// Хранит данные о скидке.
     /// </summary>
     [DataContract]
-    internal class PointsDiscount : IDiscount
+    internal class PointsDiscount : IDiscount, IComparable<PointsDiscount>
     {
         /// <summary>
         /// Хранит данные о накопительных баллах.
@@ -98,6 +98,15 @@ namespace ObjectOrientedPractics.Model.Discounts
         {
             int earnedPoints = (int)(CalculateTotalCost(items) / 10);
             Points += earnedPoints;
+        }
+        /// <inheritdoc/>
+        public int CompareTo(PointsDiscount? discount2)
+        {
+            if (discount2 == null) return 1;
+            if (object.ReferenceEquals(discount2, this)) return 0;
+            if (Points < discount2.Points) return -1;
+            else if (Points == discount2.Points) return 0;
+            return 1;
         }
         /// <summary>
         /// Возвращает информацию в более удобной форме.
