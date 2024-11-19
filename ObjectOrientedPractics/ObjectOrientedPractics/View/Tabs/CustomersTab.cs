@@ -12,7 +12,6 @@ using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Model.Discounts;
 using ObjectOrientedPractics.Services;
 using ObjectOrientedPractics.View.Controls;
-using ObjectOrientedPractics.View;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
@@ -52,14 +51,14 @@ namespace ObjectOrientedPractics.View.Tabs
             DiscountsListBox.Items.AddRange(_currentCustomer.Discounts.ToArray());
         }
 
-        private void AddButton_Click(object sender, EventArgs e)
+        private void addCustomerButton_Click(object sender, EventArgs e)
         {
             Customer customer = new Customer(true);
             _customers.Add(customer);
             CustomersListBox.Items.Add(customer);
         }
 
-        private void RemoveButton_Click(object sender, EventArgs e)
+        private void removeCustomerButton_Click(object sender, EventArgs e)
         {
             int index = CustomersListBox.Items.IndexOf(_currentCustomer);
             if (index == -1) return;
@@ -68,12 +67,7 @@ namespace ObjectOrientedPractics.View.Tabs
             ClearInfo();
         }
 
-        private void IdTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void FullNameTextBox_TextChanged(object sender, EventArgs e)
+        private void fullnameTextBox_TextChanged(object sender, EventArgs e)
         {
             int index = CustomersListBox.Items.IndexOf(_currentCustomer);
             if (index == -1) return;
@@ -125,7 +119,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-        private void AddDiscountButton_Click(object sender, EventArgs e)
+        private void addDiscountButton_Click(object sender, EventArgs e)
         {
             if (CustomersListBox.SelectedIndex == -1) return;
             AddDiscountForm addDiscountForm = new AddDiscountForm();
@@ -152,7 +146,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-        private void RemoveDiscountButton_Click(object sender, EventArgs e)
+        private void removeDiscountButton_Click(object sender, EventArgs e)
         {
             if (DiscountsListBox.SelectedIndex == 0 || DiscountsListBox.SelectedIndex == -1 || CustomersListBox.SelectedIndex == -1)
             {
