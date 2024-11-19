@@ -14,9 +14,10 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     internal partial class CartsTab : UserControl
     {
+        double discountSum = 0;
         List<Item> _items = new List<Item>();
         List<Customer> _customers = new List<Customer>();
-        Item _currentItem = new Item();
+        Item _currentItem = new Item(false);
         Customer _currentCustomer = new Customer(false);
         public List<Item> Items
         {

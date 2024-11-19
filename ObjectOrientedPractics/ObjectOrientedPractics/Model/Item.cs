@@ -1,11 +1,11 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 using ObjectOrientedPractics.Model.Enums;
-using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -17,7 +17,7 @@ namespace ObjectOrientedPractics.Model
     {
         private static IdGenerator _idGenerator = new IdGenerator();
         /// <summary>
-        /// Возвращает уникальный идентификатор товара.
+        /// Возвращает ID товара.
         /// </summary>
         [DataMember]
         public int Id { get; private set; }
@@ -26,24 +26,21 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private string _name;
         /// <summary>
-        /// Описание товара.
+        /// Информация о товаре.
         /// </summary>
         private string _info;
         /// <summary>
-        /// Стоимость товара.
+        /// Стоимость.
         /// </summary>
         private double _cost;
         /// <summary>
-        /// Категория товара.
+        /// Задает и возвращает категорию товара.
         /// </summary>
         [DataMember]
-        private Category _category;
-        /// <summary>
-        /// Возвращает и задает категорию товара.
-        /// </summary>
         public Category Category { get; set; }
+
         /// <summary>
-        /// Возвращает и задает название товара.
+        /// Задает и возвращает данные о названии товара. Не больше 200 символов.
         /// </summary>
         [DataMember]
         public string Name
@@ -51,14 +48,12 @@ namespace ObjectOrientedPractics.Model
             get { return _name; }
             set
             {
-                if (ValueValidator.AssertStringOnLength(value, 200, nameof(Name)))
-                {
-                    _name = value;
-                }
+                ValueValidator.AssertStringOnLength(value, 200, nameof(Name));
+                _name = value;
             }
         }
         /// <summary>
-        /// Возвращает и задает описание товара.
+        /// Задает и возвращает информацию о товаре. Не больше 1000 символов.
         /// </summary>
         [DataMember]
         public string Info
@@ -66,14 +61,12 @@ namespace ObjectOrientedPractics.Model
             get { return _info; }
             set
             {
-                if (ValueValidator.AssertStringOnLength(value, 1000, nameof(Info)))
-                {
-                    _info = value;
-                }
+                ValueValidator.AssertStringOnLength(value, 1000, nameof(Name));
+                _info = value;
             }
         }
         /// <summary>
-        /// Возвращает и задает стоимость товара.
+        /// Задает и возвращает стоимость товара. От 0 до 100 000.
         /// </summary>
         [DataMember]
         public double Cost
@@ -81,38 +74,53 @@ namespace ObjectOrientedPractics.Model
             get { return _cost; }
             set
             {
-                if (ValueValidator.AssertValueInRange(value, 0, 100000, nameof(Cost)))
-                {
-                    _cost = value;
-                }
+                ValueValidator.AssertValueInRange(value, 0, 100000, nameof(Cost));
+                _cost = value;
             }
         }
         /// <summary>
-        /// Создает экземпляр класса <see cref="Item"/>
+        /// Создаёт экземпляр класса <see cref="Item"/>.
         /// </summary>
-        /// <param name="name">Название. Не может быть пустым или иметь длину более 200 символов.</param>
-        /// <param name="info">Описание. Не может быть пустмы или иметь длину более 1000 символов.</param>
-        /// <param name="cost">Стоимость. Должна быть в интервале от 0 до 100000.</param>
-        /// <param name="category">Категория. Может содержать категорию, указанную в перечислении.</param>
-        public Item(string name, string info, double cost, Category category)
+        /// <param name="name">Название товара. Не больше 200 символов.</param>
+        /// <param name="info">Инфорация о товаре. Не больше 1000 символов.</param>
+        /// <param name="cost">Стоимость. От 0 до 100 000.</param>
+        /// <param name="category">Категория товара.</param>
+        public Item(string name, string info, double cost, Category category, bool isId)
         {
+            if (isId)
+            {
+                Id = _idGenerator.GetNextId();
+            }
             Name = name;
             Info = info;
-            Cost = cost;
+            Cost = cost; ;
             Category = category;
-            Id = _idGenerator.GetNextId();
         }
-        public Item()
+        /// <summary>
+        /// Конструктор по умолчанию, создает экземпляр класса <see cref="Item"/>
+        /// </summary>
+        public Item(bool isId)
         {
-
+            if (isId)
+            {
+                Id = _idGenerator.GetNextId();
+            }
+            Name = "Название";
+            Info = "Описание";
+            Cost = 0;
+            Category = Category.Meat;
+        }
+        /// <summary>
+        /// Позволяет выводить информацию об объекте класса в более удобной форме.
+        /// </summary>
+        /// <returns>Возвращает преобразование в строку.</returns>
+        public override string ToString()
+        {
+            return $"{Name} - {Cost} rub.";
         }
         public static void SetId(int value)
         {
             _idGenerator.SetId(value);
-        }
-        public override string ToString()
-        {
-            return $"{Name} - {Cost}руб.";
         }
     }
 }

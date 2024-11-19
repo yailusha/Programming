@@ -11,6 +11,9 @@ namespace ObjectOrientedPractics
             _store.Items = new List<Item>();
             _store.Customers = new List<Customer>();
 
+            //ReadFileCustomers();
+            //ReadFileItems();
+
             itemsTab1.Items = _store.Items;
             customersTab1.Customers = _store.Customers;
 
@@ -55,7 +58,7 @@ namespace ObjectOrientedPractics
         //            using (FileStream fs = new FileStream("items.json", FileMode.Open))
         //            {
         //                DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(List<Item>));
-        //                _store.Items.AddRange((List<Item>) deserializer.ReadObject(fs));
+        //                _store.Items.AddRange((List<Item>)deserializer.ReadObject(fs));
         //                Item.SetId(_store.Items[_store.Items.Count - 1].Id + 1);
         //            }
         //        }
@@ -127,7 +130,7 @@ namespace ObjectOrientedPractics
         //    }
         //    catch (Exception)
         //    {
-        //        throw new Exception(); 
+        //        throw new Exception();
         //    }
         //    WriteOnFileCustomers();
         //}

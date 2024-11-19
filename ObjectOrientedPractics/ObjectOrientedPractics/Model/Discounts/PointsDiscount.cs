@@ -1,7 +1,7 @@
-﻿using ObjectOrientedPractics.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,49 +10,54 @@ namespace ObjectOrientedPractics.Model.Discounts
     /// <summary>
     /// Хранит данные о скидке.
     /// </summary>
+    [DataContract]
     internal class PointsDiscount : IDiscount
     {
         /// <summary>
-        /// Количество накопительных баллов.
+        /// Хранит данные о накопительных баллах.
         /// </summary>
         private int _points;
+
         /// <summary>
-        /// Возвращает и устанавливает накопительные баллы.
+        /// Возвращает и задает количество накопительных баллов.
         /// </summary>
+        [DataMember]
         public int Points
-        {
-            get { return _points; }
-            set
-            {
-                if (ValueValidator.AssertValueOnMin(value, 0, nameof(Points)))
-                {
-                    _points = value;
-                }
-            }
-        }
-        /// <summary>
-        /// Возвращает информацию о количестве накопительных баллов.
-        /// </summary>
-        public string Info
         {
             get
             {
-                return $"Накопительная - {Points} баллов.";
+                return _points;
             }
+            private set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Value must be positive");
+                }
+                _points = value;
+            }
+        }
+        /// <summary>
+        /// Возвращает информацию о скидке.
+        /// </summary>
+        public string Info
+        {
+            get { return $"Накопительная – {Points} баллов."; }
         }
         /// <summary>
         /// Создает экземпляр класса <see cref="PointsDiscount"/>
         /// </summary>
+        /// <param name="category"></param>
         public PointsDiscount()
         {
             Points = 0;
         }
         /// <summary>
-        /// Считает общую стоимость товаров.
+        /// Считает стоимость всего списка товаров.
         /// </summary>
-        /// <param name="items">Товары.</param>
-        /// <returns>Возвращает общую стоимость товаров.</returns>
-        public double CalculateTotalCost(List<Item> items)
+        /// <param name="items">Список товаров.</param>
+        /// <returns>Возвращает стоимость.</returns>
+        private double CalculateTotalCost(List<Item> items)
         {
             double totalCost = 0;
             foreach (var item in items)
@@ -62,36 +67,40 @@ namespace ObjectOrientedPractics.Model.Discounts
             return totalCost;
         }
         /// <summary>
-        /// Считает скидку.
+        /// Расчитывает размер скидки.
         /// </summary>
-        /// <param name="items">Товары.</param>
-        /// <returns>Возвращает скидку на покупку.</returns>
+        /// <param name="items">Список товаров.</param>
+        /// <returns>Возвращает размер скидки.</returns>
         public double Calculate(List<Item> items)
         {
             double maxDiscount = CalculateTotalCost(items) * 0.30;
-            return Math.Min(maxDiscount, Points);
+            double discount = Math.Min(Points, maxDiscount);
+
+            return discount;
         }
         /// <summary>
-        /// Считает стоимость после учета скидки.
+        /// Применяет скидку, списывая баллы.
         /// </summary>
-        /// <param name="items">Товары.</param>
-        /// <returns>Возвращает конечную стоимость с учетом скидки.</returns>
+        /// <param name="items">Список товаров.</param>
+        /// <returns>Возвращает размер скидки.</returns>
         public double Apply(List<Item> items)
         {
             double discount = Calculate(items);
             Points -= (int)discount;
+
             return CalculateTotalCost(items) - discount;
         }
         /// <summary>
-        /// Обновляет количество накопительных баллов.
+        /// Начисляет баллы после покупки.
         /// </summary>
-        /// <param name="items">Товары.</param>
+        /// <param name="items">Список товаров.</param>
         public void Update(List<Item> items)
         {
-            Points += (int)(CalculateTotalCost(items) / 10);
+            int earnedPoints = (int)(CalculateTotalCost(items) / 10);
+            Points += earnedPoints;
         }
         /// <summary>
-        /// Выводит информацию в более удобной форме.
+        /// Возвращает информацию в более удобной форме.
         /// </summary>
         /// <returns>Возвращает информацию.</returns>
         public override string ToString()

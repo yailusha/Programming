@@ -1,124 +1,165 @@
-﻿using ObjectOrientedPractics.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Discounts;
 using ObjectOrientedPractics.Services;
 using ObjectOrientedPractics.View.Controls;
+using ObjectOrientedPractics.View;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
-    /// <summary>
-    /// Хранит данные о покупателях.
-    /// </summary>
     internal partial class CustomersTab : UserControl
     {
-        private List<Customer> _customers = new List<Customer>();
-        private Customer _currentCustomer = new Customer(false);
+        static List<Customer> _customers = new List<Customer>();
+        Customer _currentCustomer = new Customer(false);
         public List<Customer> Customers
         {
-            get { return _customers; }
+            get
+            {
+                return _customers;
+            }
             set
             {
                 _customers = value;
                 CustomersListBox.Items.AddRange(_customers.ToArray());
-                UpdateCustomersListBox();
+                UpdateInfo();
             }
         }
         public CustomersTab()
         {
             InitializeComponent();
         }
-        private void UpdateCustomersListBox()
-        {
-            CustomersListBox.Items.Clear();
-            foreach (Customer customer in _customers)
-            {
-                CustomersListBox.Items.Add($"{customer.Id}. {customer.Fullname}");
-            }
-        }
-        private void ClearInfo()
-        {
-            idTextBox.Clear();
-            fullnameTextBox.Clear();
-            addressControl1.ClearInfo();
-        }
-        /// <summary>
-        /// Отображает данные покупателей.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
         private void CustomersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int selectedIndex = CustomersListBox.SelectedIndex;
-            if (selectedIndex != -1)
-            {
-                _currentCustomer = _customers[selectedIndex];
-                idTextBox.Text = _currentCustomer.Id.ToString();
-                fullnameTextBox.Text = _currentCustomer.Fullname;
-                addressControl1.Address = _currentCustomer.Address;
-                IsPriorityCheckBox.Checked = _currentCustomer.IsPriority;
-            }
-        }
-        /// <summary>
-        /// Изменение и сохранение нового полного имени покупателя с его валидацией.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void fullnameTextBox_TextChanged(object sender, EventArgs e)
-        {
             if (CustomersListBox.SelectedIndex == -1) return;
+            _currentCustomer = _customers[CustomersListBox.SelectedIndex];
+            idTextBox.Text = _currentCustomer.Id.ToString();
+            fullnameTextBox.Text = _currentCustomer.Fullname.ToString();
+            addressControl1.Address = _currentCustomer.Address;
+            IsPriorityCheckBox.Checked = _currentCustomer.IsPriority;
+            DiscountsListBox.Items.Clear();
+            DiscountsListBox.Items.AddRange(_currentCustomer.Discounts.ToArray());
+        }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            Customer customer = new Customer(true);
+            _customers.Add(customer);
+            CustomersListBox.Items.Add(customer);
+        }
+
+        private void RemoveButton_Click(object sender, EventArgs e)
+        {
+            int index = CustomersListBox.Items.IndexOf(_currentCustomer);
+            if (index == -1) return;
+            _customers.RemoveAt(index);
+            CustomersListBox.Items.Remove(index);
+            ClearInfo();
+        }
+
+        private void IdTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FullNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            int index = CustomersListBox.Items.IndexOf(_currentCustomer);
+            if (index == -1) return;
             try
             {
                 fullnameTextBox.BackColor = Color.White;
-                string fullname = fullnameTextBox.Text;
-                _currentCustomer.Fullname = fullname;
-                UpdateCustomersListBox();
+                string fullName = fullnameTextBox.Text.ToString();
+                _currentCustomer.Fullname = fullName;
+                UpdateInfo();
             }
             catch
             {
                 fullnameTextBox.BackColor = Color.LightPink;
             }
         }
+
         /// <summary>
-        /// Добавляет нового покупателя в LixtBox.
+        /// Обновляет информацию в списке
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void addButton_Click(object sender, EventArgs e)
+        private void UpdateInfo()
         {
-            string fullname = fullnameTextBox.Text;
-            Address address = addressControl1.Address;
-            if (fullname != "" && address != null)
-            {
-                _currentCustomer = new Customer(fullname, address, true);
-                _currentCustomer.IsPriority = IsPriorityCheckBox.Checked;
-                _customers.Add(_currentCustomer);
-                CustomersListBox.Items.Add($"{_currentCustomer.Id}. {_currentCustomer.Fullname}");
-                ClearInfo();
-            }
+            int index = CustomersListBox.Items.IndexOf(_currentCustomer);
+            if (index == -1) return;
+            CustomersListBox.Items.Clear();
+            CustomersListBox.Items.AddRange(_customers.ToArray());
+            DiscountsListBox.Items.Clear();
+            DiscountsListBox.Items.AddRange(_currentCustomer.Discounts.ToArray());
+            CustomersListBox.SelectedIndex = index;
         }
         /// <summary>
-        /// Убирает выбранного покупателя из ListBox.
+        /// Очищает поля.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void removeButton_Click(object sender, EventArgs e)
+        private void ClearInfo()
         {
-            if (CustomersListBox.SelectedIndex != -1)
+            idTextBox.Clear();
+            fullnameTextBox.Clear();
+            addressControl1.ClearInfo();
+        }
+
+        private void IsPriorityCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (IsPriorityCheckBox.Checked == true)
             {
-                int selectedIndex = CustomersListBox.SelectedIndex;
-                CustomersListBox.Items.RemoveAt(selectedIndex);
-                _customers.RemoveAt(selectedIndex);
-                ClearInfo();
+                _currentCustomer.IsPriority = true;
             }
+            else
+            {
+                _currentCustomer.IsPriority = false;
+            }
+        }
+
+        private void AddDiscountButton_Click(object sender, EventArgs e)
+        {
+            if (CustomersListBox.SelectedIndex == -1) return;
+            AddDiscountForm addDiscountForm = new AddDiscountForm();
+            addDiscountForm.ShowDialog();
+            if (addDiscountForm.Result == DialogResult.OK)
+            {
+                bool isContains = false;
+                foreach (var discount in _currentCustomer.Discounts)
+                {
+                    if (discount is PercentDiscount percentDiscount1)
+                    {
+                        if (percentDiscount1.Category == addDiscountForm.SelectedCategory)
+                        {
+                            isContains = true;
+                            break;
+                        }
+                    }
+                }
+                if (!isContains)
+                {
+                    _currentCustomer.Discounts.Add(new PercentDiscount(addDiscountForm.SelectedCategory));
+                    UpdateInfo();
+                }
+            }
+        }
+
+        private void RemoveDiscountButton_Click(object sender, EventArgs e)
+        {
+            if (DiscountsListBox.SelectedIndex == 0 || DiscountsListBox.SelectedIndex == -1 || CustomersListBox.SelectedIndex == -1)
+            {
+                return;
+            }
+            _currentCustomer.Discounts.RemoveAt(DiscountsListBox.SelectedIndex);
+            UpdateInfo();
         }
     }
 }

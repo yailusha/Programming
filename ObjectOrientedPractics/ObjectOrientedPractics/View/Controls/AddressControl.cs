@@ -75,7 +75,6 @@ namespace ObjectOrientedPractics.View.Controls
             streetTextBox.Clear();
             buildingTextBox.Clear();
             apartmentTextBox.Clear();
-            _address = new Address();
         }
         private void postIndexTextBox_TextChanged(object sender, EventArgs e)
         {

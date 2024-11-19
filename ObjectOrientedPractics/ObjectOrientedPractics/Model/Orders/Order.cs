@@ -1,16 +1,17 @@
-﻿using ObjectOrientedPractics.Model.Enums;
-using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using ObjectOrientedPractics.Model.Discounts;
+using ObjectOrientedPractics.Model.Enums;
 
 namespace ObjectOrientedPractics.Model.Orders
 {
     /// <summary>
-    /// Хранит данные о заказе.
+    /// Хранит данные о заказе пользователя.
     /// </summary>
     [DataContract]
     [KnownType(typeof(PriorityOrder))]
@@ -18,7 +19,7 @@ namespace ObjectOrientedPractics.Model.Orders
     {
         private static IdGenerator _idGenerator = new IdGenerator();
         /// <summary>
-        /// Возвращает уникальный идентификатор.
+        /// ID заказа.
         /// </summary>
         [DataMember]
         public int Id { get; private set; }
@@ -28,8 +29,8 @@ namespace ObjectOrientedPractics.Model.Orders
         [DataMember]
         public DateTime OrderCreationDate { get; private set; }
         /// <summary>
-        /// Возвращает и задает статус заказа.
-        /// </summary>
+        /// Задает и возвращает статус заказа.
+        /// </summary>  
         [DataMember]
         public OrderStatus Status { get; set; }
         /// <summary>
@@ -37,7 +38,7 @@ namespace ObjectOrientedPractics.Model.Orders
         /// </summary>
         private Address _address;
         /// <summary>
-        /// Товары.
+        /// Список товаров.
         /// </summary>
         private List<Item> _items;
         /// <summary>
@@ -45,35 +46,40 @@ namespace ObjectOrientedPractics.Model.Orders
         /// </summary>
         private double _amount;
         /// <summary>
-        /// Конечная стоимость товаров с учетом скидки.
+        /// Общая стоимость товаров с учетом скидки.
         /// </summary>
         private double _total;
         /// <summary>
-        /// Возвращает конечную стоимость товаов с учетом скидки.
+        /// Задает и возвращает размер приминенной скидки.
+        /// </summary>
+        [DataMember]
+        public double DiscountAmount { get; set; }
+
+        /// <summary>
+        /// Задает и возвращает конечную стоимость заказа.
         /// </summary>
         public double Total
         {
             get
             {
-                if (Amount - DIscountAmount < 0)
+                if (Amount - DiscountAmount < 0)
                 {
-                    throw new ArgumentException("Value must be positive.");
+                    throw new ArgumentException("Value must be a positive number");
                 }
-                _total = Amount - DIscountAmount;
+                _total = Amount - DiscountAmount;
                 return _total;
             }
         }
-        /// <summary>
-        /// Возвращает и задает размер примененной скидки.
-        /// </summary>
-        public double DIscountAmount { get; set; }
         /// <summary>
         /// Задает и возвращает адрес доставки.
         /// </summary>
         [DataMember]
         public Address Address
         {
-            get { return _address; }
+            get
+            {
+                return _address;
+            }
             set
             {
                 _address = value;
@@ -85,14 +91,17 @@ namespace ObjectOrientedPractics.Model.Orders
         [DataMember]
         public List<Item> Items
         {
-            get { return _items; }
+            get
+            {
+                return _items;
+            }
             set
             {
                 _items = value;
             }
         }
         /// <summary>
-        /// Возвращает общую стоиость товаров.
+        /// Задает и возвращает общую стоимость товаров.
         /// </summary>
         public double Amount
         {
@@ -108,19 +117,8 @@ namespace ObjectOrientedPractics.Model.Orders
             }
         }
         /// <summary>
-        /// Создает экземпляр класса <see cref="Order"/>
+        /// Конструктор без параметров. Создает экземпляр класса <see cref="Order"/>
         /// </summary>
-        public Order(Address address, List<Item> items, bool isId)
-        {
-            if (isId)
-            {
-                Id = _idGenerator.GetNextId();
-            }
-            Items = items;
-            Address = address;
-            OrderCreationDate = DateTime.Now;
-            Status = 0;
-        }
         public Order(bool isId)
         {
             if (isId)
@@ -130,6 +128,22 @@ namespace ObjectOrientedPractics.Model.Orders
             OrderCreationDate = DateTime.Now;
             Items = new List<Item>();
             Address = new Address();
+            Status = 0;
+        }
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Order"/>
+        /// </summary>
+        /// <param name="address">Адрес доставки.</param>
+        /// <param name="items">Список товаров.</param>
+        public Order(Address address, List<Item> items, bool isId)
+        {
+            if (isId)
+            {
+                Id = _idGenerator.GetNextId();
+            }
+            OrderCreationDate = DateTime.Now;
+            Items = items;
+            Address = address;
             Status = 0;
         }
     }

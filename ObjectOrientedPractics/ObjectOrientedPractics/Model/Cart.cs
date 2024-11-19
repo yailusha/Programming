@@ -8,21 +8,22 @@ using System.Threading.Tasks;
 namespace ObjectOrientedPractics.Model
 {
     /// <summary>
-    /// Хранит данные о корзине товаров покупателя.
+    /// Хранит корзину товаров пользователя.
     /// </summary>
     [DataContract]
     internal class Cart
     {
         /// <summary>
-        /// Товары.
+        /// Список товаров.
         /// </summary>
         private List<Item> _items;
         /// <summary>
         /// Общая стоимость товаров.
         /// </summary>
         private double _amount;
+
         /// <summary>
-        /// Возвращает и задает количество товаров.
+        /// Задает и возвращает список товаров.
         /// </summary>
         [DataMember]
         public List<Item> Items
@@ -39,13 +40,16 @@ namespace ObjectOrientedPractics.Model
             {
                 _amount = 0;
                 if (_items == null || _items.Count == 0) return 0;
-                for (int i = 0; i < _items.Count; i++) 
+                for (int i = 0; i < _items.Count; i++)
                 {
                     _amount += _items[i].Cost;
                 }
                 return _amount;
             }
         }
+        /// <summary>
+        /// Создает экземпляр классса <see cref="Cart"/>
+        /// </summary>
         public Cart()
         {
             Items = new List<Item>();

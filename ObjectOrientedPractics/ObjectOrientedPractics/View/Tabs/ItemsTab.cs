@@ -1,184 +1,162 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
-using ObjectOrientedPractics.Model.Enums;
 using ObjectOrientedPractics.Services;
+using System.Text.Json;
+using ObjectOrientedPractics.Model.Enums;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
 
 namespace ObjectOrientedPractics.View.Tabs
 {
-    /// <summary>
-    /// Хранит данные о товарах.
-    /// </summary>
     internal partial class ItemsTab : UserControl
     {
-        private List<Item> _items = new List<Item>();
-        private Item _currentItem;
+        List<Item> _items = new List<Item>();
+        Item _currentItem = new Item(false);
         public List<Item> Items
         {
-            get { return _items; }
+            get
+            {
+                return _items;
+            }
             set
             {
                 _items = value;
                 ItemsListBox.Items.AddRange(_items.ToArray());
-                UpdateItemsListBox();
+                UpdateInfo();
+
             }
         }
         public ItemsTab()
         {
             InitializeComponent();
-            foreach (Category category in Enum.GetValues(typeof(Category)))
+            var categories = Enum.GetValues(typeof(Category));
+            foreach (var category in categories)
             {
                 CategoryComboBox.Items.Add(category);
             }
             ItemsListBox.Items.AddRange(_items.ToArray());
         }
-        private void ClearInfo()
-        {
-            costTextBox.Clear();
-            nameTextBox.Clear();
-            descriptionTextBox.Clear();
-            CategoryComboBox.SelectedItem = null;
-            idTextBox.Clear();
-        }
-        private void UpdateItemsListBox()
-        {
-            ItemsListBox.Items.Clear();
-            foreach (Item item in _items)
-            {
-                ItemsListBox.Items.Add($"{item.Name} - {item.Cost}");
-            }
-        }
-        /// <summary>
-        /// Отображает данные товара.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int selectedIndex = ItemsListBox.SelectedIndex;
-            if (selectedIndex != -1)
-            {
-                _currentItem = _items[selectedIndex];
-                idTextBox.Text = _currentItem.Id.ToString();
-                CategoryComboBox.SelectedItem = _currentItem.Category;
-                costTextBox.Text = _currentItem.Cost.ToString();
-                nameTextBox.Text = _currentItem.Name;
-                descriptionTextBox.Text = _currentItem.Info;
-            }
+            if (ItemsListBox.SelectedIndex == -1) return;
+            _currentItem = _items[ItemsListBox.SelectedIndex];
+            Item item = (Item)ItemsListBox.SelectedItem;
+            idTextBox.Text = item.Id.ToString();
+            costTextBox.Text = item.Cost.ToString();
+            nameTextBox.Text = item.Name.ToString();
+            descriptionTextBox.Text = item.Info.ToString();
+            CategoryComboBox.SelectedIndex = (int)item.Category;
         }
-        /// <summary>
-        /// Выбор категории товара.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void addButton_Click(object sender, EventArgs e)
         {
-
+            Item item = new Item(true);
+            _items.Add(item);
+            ItemsListBox.Items.Add(item);
         }
-        /// <summary>
-        /// Изменение и сохранение новой стоимости товара.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
+        private void removeButton_Click(object sender, EventArgs e)
+        {
+            int index = ItemsListBox.Items.IndexOf(_currentItem);
+            if (index == -1) return;
+            _items.RemoveAt(index);
+            ItemsListBox.Items.RemoveAt(index);
+            ClearInfo();
+        }
+
         private void costTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (ItemsListBox.SelectedIndex == -1) return;
+            int index = ItemsListBox.Items.IndexOf(_currentItem);
+            if (index == -1) return;
             try
             {
                 costTextBox.BackColor = Color.White;
                 double cost = double.Parse(costTextBox.Text);
                 _currentItem.Cost = cost;
-                UpdateItemsListBox();
+                UpdateInfo();
             }
-            catch 
+            catch
             {
                 costTextBox.BackColor = Color.LightPink;
             }
         }
-        /// <summary>
-        /// Сохранение и изменение нового названия товара.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
         private void nameTextBox_TextChanged(object sender, EventArgs e)
         {
+            int index = ItemsListBox.Items.IndexOf(_currentItem);
+            if (index == -1) return;
             try
             {
-                if (ItemsListBox.SelectedIndex == -1) return;
-                nameTextBox.BackColor = Color.White;
-                string name = nameTextBox.Text;
+                costTextBox.BackColor = Color.White;
+                string name = nameTextBox.Text.ToString();
                 _currentItem.Name = name;
-                UpdateItemsListBox();
-                
+                UpdateInfo();
             }
-            catch (FormatException)
+            catch
             {
                 nameTextBox.BackColor = Color.LightPink;
             }
         }
-        /// <summary>
-        /// Сохранение и изменения нового описания товара.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (ItemsListBox.SelectedIndex == -1) return;
+            int index = ItemsListBox.Items.IndexOf(_currentItem);
+            if (index == -1) return;
             try
             {
                 descriptionTextBox.BackColor = Color.White;
-                string info = descriptionTextBox.Text;
-                _currentItem.Info = info;
-                UpdateItemsListBox();
+                string description = descriptionTextBox.Text.ToString();
+                _currentItem.Info = description;
+                UpdateInfo();
             }
-            catch (FormatException)
+            catch
             {
                 descriptionTextBox.BackColor = Color.LightPink;
             }
         }
         /// <summary>
-        /// Добавляет новый товар в ListBox.
+        /// Обновляет информацию в списке.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void addButton_Click(object sender, EventArgs e)
+        private void UpdateInfo()
         {
-            double cost = double.Parse(costTextBox.Text);
-            string name = nameTextBox.Text;
-            string description = descriptionTextBox.Text;
-            Category category = (Category)CategoryComboBox.SelectedItem;
-            if (name != "" && description != "")
-            {
-                Item item = new Item(name, description, cost, category);
-                _items.Add(item);
-                ItemsListBox.Items.Add($"{item.Name} - {item.Cost}");
-                ClearInfo();
-            }
-
+            int index = ItemsListBox.Items.IndexOf(_currentItem);
+            if (index == -1) return;
+            ItemsListBox.Items.Clear();
+            ItemsListBox.Items.AddRange(_items.ToArray());
+            ItemsListBox.SelectedIndex = index;
         }
         /// <summary>
-        /// Убирает выбранный товар.
+        /// Очищает поля.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void removeButton_Click(object sender, EventArgs e)
+        private void ClearInfo()
         {
-            if (ItemsListBox.SelectedIndex != -1)
+            nameTextBox.Clear();
+            descriptionTextBox.Clear();
+            costTextBox.Clear();
+            idTextBox.Clear();
+        }
+
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = ItemsListBox.Items.IndexOf(_currentItem);
+            if (index == -1) return;
+            try
             {
-                int selectedIndex = ItemsListBox.SelectedIndex;
-                ItemsListBox.Items.RemoveAt(selectedIndex);
-                _items.RemoveAt(selectedIndex);
-                ClearInfo();
+                CategoryComboBox.BackColor = Color.White;
+                Category category = (Category)Enum.Parse(typeof(Category), CategoryComboBox.Text);
+                _currentItem.Category = category;
+                UpdateInfo();
+            }
+            catch
+            {
+                CategoryComboBox.BackColor = Color.LightPink;
             }
         }
     }

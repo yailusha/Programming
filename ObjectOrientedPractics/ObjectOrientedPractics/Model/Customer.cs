@@ -1,52 +1,58 @@
-﻿
-using ObjectOrientedPractics.Model.Discounts;
-using ObjectOrientedPractics.Model.Orders;
-using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
+using System.Reflection.Emit;
+using ObjectOrientedPractics.Model.Orders;
+using ObjectOrientedPractics.Model.Discounts;
 
 namespace ObjectOrientedPractics.Model
 {
     /// <summary>
-    /// Хранит данные о покупателе.
+    /// Хранит информацию о покупателе.
     /// </summary>
     [DataContract]
+    [KnownType(typeof(PointsDiscount))]
+    [KnownType(typeof(PercentDiscount))]
     internal class Customer
     {
         private static IdGenerator _idGenerator = new IdGenerator();
         /// <summary>
-        /// Возвращает уникальный идентификатор покупателя.
+        /// Имя и фамилия покупателя.
+        /// </summary>
+        private string _fullname;
+        /// <summary>
+        /// Адрес покупателя.
+        /// </summary>
+        private Address _address;
+        /// <summary>
+        /// Корзина покупателя.
+        /// </summary>
+        private Cart _cart;
+        /// <summary>
+        /// Список заказов покупателя.
+        /// </summary>
+        private List<Order> _orders;
+        /// <summary>
+        /// Возвращает id покупателя
         /// </summary>
         [DataMember]
         public int Id { get; private set; }
         /// <summary>
-        /// Полное имя.
-        /// </summary>
-        private string _fullname;
-        /// <summary>
-        /// Адрес.
-        /// </summary>
-        private Address _address;
-        /// <summary>
-        /// Корзина товаров.
-        /// </summary>
-        private Cart _cart;
-        /// <summary>
-        /// Список заказов.
-        /// </summary>
-        private List<Order> _orders;
-        public List<IDiscount> Discounts { get; set; }
-        /// <summary>
-        /// Возвращает и задает, является ли покупатель приоритетным.
+        /// Задает и возвращает, является ли покупатель приоритетным
         /// </summary>
         [DataMember]
         public bool IsPriority { get; set; }
         /// <summary>
-        /// Возвращает и задает полное имя пользователя.
+        /// Задает и возвращает список скидок покупателя.
+        /// </summary>
+        [DataMember]
+        public List<IDiscount> Discounts { get; set; }
+        /// <summary>
+        /// Задает и возвращает имя и фамилию покупателя. Не больше 200 символов.
         /// </summary>
         [DataMember]
         public string Fullname
@@ -54,14 +60,27 @@ namespace ObjectOrientedPractics.Model
             get { return _fullname; }
             set
             {
-                if (ValueValidator.AssertStringOnLength(value, 200, nameof(Fullname)))
-                {
-                    _fullname = value;
-                }
+                ValueValidator.AssertStringOnLength(value, 200, nameof(Fullname));
+                _fullname = value;
             }
         }
         /// <summary>
-        /// Возвращает и задает адрес покупателя.
+        /// Задает и возвращает корзину покупателя
+        /// </summary>
+        [DataMember]
+        public Cart Cart
+        {
+            get
+            {
+                return _cart;
+            }
+            set
+            {
+                _cart = value;
+            }
+        }
+        /// <summary>   
+        /// Задает и возвращает адреса покупателя.
         /// </summary>
         [DataMember]
         public Address Address
@@ -73,54 +92,58 @@ namespace ObjectOrientedPractics.Model
             }
         }
         /// <summary>
-        /// Возвращает и задает корзину товаров.
+        /// Задает и возвращает список заказов покупателя
         /// </summary>
-        [DataMember]
-        public Cart Cart
-        {
-            get { return _cart; }
-            set
-            {
-                _cart = value;
-            }
-        }   
         [DataMember]
         public List<Order> Orders
         {
             get { return _orders; }
-            set
-            {
-                _orders = value;
-            }
+            set { _orders = value; }
         }
         /// <summary>
-        /// Создает экземпляр класса <see cref="Customer"/>
+        /// Создает экземпляр класса <see cref="Customer">
         /// </summary>
-        /// <param name="fullname">Полное имя. Не может быть пустым или иметь длину более 200 символов.</param>
-        /// <param name="address">Адрес. Должен содержать все критерии.</param>
-        public Customer (string fullname, Address address, bool isId)
+        /// <param name="fullname">Имя и фамилия покупателя. Не больше 200 символов. </param>
+        /// <param name="address">Адрес покупателя. Не больше 500 символов</param>
+        public Customer(string fullname, Address address, bool isId)
         {
             if (isId)
             {
                 Id = _idGenerator.GetNextId();
             }
+            Id = _idGenerator.GetNextId();
             Fullname = fullname;
             Address = address;
+            IsPriority = false;
+            Discounts = new List<IDiscount>() { new PointsDiscount() };
+        }
+        /// <summary>
+        /// Конструктор по умолчанию. Создает экзепляр класса <see cref="Customer"/>
+        /// </summary>
+        public Customer(bool isId)
+        {
+            if (isId)
+            {
+                Id = _idGenerator.GetNextId();
+            }
+            Fullname = "Surname Name";
+            Address = new Address();
             Cart = new Cart();
             Orders = new List<Order>();
-            Discounts = new List<IDiscount>() { new PointsDiscount() }; 
+            IsPriority = false;
+            Discounts = new List<IDiscount>() { new PointsDiscount() };
         }
-        public Customer (bool isId)
+        /// <summary>
+        /// Предоставляет экземпляр класса в более удобной форме.
+        /// </summary>
+        /// <returns>Возвращает преобразование в строку</returns>
+        public override string ToString()
         {
-            
+            return Fullname;
         }
         public static void SetId(int value)
         {
             _idGenerator.SetId(value);
-        }
-        public override string ToString()
-        {
-            return Fullname;
         }
     }
 }

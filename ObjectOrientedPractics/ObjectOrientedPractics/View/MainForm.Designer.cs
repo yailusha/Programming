@@ -60,10 +60,11 @@
             // 
             // customersTab1
             // 
-            customersTab1.Location = new Point(-4, 6);
+            customersTab1.Dock = DockStyle.Fill;
+            customersTab1.Location = new Point(3, 3);
             customersTab1.Margin = new Padding(3, 4, 3, 4);
             customersTab1.Name = "customersTab1";
-            customersTab1.Size = new Size(881, 497);
+            customersTab1.Size = new Size(936, 693);
             customersTab1.TabIndex = 0;
             // 
             // itemsPage
@@ -79,10 +80,11 @@
             // 
             // itemsTab1
             // 
-            itemsTab1.Location = new Point(0, 0);
+            itemsTab1.Dock = DockStyle.Fill;
+            itemsTab1.Location = new Point(3, 3);
             itemsTab1.Margin = new Padding(3, 4, 3, 4);
             itemsTab1.Name = "itemsTab1";
-            itemsTab1.Size = new Size(746, 493);
+            itemsTab1.Size = new Size(936, 693);
             itemsTab1.TabIndex = 0;
             // 
             // tabControl1
@@ -165,6 +167,7 @@
             Controls.Add(tabControl1);
             Name = "MainForm";
             Text = "MainForm";
+            //FormClosing += MainForm_FormClosing;
             customerPage.ResumeLayout(false);
             itemsPage.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
