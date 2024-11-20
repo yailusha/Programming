@@ -45,6 +45,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 CategoryComboBox.Items.Add(category);
             }
         }
+        public event EventHandler ItemsChanged;
         /// <summary>
         /// Обновляет информацию в списке.
         /// </summary>
@@ -102,6 +103,7 @@ namespace ObjectOrientedPractics.View.Tabs
             Item item = new Item(true);
             _items.Add(item);
             UpdateInfo();
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void removeButton_Click(object sender, EventArgs e)
@@ -111,6 +113,7 @@ namespace ObjectOrientedPractics.View.Tabs
             _items.RemoveAt(index);
             ItemsListBox.Items.RemoveAt(index);
             ClearInfo();
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void costTextBox_TextChanged(object sender, EventArgs e)
@@ -123,6 +126,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 double cost = double.Parse(costTextBox.Text);
                 _currentItem.Cost = cost;
                 UpdateInfo();
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
             catch
             {
@@ -140,6 +144,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 string name = nameTextBox.Text.ToString();
                 _currentItem.Name = name;
                 UpdateInfo();
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
             catch
             {
@@ -157,6 +162,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 string description = descriptionTextBox.Text.ToString();
                 _currentItem.Info = description;
                 UpdateInfo();
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
             catch
             {

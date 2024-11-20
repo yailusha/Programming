@@ -36,7 +36,10 @@ namespace ObjectOrientedPractics.Model
         /// Номер квартиры/помещения
         /// </summary>
         private string _apartment;
-
+        /// <summary>
+        /// Событие изменения адреса.
+        /// </summary>
+        public event EventHandler<EventArgs> AddressChanged;
         /// <summary>
         /// Задает и возвращает почтовый индекс. Должен быть целым шестизначным числом.
         /// </summary>
@@ -45,8 +48,10 @@ namespace ObjectOrientedPractics.Model
             get { return _index; }
             set
             {
+                if (_index == value) return;
                 ValueValidator.AssertValueInRange(value, 100000, 999999, nameof(Index));
                 _index = value;
+                AddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
         /// <summary>
@@ -57,8 +62,10 @@ namespace ObjectOrientedPractics.Model
             get { return _country; }
             set
             {
+                if (_country == value) return;
                 ValueValidator.AssertStringOnLength(value, 50, nameof(Country));
                 _country = value;
+                AddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
         /// <summary>
@@ -69,8 +76,10 @@ namespace ObjectOrientedPractics.Model
             get { return _city; }
             set
             {
+                if (_city == value) return;
                 ValueValidator.AssertStringOnLength(value, 50, nameof(City));
                 _city = value;
+                AddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
         /// <summary>
@@ -81,8 +90,10 @@ namespace ObjectOrientedPractics.Model
             get { return _street; }
             set
             {
+                if (_street == value) return;
                 ValueValidator.AssertStringOnLength(value, 100, nameof(Street));
                 _street = value;
+                AddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
         /// <summary>
@@ -93,8 +104,10 @@ namespace ObjectOrientedPractics.Model
             get { return _building; }
             set
             {
+                if (_building == value) return;
                 ValueValidator.AssertStringOnLength(value, 10, nameof(Building));
                 _building = value;
+                AddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
         /// <summary>
@@ -105,8 +118,10 @@ namespace ObjectOrientedPractics.Model
             get { return _apartment; }
             set
             {
+                if (_apartment == value) return;
                 ValueValidator.AssertStringOnLength(value, 10, nameof(Apartment));
                 _apartment = value;
+                AddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
         /// <summary>

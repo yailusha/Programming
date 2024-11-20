@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using ObjectOrientedPractics.Model.Enums;
+using System.Diagnostics.Eventing.Reader;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -34,6 +35,18 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private double _cost;
         /// <summary>
+        /// Событие изменения названия товара.
+        /// </summary>
+        public event EventHandler<EventArgs> NameChanged;
+        /// <summary>
+        /// Событие изменения стоимости товара.
+        /// </summary>
+        public event EventHandler<EventArgs> CostChanged;
+        /// <summary>
+        /// Событие изменения описания товара.
+        /// </summary>
+        public event EventHandler<EventArgs> InfoChanged;
+        /// <summary>
         /// Задает и возвращает категорию товара.
         /// </summary>
         [DataMember]
@@ -48,8 +61,10 @@ namespace ObjectOrientedPractics.Model
             get { return _name; }
             set
             {
+                if (_name == value) return;
                 ValueValidator.AssertStringOnLength(value, 200, nameof(Name));
                 _name = value;
+                NameChanged?.Invoke(this, EventArgs.Empty);
             }
         }
         /// <summary>
@@ -61,8 +76,10 @@ namespace ObjectOrientedPractics.Model
             get { return _info; }
             set
             {
+                if (_info == value) return;
                 ValueValidator.AssertStringOnLength(value, 1000, nameof(Name));
                 _info = value;
+                InfoChanged?.Invoke(this, EventArgs.Empty);
             }
         }
         /// <summary>
@@ -74,8 +91,10 @@ namespace ObjectOrientedPractics.Model
             get { return _cost; }
             set
             {
+                if (_cost == value) return;
                 ValueValidator.AssertValueInRange(value, 0, 100000, nameof(Cost));
                 _cost = value;
+                CostChanged?.Invoke(this, EventArgs.Empty);
             }
         }
         /// <summary>

@@ -33,6 +33,11 @@ namespace ObjectOrientedPractics
                 ordersTab1.UpdateOrders();
             }
         }
+        private void ItemsChanged(object? sender, EventArgs e)
+        {
+            cartsTab1.RefreshData();
+            ordersTab1.UpdateOrders();
+        }
         //private void WriteOnFileItems()
         //{
         //    try
