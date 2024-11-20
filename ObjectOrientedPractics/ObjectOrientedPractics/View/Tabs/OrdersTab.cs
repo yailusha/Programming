@@ -103,7 +103,6 @@ namespace ObjectOrientedPractics.View.Tabs
             if (DeliveryTimeComboBox.SelectedIndex == -1) return;
             Array deliveryTime = Enum.GetValues(typeof(DeliveryTimeRange));
             _currentPriorityOrder.DesiredDeliveryTime = (DeliveryTimeRange)deliveryTime.GetValue(DeliveryTimeComboBox.SelectedIndex);
-
         }
     }
 }

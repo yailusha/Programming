@@ -48,6 +48,7 @@
             // 
             // fullnameTextBox
             // 
+            fullnameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             fullnameTextBox.Location = new Point(424, 63);
             fullnameTextBox.Name = "fullnameTextBox";
             fullnameTextBox.Size = new Size(451, 23);
@@ -56,6 +57,7 @@
             // 
             // idTextBox
             // 
+            idTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             idTextBox.Location = new Point(424, 34);
             idTextBox.Name = "idTextBox";
             idTextBox.ReadOnly = true;
@@ -82,6 +84,7 @@
             // 
             // label8
             // 
+            label8.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
             label8.Location = new Point(355, 0);
@@ -92,6 +95,7 @@
             // 
             // removeCustomerButton
             // 
+            removeCustomerButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             removeCustomerButton.Location = new Point(138, 576);
             removeCustomerButton.Name = "removeCustomerButton";
             removeCustomerButton.Size = new Size(132, 61);
@@ -102,6 +106,7 @@
             // 
             // addCustomerButton
             // 
+            addCustomerButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             addCustomerButton.Location = new Point(0, 576);
             addCustomerButton.Name = "addCustomerButton";
             addCustomerButton.Size = new Size(132, 61);
@@ -112,6 +117,7 @@
             // 
             // CustomersListBox
             // 
+            CustomersListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             CustomersListBox.FormattingEnabled = true;
             CustomersListBox.ItemHeight = 15;
             CustomersListBox.Location = new Point(0, 18);
@@ -139,6 +145,7 @@
             address1.Index = 100000;
             address1.Street = "Street";
             addressControl1.Address = address1;
+            addressControl1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             addressControl1.ApartmentValue = "";
             addressControl1.BuildingValue = "";
             addressControl1.CityValue = "";
@@ -173,6 +180,7 @@
             // 
             // DiscountsListBox
             // 
+            DiscountsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             DiscountsListBox.FormattingEnabled = true;
             DiscountsListBox.ItemHeight = 15;
             DiscountsListBox.Location = new Point(355, 328);
@@ -182,6 +190,7 @@
             // 
             // addDiscountButton
             // 
+            addDiscountButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             addDiscountButton.Location = new Point(694, 328);
             addDiscountButton.Name = "addDiscountButton";
             addDiscountButton.Size = new Size(117, 49);
@@ -192,6 +201,7 @@
             // 
             // removeDiscountButton
             // 
+            removeDiscountButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             removeDiscountButton.Location = new Point(694, 383);
             removeDiscountButton.Name = "removeDiscountButton";
             removeDiscountButton.Size = new Size(117, 49);
@@ -220,7 +230,7 @@
             Controls.Add(CustomersListBox);
             Controls.Add(label7);
             Name = "CustomersTab";
-            Size = new Size(881, 667);
+            Size = new Size(881, 645);
             ResumeLayout(false);
             PerformLayout();
         }

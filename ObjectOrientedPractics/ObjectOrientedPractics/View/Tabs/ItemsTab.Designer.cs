@@ -44,40 +44,48 @@ namespace ObjectOrientedPractics.View.Tabs
             label1 = new Label();
             label7 = new Label();
             CategoryComboBox = new ComboBox();
+            label8 = new Label();
+            findTextBox = new TextBox();
+            label9 = new Label();
+            SortComboBox = new ComboBox();
             SuspendLayout();
             // 
             // descriptionTextBox
             // 
+            descriptionTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             descriptionTextBox.Location = new Point(358, 276);
             descriptionTextBox.Multiline = true;
             descriptionTextBox.Name = "descriptionTextBox";
-            descriptionTextBox.Size = new Size(367, 77);
+            descriptionTextBox.Size = new Size(488, 124);
             descriptionTextBox.TabIndex = 42;
             descriptionTextBox.TextChanged += descriptionTextBox_TextChanged;
             // 
             // nameTextBox
             // 
+            nameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             nameTextBox.Location = new Point(358, 143);
             nameTextBox.Multiline = true;
             nameTextBox.Name = "nameTextBox";
-            nameTextBox.Size = new Size(367, 112);
+            nameTextBox.Size = new Size(488, 112);
             nameTextBox.TabIndex = 41;
             nameTextBox.TextChanged += nameTextBox_TextChanged;
             // 
             // costTextBox
             // 
+            costTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             costTextBox.Location = new Point(427, 63);
             costTextBox.Name = "costTextBox";
-            costTextBox.Size = new Size(134, 23);
+            costTextBox.Size = new Size(255, 23);
             costTextBox.TabIndex = 40;
             costTextBox.TextChanged += costTextBox_TextChanged;
             // 
             // idTextBox
             // 
+            idTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             idTextBox.Location = new Point(427, 34);
             idTextBox.Name = "idTextBox";
             idTextBox.ReadOnly = true;
-            idTextBox.Size = new Size(134, 23);
+            idTextBox.Size = new Size(255, 23);
             idTextBox.TabIndex = 39;
             // 
             // label6
@@ -128,7 +136,8 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // removeButton
             // 
-            removeButton.Location = new Point(126, 418);
+            removeButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            removeButton.Location = new Point(126, 503);
             removeButton.Name = "removeButton";
             removeButton.Size = new Size(117, 61);
             removeButton.TabIndex = 33;
@@ -138,7 +147,8 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // addButton
             // 
-            addButton.Location = new Point(3, 418);
+            addButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            addButton.Location = new Point(3, 503);
             addButton.Name = "addButton";
             addButton.Size = new Size(117, 61);
             addButton.TabIndex = 32;
@@ -148,9 +158,10 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // ItemsListBox
             // 
+            ItemsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             ItemsListBox.FormattingEnabled = true;
             ItemsListBox.ItemHeight = 15;
-            ItemsListBox.Location = new Point(3, 18);
+            ItemsListBox.Location = new Point(3, 66);
             ItemsListBox.Name = "ItemsListBox";
             ItemsListBox.Size = new Size(349, 394);
             ItemsListBox.TabIndex = 31;
@@ -177,17 +188,62 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // CategoryComboBox
             // 
+            CategoryComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            CategoryComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             CategoryComboBox.FormattingEnabled = true;
             CategoryComboBox.Location = new Point(427, 94);
             CategoryComboBox.Name = "CategoryComboBox";
-            CategoryComboBox.Size = new Size(134, 23);
+            CategoryComboBox.Size = new Size(255, 23);
             CategoryComboBox.TabIndex = 44;
             CategoryComboBox.SelectedIndexChanged += CategoryComboBox_SelectedIndexChanged;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(3, 36);
+            label8.Name = "label8";
+            label8.Size = new Size(33, 15);
+            label8.TabIndex = 45;
+            label8.Text = "Find:";
+            // 
+            // findTextBox
+            // 
+            findTextBox.Location = new Point(42, 34);
+            findTextBox.Name = "findTextBox";
+            findTextBox.Size = new Size(310, 23);
+            findTextBox.TabIndex = 46;
+            findTextBox.TextChanged += findTextBox_TextChanged;
+            // 
+            // label9
+            // 
+            label9.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label9.AutoSize = true;
+            label9.Location = new Point(3, 474);
+            label9.Name = "label9";
+            label9.Size = new Size(56, 15);
+            label9.TabIndex = 47;
+            label9.Text = "Order by:";
+            // 
+            // SortComboBox
+            // 
+            SortComboBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            SortComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            SortComboBox.FormattingEnabled = true;
+            SortComboBox.Items.AddRange(new object[] { "Cost (Ascending)", "Cost (Descending)", "Name" });
+            SortComboBox.Location = new Point(65, 471);
+            SortComboBox.Name = "SortComboBox";
+            SortComboBox.Size = new Size(287, 23);
+            SortComboBox.TabIndex = 48;
+            SortComboBox.SelectedIndexChanged += SortComboBox_SelectedIndexChanged;
             // 
             // ItemsTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(SortComboBox);
+            Controls.Add(label9);
+            Controls.Add(findTextBox);
+            Controls.Add(label8);
             Controls.Add(CategoryComboBox);
             Controls.Add(label7);
             Controls.Add(descriptionTextBox);
@@ -204,7 +260,7 @@ namespace ObjectOrientedPractics.View.Tabs
             Controls.Add(ItemsListBox);
             Controls.Add(label1);
             Name = "ItemsTab";
-            Size = new Size(746, 493);
+            Size = new Size(867, 567);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -231,5 +287,9 @@ namespace ObjectOrientedPractics.View.Tabs
         private Label label1;
         private Label label7;
         private ComboBox CategoryComboBox;
+        private Label label8;
+        private TextBox findTextBox;
+        private Label label9;
+        private ComboBox SortComboBox;
     }
 }

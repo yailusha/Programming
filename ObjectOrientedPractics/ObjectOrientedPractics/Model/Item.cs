@@ -105,8 +105,8 @@ namespace ObjectOrientedPractics.Model
             {
                 Id = _idGenerator.GetNextId();
             }
-            Name = "Название";
-            Info = "Описание";
+            Name = "Name";
+            Info = "Description";
             Cost = 0;
             Category = Category.Meat;
         }

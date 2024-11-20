@@ -13,12 +13,15 @@ using ObjectOrientedPractics.Services;
 using System.Text.Json;
 using ObjectOrientedPractics.Model.Enums;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Linq.Expressions;
+using System.Web;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
     internal partial class ItemsTab : UserControl
     {
         List<Item> _items = new List<Item>();
+        List<Item> _displayedItems = new List<Item>();
         Item _currentItem = new Item(false);
         public List<Item> Items
         {
@@ -29,9 +32,8 @@ namespace ObjectOrientedPractics.View.Tabs
             set
             {
                 _items = value;
-                ItemsListBox.Items.AddRange(_items.ToArray());
-                UpdateInfo();
-
+                _displayedItems = _items;
+                ItemsListBox.Items.AddRange(_displayedItems.ToArray());
             }
         }
         public ItemsTab()
@@ -42,7 +44,47 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 CategoryComboBox.Items.Add(category);
             }
-            ItemsListBox.Items.AddRange(_items.ToArray());
+        }
+        /// <summary>
+        /// Обновляет информацию в списке.
+        /// </summary>
+        private void UpdateInfo()
+        {
+            int index = ItemsListBox.Items.IndexOf(_currentItem);
+            ItemsListBox.Items.Clear();
+            ItemsListBox.Items.AddRange(_displayedItems.ToArray());
+            if (index != -1)
+            {
+                ItemsListBox.SelectedIndex = index;
+            }
+        }
+        /// <summary>
+        /// Очищает поля.
+        /// </summary>
+        private void ClearInfo()
+        {
+            nameTextBox.Clear();
+            descriptionTextBox.Clear();
+            costTextBox.Clear();
+            idTextBox.Clear();
+        }
+        private void Sort()
+        {
+            List<Item> sortedItems;
+
+            switch (SortComboBox.SelectedIndex)
+            {
+                case 1:
+                    sortedItems = DataTools.Sort(_displayedItems, (item1, item2) => item1.Cost < item2.Cost);
+                    break;
+                case 2:
+                    sortedItems = DataTools.Sort(_displayedItems, (item1, item2) => item1.Cost > item2.Cost);
+                    break;
+                default:
+                    sortedItems = DataTools.Sort(_displayedItems, (item1, item2) => string.Compare(item1.Name, item2.Name) > 0);
+                    break;
+            }
+            _displayedItems = sortedItems;
         }
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -59,7 +101,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             Item item = new Item(true);
             _items.Add(item);
-            ItemsListBox.Items.Add(item);
+            UpdateInfo();
         }
 
         private void removeButton_Click(object sender, EventArgs e)
@@ -94,7 +136,7 @@ namespace ObjectOrientedPractics.View.Tabs
             if (index == -1) return;
             try
             {
-                costTextBox.BackColor = Color.White;
+                nameTextBox.BackColor = Color.White;
                 string name = nameTextBox.Text.ToString();
                 _currentItem.Name = name;
                 UpdateInfo();
@@ -121,28 +163,23 @@ namespace ObjectOrientedPractics.View.Tabs
                 descriptionTextBox.BackColor = Color.LightPink;
             }
         }
-        /// <summary>
-        /// Обновляет информацию в списке.
-        /// </summary>
-        private void UpdateInfo()
+        private void findTextBox_TextChanged(object sender, EventArgs e)
         {
-            int index = ItemsListBox.Items.IndexOf(_currentItem);
-            if (index == -1) return;
-            ItemsListBox.Items.Clear();
-            ItemsListBox.Items.AddRange(_items.ToArray());
-            ItemsListBox.SelectedIndex = index;
+            string findText = findTextBox.Text.ToLower();
+            if (string.IsNullOrEmpty(findText))
+            {
+                _displayedItems = _items;
+                ItemsListBox.Items.Clear();
+                ItemsListBox.Items.AddRange(_displayedItems.ToArray());
+            }
+            else
+            {
+                List<Item> filteredItems = DataTools.Filter(_items, item => item.Name.ToLower().Contains(findText));
+                _displayedItems = filteredItems;
+                ItemsListBox.Items.Clear();
+                ItemsListBox.Items.AddRange(_displayedItems.ToArray());
+            }
         }
-        /// <summary>
-        /// Очищает поля.
-        /// </summary>
-        private void ClearInfo()
-        {
-            nameTextBox.Clear();
-            descriptionTextBox.Clear();
-            costTextBox.Clear();
-            idTextBox.Clear();
-        }
-
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = ItemsListBox.Items.IndexOf(_currentItem);
@@ -158,6 +195,12 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 CategoryComboBox.BackColor = Color.LightPink;
             }
+        }
+
+        private void SortComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Sort();
+            UpdateInfo();
         }
     }
 }
