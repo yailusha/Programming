@@ -57,7 +57,7 @@ namespace ObjectOrientedPractics.Model.Discounts
         /// </summary>
         /// <param name="items">Список товаров.</param>
         /// <returns>Возвращает стоимость.</returns>
-        private double CalculateTotalCost(List<Item> items)
+        public double CalculateTotalCost(List<Item> items)
         {
             double totalCost = 0;
             foreach (var item in items)
