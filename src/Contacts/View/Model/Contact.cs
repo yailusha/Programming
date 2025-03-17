@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using View.Model.Services;
 
 namespace View.Model
 {
@@ -19,7 +18,6 @@ namespace View.Model
             set
             {
                 if (_name == value) return;
-                ValueValidator.AssertStringOnLength(value, 100, nameof(Name));
                 _name = value;
             }
         }
@@ -29,7 +27,6 @@ namespace View.Model
             set
             {
                 if (_phoneNumber == value) return;
-                ValueValidator.AssertStringOnMinLength(value, 11, nameof(PhoneNumber));
                 _phoneNumber = value;
             }
         }
@@ -39,11 +36,6 @@ namespace View.Model
             set
             {
                 if (_email == value) return;
-                if (!value.Contains("@"))
-                {
-                    throw new ArgumentException("Email doesn't contain \"@\"");
-                }
-                ValueValidator.AssertStringOnLength(value, 100, nameof(Email));
                 _email = value;
             }
         }
