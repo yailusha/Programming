@@ -5,13 +5,40 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using View.Model;
+using View.Model.Services;
 
 namespace View.ViewModel
 {
+    /// <summary>
+    /// Хранит данные о MainVM.
+    /// </summary>
     internal class MainVM : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Контактные данные человека.
+        /// </summary>
         private Contact _contact;
+
+        /// <summary>
+        /// Контактный сериализатор.
+        /// </summary>
+        private readonly ContactSerializer _serializer;
+
+        /// <summary>
+        /// Команда для сохранения в файл.
+        /// </summary>
+        public ICommand SaveCommand { get; }
+
+        /// <summary>
+        /// Команада для выгрузки из файла.
+        /// </summary>
+        public ICommand LoadCommand { get; }
+
+        /// <summary>
+        /// Задает и возвращает имя контакта.
+        /// </summary>
         public string Name
         {
             get { return _contact.Name; }
@@ -21,6 +48,10 @@ namespace View.ViewModel
                 OnPropertyChanged(nameof(Name));
             }
         }
+
+        /// <summary>
+        /// Задает и возвращает номер телефона контакта.
+        /// </summary>
         public string PhoneNumber
         {
             get { return _contact.PhoneNumber; }
@@ -30,6 +61,10 @@ namespace View.ViewModel
                 OnPropertyChanged(nameof(PhoneNumber));
             }
         }
+
+        /// <summary>
+        /// Задает и возвращает электронную почту контакта.
+        /// </summary>
         public string Email
         {
             get { return _contact.Email; }
@@ -39,12 +74,27 @@ namespace View.ViewModel
                 OnPropertyChanged(nameof(Email));
             }
         }
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="MainVM"/>
+        /// </summary>
         public MainVM ()
         {
             _contact = new Contact ();
+            _serializer = new ContactSerializer ();
+            SaveCommand = new SaveCommand(_serializer, _contact);
+            LoadCommand = new LoadCommand(_serializer, this);
         }
 
+        /// <summary>
+        /// Событие при изменении данных.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Уведомляет о том, где произошло изменение.
+        /// </summary>
+        /// <param name="propertyName">Название свойства.</param>
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             if (PropertyChanged != null)
