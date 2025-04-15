@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using View.Model.Services;
-using View.Model;
-using System.Net.Http.Headers;
+﻿using System.Windows.Input;
+using Services;
+using Model;
 
-namespace View.ViewModel
+namespace ViewModel
 {
     /// <summary>
     /// Команда для выгрузки данных из файла.

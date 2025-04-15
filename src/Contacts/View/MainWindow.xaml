@@ -9,96 +9,135 @@
         Height="351"
         Width="496"
         MinWidth="496"
-        MinHeight="351" Icon="/contacts_96x96.ico">
-    <Grid>
-        <Button x:Name="LoadButton"
-                Content="Load"
-                Margin="0,0,15,15"
-                Width="75" Height="25"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Bottom"
-                Command="{Binding LoadCommand}"/>
-        <Button x:Name="SaveButton"
-                Content="Save"
-                Width="75"
-                Height="25"
-                HorizontalAlignment="Right"
-                Margin="0,0,93,15"
-                VerticalAlignment="Bottom"
-                Command="{Binding SaveCommand}"/>
-        <Grid Margin="15,15,15,43">
+        MinHeight="351"
+        Icon="/contacts_96x96.ico">
+    <Grid Margin="15,15,15,15">
+        <Grid Margin="0,0,0,28">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <GroupBox Header="Edit Contact" Margin="0,0,1.5,0">
-                <Grid Margin="3,3,3,3">
-                    <Label Content="Name:"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Top" Margin="-3,0,0,0"/>
-                    <TextBox x:Name="NameTextBox"
-                             Margin="0,29,0,0"
-                             TextWrapping="Wrap"
-                             VerticalAlignment="Top"
-                             Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Label Content="Phone Number:"
-                           HorizontalAlignment="Left"
-                           Margin="-3,50,0,0"
-                           VerticalAlignment="Top"/>
-                    <TextBox x:Name="PhoneNumberTextBox"
-                             Margin="0,79,0,0"
-                             TextWrapping="Wrap"
-                             VerticalAlignment="Top"
-                             Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Label Content="Email:"
-                           HorizontalAlignment="Left"
-                           Margin="-3,100,0,0"
-                           VerticalAlignment="Top"/>
-                    <TextBox x:Name="EmailTextBox"
-                             Margin="0,129,0,0"
-                             TextWrapping="Wrap"
-                             VerticalAlignment="Top"
-                             Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"/>
+            <GroupBox 
+                Header="Edit Contact"                    
+                Margin="0,0,1.5,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="3"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="3"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="3"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="3"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="3"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label 
+                        Content="Name:"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"/>
+                    <TextBox 
+                        Grid.Row="2"
+                        TextWrapping="Wrap"
+                        Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                        Height="18"/>
+                    <Label 
+                        Content="Phone Number:"
+                        HorizontalAlignment="Left"
+                        Grid.Row="4"
+                        VerticalAlignment="Top"/>
+                    <TextBox 
+                        Grid.Row="6"
+                        TextWrapping="Wrap"
+                        Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
+                        Height="18"/>
+                    <Label 
+                        Content="Email:"
+                        HorizontalAlignment="Left"
+                        Grid.Row="8"
+                        VerticalAlignment="Top"/>
+                    <TextBox 
+                        Grid.Row="10"
+                        TextWrapping="Wrap"
+                        Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
+                        Height="18"/>
                 </Grid>
             </GroupBox>
-            <GroupBox Grid.Column="1"
-                      Header="Read Contact"
-                      Margin="1.5,0,0,0">
-                <Grid Margin="3,3,3,3">
-                    <Label Content="Name:"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Top" Margin="-3,0,0,0"/>
-                    <Label Content="Phone Number:"
-                           HorizontalAlignment="Left"
-                           Margin="-3,50,0,0"
-                           VerticalAlignment="Top"/>
-                    <Label Content="Email:"
-                           HorizontalAlignment="Left"
-                           Margin="-3,100,0,0"
-                           VerticalAlignment="Top"/>
-                    <TextBlock x:Name="NameTextBlock"
-                               HorizontalAlignment="Left"
-                               Margin="0,29,0,0"
-                               TextWrapping="Wrap"
-                               Text="{Binding Name}"
-                               VerticalAlignment="Top"
-                               FontWeight="Bold"/>
-                    <TextBlock x:Name="PhoneNumberTextBlock"
-                               HorizontalAlignment="Left"
-                               Margin="0,79,0,0"
-                               TextWrapping="Wrap"
-                               Text="{Binding PhoneNumber}"
-                               VerticalAlignment="Top"
-                               FontWeight="Bold"/>
-                    <TextBlock x:Name="EmailTextBlock"
-                               HorizontalAlignment="Left"
-                               Margin="0,129,0,0"
-                               TextWrapping="Wrap"
-                               Text="{Binding Email}"
-                               VerticalAlignment="Top"
-                               FontWeight="Bold"/>
+            <GroupBox 
+                Grid.Column="1"
+                Header="Read Contact"
+                Margin="1.5,0,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="3"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="3"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="3"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="3"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="3"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label 
+                        Content="Name:"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"/>
+                    <TextBlock 
+                        Grid.Row="2"
+                        TextWrapping="Wrap"
+                        Text="{Binding Name}"
+                        Height="18"
+                        FontWeight="Bold"/>
+                    <Label 
+                        Content="Phone Number:"
+                        HorizontalAlignment="Left"
+                        Grid.Row="4"
+                        VerticalAlignment="Top"/>
+                    <TextBlock 
+                        Grid.Row="6"
+                        TextWrapping="Wrap"
+                        Text="{Binding PhoneNumber}"
+                        Height="18"
+                        FontWeight="Bold"/>
+                    <Label 
+                        Content="Email:"
+                        HorizontalAlignment="Left"
+                        Grid.Row="8"
+                        VerticalAlignment="Top"/>
+                    <TextBlock 
+                        Grid.Row="10"
+                        TextWrapping="Wrap"
+                        Text="{Binding Email}"
+                        Height="18"
+                        FontWeight="Bold"/>
                 </Grid>
             </GroupBox>
+        </Grid>
+        <Grid 
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Right"
+            Width="153">
+            <Button 
+                x:Name="LoadButton"
+                Content="Load"
+                Width="75" 
+                Height="25"
+                HorizontalAlignment="Right"
+            Command="{Binding LoadCommand}"/>
+            <Button 
+                x:Name="SaveButton"
+                Content="Save"
+                Width="75"
+                Height="25"
+                HorizontalAlignment="Left"
+                Command="{Binding SaveCommand}"/>
         </Grid>
     </Grid>
 </Window>

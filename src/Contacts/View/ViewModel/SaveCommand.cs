@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using View.Model;
-using View.Model.Services;
+﻿using System.Windows.Input;
+using Model;
+using Services;
 
-namespace View.ViewModel
+namespace ViewModel
 {
     /// <summary>
     /// Команда для сохранения данных в файл.
