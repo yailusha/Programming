@@ -47,7 +47,8 @@
             <Grid Grid.Row="3" Margin="8,0,8,0">
                 <ListBox 
                     ItemsSource="{Binding Contacts, UpdateSourceTrigger=PropertyChanged}"
-                    SelectedItem="{Binding SelectedContact, Mode=TwoWay}"/>
+                    SelectedItem="{Binding SelectedContact, Mode=TwoWay}"
+                    DisplayMemberPath="Name"/>
             </Grid>
             <Grid 
                 Grid.Row="5"

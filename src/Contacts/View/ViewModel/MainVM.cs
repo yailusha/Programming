@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Windows.Input;
 using Model;
 using Services;
@@ -26,9 +27,8 @@ namespace ViewModel
         /// </summary>
         private readonly ContactSerializer _serializer;
 
-        private bool _isAddingOrEdditing;
+        private bool _isAddingOrEditing;
 
-        
 
         /// <summary>
         /// Команда для сохранения в файл.
@@ -102,13 +102,15 @@ namespace ViewModel
             get { return _selectedContact; }
             set
             {
-                if (_isAddingOrEdditing && value != _selectedContact)
+
+                if (!_isAddingOrEditing && value != null)
                 {
-                    _isAddingOrEdditing = false;
-                    _selectedContact = null;
+                    EditingContact = value;
                 }
                 _selectedContact = value;
                 OnPropertyChanged(nameof(SelectedContact));
+                OnPropertyChanged(nameof(IsEnabled));
+                CommandManager.InvalidateRequerySuggested();
             }
         }
 
@@ -127,7 +129,7 @@ namespace ViewModel
 
         public bool IsReadonly
         {
-            get { return !_isAddingOrEdditing; }
+            get { return !_isAddingOrEditing; }
         }
 
         public bool IsEnabled
@@ -137,12 +139,12 @@ namespace ViewModel
 
         public bool IsAddingOrEditing
         {
-            get { return _isAddingOrEdditing; }
+            get { return _isAddingOrEditing; }
             set
             {
-                if (_isAddingOrEdditing != value)
+                if (_isAddingOrEditing != value)
                 {
-                    _isAddingOrEdditing = value;
+                    _isAddingOrEditing = value;
                     OnPropertyChanged(nameof(IsReadonly));
                     OnPropertyChanged(nameof(IsEnabled));
                 }
@@ -153,7 +155,7 @@ namespace ViewModel
         {
             SelectedContact = null;
             EditingContact = new Contact();
-            _isAddingOrEdditing = true;
+            _isAddingOrEditing = true;
             OnPropertyChanged(nameof(IsReadonly));
             OnPropertyChanged(nameof(IsEnabled));
         }
@@ -162,7 +164,7 @@ namespace ViewModel
         {
             if (SelectedContact != null)
             {
-                _isAddingOrEdditing = true;
+                _isAddingOrEditing = true;
                 EditingContact = new Contact
                 {
                     Name = SelectedContact.Name,
@@ -275,5 +277,7 @@ namespace ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+
     }
 }
