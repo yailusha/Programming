@@ -1,4 +1,6 @@
-﻿namespace Model
+﻿using System.ComponentModel;
+
+namespace Model
 {
     /// <summary>
     /// Хранит информацию о контактных данных человека.
@@ -30,6 +32,7 @@
             {
                 if (_name == value) return;
                 _name = value;
+                OnPropertyChanged(nameof(Name));
             }
         }
 
@@ -43,6 +46,7 @@
             {
                 if (_phoneNumber == value) return;
                 _phoneNumber = value;
+                OnPropertyChanged(nameof(PhoneNumber));
             }
         }
 
@@ -56,6 +60,7 @@
             {
                 if (_email == value) return;
                 _email = value;
+                OnPropertyChanged(nameof(Email));
             }
         }
 
@@ -75,6 +80,13 @@
         public Contact()
         {
 
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
