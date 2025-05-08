@@ -80,7 +80,8 @@
                     x:Name="RemoveButton"
                     Grid.Column="6"
                     Content="Remove"
-                    Command="{Binding RemoveCommand}"/>
+                    Command="{Binding RemoveCommand}"
+                    IsEnabled="{Binding IsEnabled}"/>
             </Grid>
         </Grid>
         <Grid Grid.Column="1" Margin="8,8,8,8">

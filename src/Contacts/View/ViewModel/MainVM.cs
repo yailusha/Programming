@@ -53,12 +53,21 @@ namespace ViewModel
         /// </summary>
         public string Name
         {
-            get { return EditingContact?.Name; }
+            get => IsAddingOrEditing ? EditingContact?.Name : SelectedContact?.Name; 
             set
             {
-                if (EditingContact != null)
+                if (IsAddingOrEditing)
                 {
-                    EditingContact.Name = value;
+                    if (EditingContact != null && EditingContact.Name != value)
+                    {
+                        EditingContact.Name = value;
+                        OnPropertyChanged(nameof(Name));
+                        CommandManager.InvalidateRequerySuggested();
+                    }
+                }
+                else if (SelectedContact != null && SelectedContact.Name != value)
+                {
+                    SelectedContact.Name = value;
                     OnPropertyChanged(nameof(Name));
                 }
             }
@@ -69,12 +78,21 @@ namespace ViewModel
         /// </summary>
         public string PhoneNumber
         {
-            get { return EditingContact?.PhoneNumber; }
+            get => IsAddingOrEditing ? EditingContact?.PhoneNumber : SelectedContact?.PhoneNumber; 
             set
             {
-                if (EditingContact != null)
+                if (IsAddingOrEditing)
                 {
-                    EditingContact.PhoneNumber = value;
+                    if (EditingContact != null && EditingContact.PhoneNumber != value)
+                    {
+                        EditingContact.PhoneNumber = value;
+                        OnPropertyChanged(nameof(PhoneNumber));
+                        CommandManager.InvalidateRequerySuggested();
+                    }
+                }
+                else if (SelectedContact != null && SelectedContact.PhoneNumber != value)
+                {
+                    SelectedContact.PhoneNumber = value;
                     OnPropertyChanged(nameof(PhoneNumber));
                 }
 
@@ -86,37 +104,52 @@ namespace ViewModel
         /// </summary>
         public string Email
         {
-            get { return EditingContact?.Email; }
+            get => IsAddingOrEditing ? EditingContact?.Email : SelectedContact?.Email;
             set
             {
-                if (EditingContact != null)
+                if (IsAddingOrEditing)
                 {
-                    EditingContact.Email = value;
-                    OnPropertyChanged(nameof(Email));
+                    if (EditingContact != null && EditingContact.Email != value)
+                    {
+                        EditingContact.Email = value;
+                        OnPropertyChanged(nameof(Email));
+                        CommandManager.InvalidateRequerySuggested();
+                    }
+                    else if (SelectedContact != null && SelectedContact.Email != value)
+                    {
+                        SelectedContact.Email = value;
+                        OnPropertyChanged(nameof(Email));
+                    }
                 }
+
             }
         }
 
         public Contact SelectedContact
         {
-            get { return _selectedContact; }
+            get => _selectedContact; 
             set
             {
-
-                if (!_isAddingOrEditing && value != null)
+                if (_selectedContact != value)
                 {
-                    EditingContact = value;
+                    _selectedContact = value;
+                    if (IsAddingOrEditing && value != null)
+                    {
+                        EditingContact = null;
+                        IsAddingOrEditing = false;
+                    }
+                    OnPropertyChanged(nameof(Name));
+                    OnPropertyChanged(nameof(PhoneNumber));
+                    OnPropertyChanged(nameof(Email));
+                    OnPropertyChanged(nameof(SelectedContact));
+                    OnPropertyChanged(nameof(IsEnabled));
                 }
-                _selectedContact = value;
-                OnPropertyChanged(nameof(SelectedContact));
-                OnPropertyChanged(nameof(IsEnabled));
-                CommandManager.InvalidateRequerySuggested();
             }
         }
 
         public Contact EditingContact
         {
-            get { return _editingContact; }
+            get => _editingContact; 
             set
             {
                 _editingContact = value;
@@ -129,17 +162,22 @@ namespace ViewModel
 
         public bool IsReadonly
         {
-            get { return !_isAddingOrEditing; }
+            get => !_isAddingOrEditing;
         }
 
         public bool IsEnabled
         {
-            get { return _selectedContact != null && Contacts.Count > 0; }
+            get => _selectedContact != null && Contacts.Count > 0;
+        }
+
+        public bool Visible
+        {
+            get => _isAddingOrEditing;
         }
 
         public bool IsAddingOrEditing
         {
-            get { return _isAddingOrEditing; }
+            get => _isAddingOrEditing;
             set
             {
                 if (_isAddingOrEditing != value)
@@ -155,25 +193,22 @@ namespace ViewModel
         {
             SelectedContact = null;
             EditingContact = new Contact();
-            _isAddingOrEditing = true;
+            IsAddingOrEditing = true;
             OnPropertyChanged(nameof(IsReadonly));
-            OnPropertyChanged(nameof(IsEnabled));
+            OnPropertyChanged(nameof(Visible));
         }
 
         private void ExecuteEditCommand(object parameter)
         {
-            if (SelectedContact != null)
+            IsAddingOrEditing = true;
+            EditingContact = new Contact
             {
-                _isAddingOrEditing = true;
-                EditingContact = new Contact
-                {
-                    Name = SelectedContact.Name,
-                    Email = SelectedContact.Email,
-                    PhoneNumber = SelectedContact.PhoneNumber,
-                };
-                OnPropertyChanged(nameof(IsReadonly));
-                OnPropertyChanged(nameof(IsEnabled));
-            }
+                Name = SelectedContact.Name,
+                Email = SelectedContact.Email,
+                PhoneNumber = SelectedContact.PhoneNumber,
+            };
+            OnPropertyChanged(nameof(IsReadonly));
+            OnPropertyChanged(nameof(Visible));
         }
 
         private void ExecuteRemoveCommand(object parameter)
@@ -190,6 +225,10 @@ namespace ViewModel
                     }
                     else
                     {
+                        if (index >=  Contacts.Count)
+                        {
+                            index = Contacts.Count - 1;
+                        }
                         SelectedContact = Contacts[index];
                     }
                 }
@@ -217,11 +256,10 @@ namespace ViewModel
                 SelectedContact.Email = EditingContact.Email;
                 SelectedContact.PhoneNumber = EditingContact.PhoneNumber;
             }
-
             IsAddingOrEditing = false;
             EditingContact = null;
             OnPropertyChanged(nameof(IsReadonly));
-            OnPropertyChanged(nameof(IsEnabled));
+            OnPropertyChanged(nameof(Visible));
         }
 
         private void ExecuteSaveCommand(object parameter)
@@ -243,18 +281,21 @@ namespace ViewModel
 
             EditCommand = new RelayCommand(
                 execute: ExecuteEditCommand,
-                canExecute: _ => SelectedContact != null && Contacts.Count > 0);
+                canExecute: _ => SelectedContact != null && Contacts.Count > 0,
+                useCommandManager: true);
 
             RemoveCommand = new RelayCommand(
                 execute: ExecuteRemoveCommand,
-                canExecute: _ => SelectedContact != null && Contacts.Count > 0);
+                canExecute: _ => SelectedContact != null && Contacts.Count > 0,
+                useCommandManager: true);
 
             ApplyCommand = new RelayCommand(
                 execute: ExecuteApplyCommand,
                 canExecute: _ => IsAddingOrEditing &&
                 !string.IsNullOrEmpty(EditingContact.Name) &&
                 !string.IsNullOrEmpty(EditingContact.PhoneNumber) &&
-                !string.IsNullOrEmpty(EditingContact.Email));
+                !string.IsNullOrEmpty(EditingContact.Email),
+                useCommandManager: true);
 
             SaveCommand = new RelayCommand(
                 execute: ExecuteSaveCommand,

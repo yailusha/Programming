@@ -12,17 +12,31 @@ namespace View.ViewModel
     {
         private Action<object> _execute;
         private Func<object, bool> _canExecute;
+        private readonly bool _useCommandManager;
 
         public event EventHandler CanExecuteChanged
         {
-            add { CommandManager.RequerySuggested += value; }
-            remove {  CommandManager.RequerySuggested -= value;}
+            add 
+            { 
+                if (_useCommandManager)
+                {
+                    CommandManager.RequerySuggested += value;
+                }
+            }
+            remove 
+            {  
+                if (_useCommandManager)
+                {
+                    CommandManager.RequerySuggested -= value;
+                }
+            }
         }
 
-        public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
+        public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null, bool useCommandManager = false)
         {
             _execute = execute;
             _canExecute = canExecute;
+            _useCommandManager = useCommandManager;
         }
         
         public bool CanExecute(object parameter)
