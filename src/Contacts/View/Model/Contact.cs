@@ -84,6 +84,10 @@ namespace Model
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// Уведомляет об изменении свойства с помощью события <see cref="PropertyChanged"/>
+        /// </summary>
+        /// <param name="propertyName">Название свойства</param>
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

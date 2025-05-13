@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
-namespace View.ViewModel
+namespace ViewModel
 {
+    /// <summary>
+    /// Универсальная команда для выполнения и проверки возможности выполнения
+    /// </summary>
     public class RelayCommand : ICommand
     {
         private Action<object> _execute;
         private Func<object, bool> _canExecute;
         private readonly bool _useCommandManager;
 
+        /// <summary>
+        /// Событие, которое вызывается при изменении возможности выполнения
+        /// </summary>
         public event EventHandler CanExecuteChanged
         {
             add 
@@ -32,6 +32,12 @@ namespace View.ViewModel
             }
         }
 
+        /// <summary>
+        /// Создает новую команду
+        /// </summary>
+        /// <param name="execute">Команда</param>
+        /// <param name="canExecute">Функция проверки возможности выполнения команды</param>
+        /// <param name="useCommandManager">Функция для перепроверки canExecute</param>
         public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null, bool useCommandManager = false)
         {
             _execute = execute;
@@ -39,11 +45,20 @@ namespace View.ViewModel
             _useCommandManager = useCommandManager;
         }
         
+        /// <summary>
+        /// Проверяет возможность выполнения команды
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
         public bool CanExecute(object parameter)
         {
             return _canExecute == null || _canExecute(parameter);
         }
 
+        /// <summary>
+        /// Выполняем команду
+        /// </summary>
+        /// <param name="parameter"></param>
         public void Execute(object parameter)
         {
             _execute(parameter);

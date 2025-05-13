@@ -1,12 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
 using System.Windows.Input;
 using Model;
 using Services;
-using View.ViewModel;
 
 namespace ViewModel
 {
@@ -20,6 +17,9 @@ namespace ViewModel
         /// </summary>
         private Contact _selectedContact;
 
+        /// <summary>
+        /// Редактируемый контакт
+        /// </summary>
         private Contact _editingContact;
 
         /// <summary>
@@ -27,25 +27,39 @@ namespace ViewModel
         /// </summary>
         private readonly ContactSerializer _serializer;
 
+        /// <summary>
+        /// Возможность добавления или редактирования
+        /// </summary>
         private bool _isAddingOrEditing;
 
-
         /// <summary>
-        /// Команда для сохранения в файл.
+        /// Команда для добавления контакта
         /// </summary>
         public ICommand AddCommand { get; }
 
         /// <summary>
-        /// Команада для выгрузки из файла.
+        /// Команада для изменения контакта
         /// </summary>
         public ICommand EditCommand { get; }
 
+        /// <summary>
+        /// Команда для удаления контакта
+        /// </summary>
         public ICommand RemoveCommand { get; }
 
+        /// <summary>
+        /// Команда, которая принимает изменения
+        /// </summary>
         public ICommand ApplyCommand { get; }
 
+        /// <summary>
+        /// Команда сохранения файла
+        /// </summary>
         public ICommand SaveCommand { get; }
 
+        /// <summary>
+        /// Возвращает список контактов
+        /// </summary>
         public ObservableCollection<Contact> Contacts { get; }
 
         /// <summary>
@@ -125,6 +139,9 @@ namespace ViewModel
             }
         }
 
+        /// <summary>
+        /// Задает и возвращает выбранный контакт
+        /// </summary>
         public Contact SelectedContact
         {
             get => _selectedContact; 
@@ -143,10 +160,14 @@ namespace ViewModel
                     OnPropertyChanged(nameof(Email));
                     OnPropertyChanged(nameof(SelectedContact));
                     OnPropertyChanged(nameof(IsEnabled));
+                    OnPropertyChanged(nameof(Visible));
                 }
             }
         }
 
+        /// <summary>
+        /// Задает и возвращает редактируемый контакт
+        /// </summary>
         public Contact EditingContact
         {
             get => _editingContact; 
@@ -160,21 +181,33 @@ namespace ViewModel
             }
         }
 
+        /// <summary>
+        /// Возвращает свойство только для чтения
+        /// </summary>
         public bool IsReadonly
         {
             get => !_isAddingOrEditing;
         }
-
+        
+        /// <summary>
+        /// Возвращает свойство доступности
+        /// </summary>
         public bool IsEnabled
         {
             get => _selectedContact != null && Contacts.Count > 0;
         }
 
+        /// <summary>
+        /// Возвращает свойство видимости
+        /// </summary>
         public bool Visible
         {
             get => _isAddingOrEditing;
         }
-
+        
+        /// <summary>
+        /// Возвращает и задает возможность добавления или редактирования
+        /// </summary>
         public bool IsAddingOrEditing
         {
             get => _isAddingOrEditing;
@@ -189,6 +222,10 @@ namespace ViewModel
             }
         }
 
+        /// <summary>
+        /// Функция добавления нового контакта
+        /// </summary>
+        /// <param name="parameter"></param>
         private void ExecuteAddCommand(object parameter)
         {
             SelectedContact = null;
@@ -198,6 +235,10 @@ namespace ViewModel
             OnPropertyChanged(nameof(Visible));
         }
 
+        /// <summary>
+        /// Функция редактирования контакта
+        /// </summary>
+        /// <param name="parameter"></param>
         private void ExecuteEditCommand(object parameter)
         {
             IsAddingOrEditing = true;
@@ -211,6 +252,10 @@ namespace ViewModel
             OnPropertyChanged(nameof(Visible));
         }
 
+        /// <summary>
+        /// Функция удаления контакта
+        /// </summary>
+        /// <param name="parameter"></param>
         private void ExecuteRemoveCommand(object parameter)
         {
             if (SelectedContact != null)
@@ -236,7 +281,10 @@ namespace ViewModel
             }
         }
 
-
+        /// <summary>
+        /// Функция применения изменений
+        /// </summary>
+        /// <param name="parameter"></param>
         private void ExecuteApplyCommand(object parameter)
         {
             if (SelectedContact == null)
