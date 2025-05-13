@@ -245,8 +245,8 @@ namespace ViewModel
             EditingContact = new Contact
             {
                 Name = SelectedContact.Name,
-                Email = SelectedContact.Email,
                 PhoneNumber = SelectedContact.PhoneNumber,
+                Email = SelectedContact.Email,
             };
             OnPropertyChanged(nameof(IsReadonly));
             OnPropertyChanged(nameof(Visible));
@@ -292,8 +292,8 @@ namespace ViewModel
                 Contact contact = new Contact
                 (
                     EditingContact.Name,
-                    EditingContact.Email,
-                    EditingContact.PhoneNumber
+                    EditingContact.PhoneNumber,
+                    EditingContact.Email                    
                 );
                 Contacts.Add(contact);
                 SelectedContact = contact;
@@ -301,8 +301,8 @@ namespace ViewModel
             else
             {
                 SelectedContact.Name = EditingContact.Name;
-                SelectedContact.Email = EditingContact.Email;
                 SelectedContact.PhoneNumber = EditingContact.PhoneNumber;
+                SelectedContact.Email = EditingContact.Email;            
             }
             IsAddingOrEditing = false;
             EditingContact = null;
@@ -310,6 +310,10 @@ namespace ViewModel
             OnPropertyChanged(nameof(Visible));
         }
 
+        /// <summary>
+        /// Функция сохранения данных в файл
+        /// </summary>
+        /// <param name="parameter"></param>
         private void ExecuteSaveCommand(object parameter)
         {
             _serializer.SaveFile(Contacts);
