@@ -12,6 +12,20 @@ namespace View
         {
             InitializeComponent();
             DataContext = new MainVM();
+            Closing += MainWindow_Closing;
+        }
+
+        /// <summary>
+        /// Сохраняет данные по закрытии приложения
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (DataContext is MainVM vm)
+            {
+                vm.SaveCommand.Execute(DataContext);
+            }
         }
     }
 }

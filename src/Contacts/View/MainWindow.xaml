@@ -6,138 +6,165 @@
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
         Title="Contacts"
-        Height="351"
-        Width="496"
-        MinWidth="496"
-        MinHeight="351"
+        Height="408"
+        Width="550"
+        MinWidth="550"
+        MinHeight="408"
         Icon="/contacts_96x96.ico">
-    <Grid Margin="15,15,15,15">
-        <Grid Margin="0,0,0,28">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <GroupBox 
-                Header="Edit Contact"                    
-                Margin="0,0,1.5,0">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="3"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="3"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="3"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="3"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="3"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Label 
-                        Content="Name:"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"/>
-                    <TextBox 
-                        Grid.Row="2"
-                        TextWrapping="Wrap"
-                        Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
-                        Height="18"/>
-                    <Label 
-                        Content="Phone Number:"
-                        HorizontalAlignment="Left"
-                        Grid.Row="4"
-                        VerticalAlignment="Top"/>
-                    <TextBox 
-                        Grid.Row="6"
-                        TextWrapping="Wrap"
-                        Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
-                        Height="18"/>
-                    <Label 
-                        Content="Email:"
-                        HorizontalAlignment="Left"
-                        Grid.Row="8"
-                        VerticalAlignment="Top"/>
-                    <TextBox 
-                        Grid.Row="10"
-                        TextWrapping="Wrap"
-                        Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
-                        Height="18"/>
-                </Grid>
-            </GroupBox>
-            <GroupBox 
-                Grid.Column="1"
-                Header="Read Contact"
-                Margin="1.5,0,0,0">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="3"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="3"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="3"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="3"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="3"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Label 
-                        Content="Name:"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"/>
-                    <TextBlock 
-                        Grid.Row="2"
-                        TextWrapping="Wrap"
-                        Text="{Binding Name}"
-                        Height="18"
-                        FontWeight="Bold"/>
-                    <Label 
-                        Content="Phone Number:"
-                        HorizontalAlignment="Left"
-                        Grid.Row="4"
-                        VerticalAlignment="Top"/>
-                    <TextBlock 
-                        Grid.Row="6"
-                        TextWrapping="Wrap"
-                        Text="{Binding PhoneNumber}"
-                        Height="18"
-                        FontWeight="Bold"/>
-                    <Label 
-                        Content="Email:"
-                        HorizontalAlignment="Left"
-                        Grid.Row="8"
-                        VerticalAlignment="Top"/>
-                    <TextBlock 
-                        Grid.Row="10"
-                        TextWrapping="Wrap"
-                        Text="{Binding Email}"
-                        Height="18"
-                        FontWeight="Bold"/>
-                </Grid>
-            </GroupBox>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <GridSplitter 
+            HorizontalAlignment="Left"
+            Width="3"
+            Grid.Column="1"
+            Background="White"/>
+        <Grid Background="#FFF8F8F8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="3"/>
+                <RowDefinition/>
+                <RowDefinition Height="3"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Margin="8,8,8,3" Grid.RowSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Find:"/>
+                <TextBox
+                    Grid.Column="2"
+                    TextWrapping="Wrap"/>
+            </Grid>
+            <Grid Grid.Row="3" Margin="8,0,8,0">
+                <ListBox 
+                    ItemsSource="{Binding Contacts, UpdateSourceTrigger=PropertyChanged}"
+                    SelectedItem="{Binding SelectedContact, Mode=TwoWay}"
+                    DisplayMemberPath="Name"/>
+            </Grid>
+            <Grid 
+                Grid.Row="5"
+                Height="25"
+                VerticalAlignment="Bottom"
+                Margin="8,0,8,8"/>
+            <Grid Grid.Row="5" Margin="8,0,8,8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button 
+                    x:Name="AddButton"
+                    Content="Add"
+                    Grid.ColumnSpan="3"
+                    Command="{Binding AddCommand}"/>
+                <Button 
+                    x:Name="EditButton"
+                    Grid.Column="4"
+                    Content="Edit"
+                    Command="{Binding EditCommand}"
+                    IsEnabled="{Binding IsEnabled}"/>
+                <Button 
+                    x:Name="RemoveButton"
+                    Grid.Column="6"
+                    Content="Remove"
+                    Command="{Binding RemoveCommand}"
+                    IsEnabled="{Binding IsEnabled}"/>
+            </Grid>
         </Grid>
-        <Grid 
-            VerticalAlignment="Bottom"
-            HorizontalAlignment="Right"
-            Width="153">
-            <Button 
-                x:Name="LoadButton"
-                Content="Load"
-                Width="75" 
-                Height="25"
-                HorizontalAlignment="Right"
-            Command="{Binding LoadCommand}"/>
-            <Button 
-                x:Name="SaveButton"
-                Content="Save"
-                Width="75"
-                Height="25"
-                HorizontalAlignment="Left"
-                Command="{Binding SaveCommand}"/>
+        <Grid Grid.Column="1" Margin="8,8,8,8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2.2*"/>
+                <RowDefinition Height="1.2*"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="3"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label 
+                    Grid.Column="2"
+                    Content="Name:"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"/>
+                <Image 
+                    HorizontalAlignment="Center"
+                    Height="100"
+                    Grid.Row="1"
+                    VerticalAlignment="Top"
+                    Width="100"
+                    Source="/photo_placeholder_100x100.png"
+                    Grid.RowSpan="2"/>
+                <Grid Grid.Column="2" Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="3"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="3"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="3"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="3"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBox 
+                        TextWrapping="Wrap"
+                        Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        VerticalAlignment="Center"
+                        IsReadOnly="{Binding IsReadonly}"/>
+                    <Label 
+                        Content="Phone Number:"
+                        HorizontalAlignment="Left"
+                        Grid.Row="2"
+                        VerticalAlignment="Center"/>
+                    <TextBox 
+                        Grid.Row="4"
+                        TextWrapping="Wrap"
+                        Text="{Binding PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        VerticalAlignment="Center"
+                        IsReadOnly="{Binding IsReadonly}"/>
+                    <Label 
+                        Content="Email:"
+                        HorizontalAlignment="Left"
+                        Grid.Row="6"
+                        VerticalAlignment="Center"/>
+                    <TextBox 
+                        Grid.Row="8"
+                        TextWrapping="Wrap"
+                        Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        VerticalAlignment="Center"
+                        IsReadOnly="{Binding IsReadonly}"/>
+                    <Button 
+                        Content="Apply"
+                        HorizontalAlignment="Left"
+                        Grid.Row="10"
+                        VerticalAlignment="Top"
+                        Width="75"
+                        Height="25"
+                        Command="{Binding ApplyCommand}"
+                        Visibility="{Binding Visible, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

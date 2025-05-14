@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System.Collections.ObjectModel;
+using System.IO;
+using System.Windows;
 using Model;
 using Newtonsoft.Json;
 
@@ -27,26 +29,41 @@ namespace Services
         /// <summary>
         /// Записывает данные в файл.
         /// </summary>
-        /// <param name="contact">Контактные данные человека.</param>
-        public void SaveFile(Contact contact)
+        /// <param name="contacts">Коллекция контактных данных человека.</param>
+        public void SaveFile(ObservableCollection<Contact> contacts)
         {
-            if (!File.Exists(_filePath))
+            try
             {
-                File.Create(_filePath);
+                string json = JsonConvert.SerializeObject(contacts, Formatting.Indented);
+                File.WriteAllText(_filePath, json);
             }
-            string json = JsonConvert.SerializeObject(contact);
-            File.WriteAllText(_filePath, json);
+            catch (Exception ex)
+            {
+                MessageBox.Show("Contacts can not be saved");
+            }
         }
 
         /// <summary>
-        /// Выгружает контактные данные человека в программу.
+        /// Выгружает коллекцию контактных данных людей в программу.
         /// </summary>
-        /// <returns>Контактные данные человека.</returns>
-        public Contact LoadFile()
+        /// <returns>Коллекция контактов</returns>
+        public ObservableCollection<Contact> LoadFile()
         {
-            string json = File.ReadAllText(_filePath);
-            Contact contact = Newtonsoft.Json.JsonConvert.DeserializeObject<Contact>(json);
-            return contact;
+            try
+            {
+                if (!File.Exists(_filePath))
+                {
+                    return new ObservableCollection<Contact>();
+                }
+                string json = File.ReadAllText(_filePath);
+                var contacts = JsonConvert.DeserializeObject<ObservableCollection<Contact>>(json);
+                return contacts ?? new ObservableCollection<Contact>();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Contacts could not be loaded");
+                return new ObservableCollection<Contact>(); 
+            }
         }
     }
 }
