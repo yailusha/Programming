@@ -300,9 +300,15 @@ namespace ViewModel
             }
             else
             {
-                SelectedContact.Name = EditingContact.Name;
-                SelectedContact.PhoneNumber = EditingContact.PhoneNumber;
-                SelectedContact.Email = EditingContact.Email;            
+                var updatedContact = new Contact
+                {
+                    Name = EditingContact.Name,
+                    PhoneNumber = EditingContact.PhoneNumber,
+                    Email = EditingContact.Email,
+                };
+                int index = Contacts.IndexOf(SelectedContact);
+                Contacts[index] = updatedContact;
+                SelectedContact = updatedContact;
             }
             IsAddingOrEditing = false;
             EditingContact = null;
