@@ -15,6 +15,11 @@ namespace View
             Closing += MainWindow_Closing;
         }
 
+        /// <summary>
+        /// Сохраняет данные по закрытии приложения
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
         {
             if (DataContext is MainVM vm)
