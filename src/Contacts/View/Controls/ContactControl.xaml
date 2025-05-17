@@ -5,6 +5,25 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:View.Controls"
              mc:Ignorable="d" Height="151" Width="342">
+    <UserControl.Resources>
+        <Style x:Key="ErrorToolTipStyle" TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip">
+                        <Setter.Value>
+                            <ToolTip
+                                Content="{Binding RelativeSource={RelativeSource Self}, Path=PlacementTarget.(ValidationErrors)[0].ErrorContent}"
+                                Background="Red"
+                                Foreground="Black"
+                                Padding="8"
+                                FontSize="12"/>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background" Value="LightPink"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid Background="White">
             <Grid.RowDefinitions>
@@ -41,25 +60,26 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="3"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <TextBox 
                     TextWrapping="Wrap"
-                    Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                     VerticalAlignment="Center"
-                    IsReadOnly="{Binding IsReadonly}"/>
+                    IsReadOnly="{Binding IsReadonly, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    Style="{StaticResource ErrorToolTipStyle}"/>
                 <Label 
                     Content="Phone Number:"
                     HorizontalAlignment="Left"
                     Grid.Row="2"
                     VerticalAlignment="Center"/>
-                <TextBox x:Name="PhoneNumberTextBox" 
+                <TextBox 
+                    x:Name="PhoneNumberTextBox" 
                     Grid.Row="4"
                     TextWrapping="Wrap"
-                    Text="{Binding PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Text="{Binding PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                     VerticalAlignment="Center"
-                    IsReadOnly="{Binding IsReadonly}"/>
+                    IsReadOnly="{Binding IsReadonly, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    Style="{StaticResource ErrorToolTipStyle}"/>
                 <Label 
                     Content="Email:"
                     HorizontalAlignment="Left"
@@ -68,9 +88,10 @@
                 <TextBox 
                     Grid.Row="8"
                     TextWrapping="Wrap"
-                    Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                     VerticalAlignment="Center"
-                    IsReadOnly="{Binding IsReadonly}"/>
+                    IsReadOnly="{Binding IsReadonly, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    Style="{StaticResource ErrorToolTipStyle}"/>
             </Grid>
         </Grid>
 

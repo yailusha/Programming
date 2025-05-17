@@ -53,10 +53,10 @@ namespace View.Controls
         }
 
         private static readonly DependencyProperty ReadonlyProperty =
-            DependencyProperty.Register("Readonly", typeof(bool), typeof(ContactControl).BaseType,
+            DependencyProperty.Register("IsReadonly", typeof(bool), typeof(ContactControl).BaseType,
                 new PropertyMetadata(true));
 
-        public bool Readonly
+        public bool IsReadonly
         {
             get { return (bool)GetValue(ReadonlyProperty); }
             set { SetValue(ReadonlyProperty, value); }
