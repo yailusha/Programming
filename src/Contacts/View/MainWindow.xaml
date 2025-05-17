@@ -13,6 +13,30 @@
         Icon="/contacts_96x96.ico">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <DataTemplate x:Key="contactTemplate">
+            <Grid Margin="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image 
+                    Source="/photo_placeholder_50x50.png"
+                    Width="50"
+                    Height="50"
+                    Grid.Column="0"/>
+                <StackPanel Grid.Column="1"
+                    Margin="3,0,0,0"
+                    VerticalAlignment="Center">
+                    <TextBlock 
+                        Text="{Binding Name}"
+                        FontSize="12"
+                        FontWeight="SemiBold"/>
+                    <TextBlock
+                        Text="{Binding PhoneNumber}"
+                        FontSize="10"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -45,10 +69,10 @@
                     TextWrapping="Wrap"/>
             </Grid>
             <Grid Grid.Row="3" Margin="8,0,8,0">
-                <ListBox 
+                <ListBox
+                    ItemTemplate="{StaticResource contactTemplate}"
                     ItemsSource="{Binding Contacts, UpdateSourceTrigger=PropertyChanged}"
-                    SelectedItem="{Binding SelectedContact, Mode=TwoWay}"
-                    DisplayMemberPath="Name"/>
+                    SelectedItem="{Binding SelectedContact, Mode=TwoWay}"/>
             </Grid>
             <Grid 
                 Grid.Row="5"
