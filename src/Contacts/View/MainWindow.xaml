@@ -121,12 +121,19 @@
             </Grid.RowDefinitions>
             <Controls:ContactControl
                 DataContext="{Binding ActiveContact}"
-                IsReadonly="{Binding DataContext.IsReadonly, RelativeSource={RelativeSource AncestorType=Window}}" Width="NaN" Grid.ColumnSpan="2"/>
+                IsReadonly="{Binding DataContext.IsReadonly, RelativeSource={RelativeSource AncestorType=Window}}" 
+                Width="NaN" 
+                Grid.ColumnSpan="2"/>
             <Button 
                 Content="Apply"
                 Width="75"
                 Command="{Binding ApplyCommand}"
-                Visibility="{Binding Visible, Converter={StaticResource BoolToVisibilityConverter}}" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Grid.Row="2" Grid.Column="1"/>
+                Visibility="{Binding Visible, Converter={StaticResource BoolToVisibilityConverter}}" 
+                HorizontalAlignment="Left" 
+                Height="25" 
+                VerticalAlignment="Top" 
+                Grid.Row="2" 
+                Grid.Column="1"/>
         </Grid>
     </Grid>
 </Window>
