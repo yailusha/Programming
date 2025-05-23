@@ -6,7 +6,7 @@ namespace Model
     /// <summary>
     /// Хранит информацию о контактных данных человека.
     /// </summary>
-    internal class Contact : IDataErrorInfo
+    public class Contact : IDataErrorInfo, INotifyPropertyChanged
     {
         /// <summary>
         /// Имя человека.
@@ -76,6 +76,16 @@ namespace Model
             Name = name;
             PhoneNumber = phoneNumber;
             Email = email;
+        }
+
+        public Contact(Contact contact)
+        {
+            if (contact != null)
+            {
+                Name = contact.Name;
+                PhoneNumber = contact.PhoneNumber;
+                Email = contact.Email;
+            }
         }
 
         public Contact()

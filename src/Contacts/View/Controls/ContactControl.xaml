@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:View.Controls"
-             mc:Ignorable="d" Height="151" Width="342">
+             mc:Ignorable="d" Height="151" Width="295">
     <UserControl.Resources>
         <Style x:Key="ErrorToolTipStyle" TargetType="TextBox">
             <Style.Triggers>
