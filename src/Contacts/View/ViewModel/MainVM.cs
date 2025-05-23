@@ -22,6 +22,9 @@ namespace ViewModel
         /// </summary>
         private Contact _editingContact;
 
+        /// <summary>
+        /// Отображаемый контакт
+        /// </summary>
         private Contact _activeContact;
 
         /// <summary>
@@ -153,6 +156,9 @@ namespace ViewModel
             }
         }
 
+        /// <summary>
+        /// Возвращает отображаемый контакт
+        /// </summary>
         public Contact ActiveContact => IsAddingOrEditing ? EditingContact : SelectedContact;
 
         /// <summary>
@@ -291,6 +297,10 @@ namespace ViewModel
             _serializer.SaveFile(Contacts);
         }
 
+        /// <summary>
+        /// Проверяет, все ли поля заполнены
+        /// </summary>
+        /// <returns>True, если поля заполнены. False, если поля не заполнены</returns>
         private bool IsAllFieldsFilled()
         {
             return
@@ -299,6 +309,10 @@ namespace ViewModel
                 !string.IsNullOrWhiteSpace(EditingContact?.Email);
         }
 
+        /// <summary>
+        /// Проверяет, все ли поля валидны
+        /// </summary>
+        /// <returns>True, если поля валидны. False, если поля не валидны</returns>
         private bool IsValidContact()
         {
             return

@@ -78,6 +78,10 @@ namespace Model
             Email = email;
         }
 
+        /// <summary>
+        /// Создает копию экземпляра класса <see cref="Contact"/>
+        /// </summary>
+        /// <param name="contact">Копия контакта</param>
         public Contact(Contact contact)
         {
             if (contact != null)
@@ -93,6 +97,11 @@ namespace Model
 
         }
 
+        /// <summary>
+        /// Обеспечивает валидацию для всех полей
+        /// </summary>
+        /// <param name="columnName">Проверяем свойство</param>
+        /// <returns></returns>
         public string this[string columnName]
         {
             get
@@ -146,6 +155,9 @@ namespace Model
             }
         }
 
+        /// <summary>
+        /// Возвращает ошибки
+        /// </summary>
         public string Error => null;
 
         public event PropertyChangedEventHandler PropertyChanged;
