@@ -99,14 +99,12 @@
                     x:Name="EditButton"
                     Grid.Column="4"
                     Content="Edit"
-                    Command="{Binding EditCommand}"
-                    IsEnabled="{Binding IsEnabled}"/>
+                    Command="{Binding EditCommand}"/>
                 <Button 
                     x:Name="RemoveButton"
                     Grid.Column="6"
                     Content="Remove"
-                    Command="{Binding RemoveCommand}"
-                    IsEnabled="{Binding IsEnabled}"/>
+                    Command="{Binding RemoveCommand}"/>
             </Grid>
         </Grid>
         <Grid Grid.Column="1" Margin="8,8,8,8">
@@ -120,7 +118,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Controls:ContactControl
-                DataContext="{Binding ActiveContact}"
+                DataContext="{Binding EditingContact}"
                 IsReadonly="{Binding DataContext.IsReadonly, RelativeSource={RelativeSource AncestorType=Window}}" 
                 Width="NaN" 
                 Grid.ColumnSpan="2"/>
