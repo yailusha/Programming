@@ -1,0 +1,35 @@
+﻿using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ObjectOrientedPractics.Model.Orders
+{
+    [DataContract]
+    internal class PriorityOrder : Order
+    {
+        /// <summary>
+        /// Задает и возвращает желаемую дату доставки.
+        /// </summary>
+        [DataMember]
+        public DateTime DesiredDeliveryDate { get; set; }
+        /// <summary>
+        /// Задает и возвращает желаемое время доставки.
+        /// </summary>
+        [DataMember]
+        public DeliveryTimeRange DesiredDeliveryTime { get; set; }
+        public PriorityOrder(bool isId) : base(isId)
+        {
+        }
+
+        public PriorityOrder(Address address, List<Item> items, bool isId) : base(address, items, isId)
+        {
+            DesiredDeliveryDate = DateTime.MaxValue;
+            DesiredDeliveryTime = 0;
+        }
+    }
+}
