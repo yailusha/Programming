@@ -9,7 +9,7 @@ namespace Services
     /// <summary>
     /// Хранит методы сериализатора контактов.
     /// </summary>
-    internal class ContactSerializer
+    public class ContactSerializer
     {
         /// <summary>
         /// Путь до "Мои документы".
