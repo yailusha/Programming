@@ -60,7 +60,7 @@ namespace View.Controls
         /// По умолчания свойство ReadOnly - true
         /// </summary>
         private static readonly DependencyProperty ReadonlyProperty =
-            DependencyProperty.Register("IsReadonly", typeof(bool), typeof(ContactControl).BaseType,
+            DependencyProperty.Register("IsReadonly", typeof(bool), typeof(ContactControl),
                 new PropertyMetadata(true));
 
         /// <summary>
