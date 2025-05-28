@@ -52,13 +52,11 @@
         <Grid Background="#FFF8F8F8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="3"/>
                 <RowDefinition/>
-                <RowDefinition Height="3"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Grid Margin="8,8,8,3" Grid.RowSpan="2">
+            <Grid Margin="8,8,8,3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="3"/>
@@ -69,47 +67,48 @@
                     Grid.Column="2"
                     TextWrapping="Wrap"/>
             </Grid>
-            <Grid Grid.Row="3" Margin="8,0,8,0">
+            <Grid Grid.Row="2" Margin="8,0,8,0">
                 <ListBox
                     ItemTemplate="{StaticResource contactTemplate}"
                     ItemsSource="{Binding Contacts, UpdateSourceTrigger=PropertyChanged}"
                     SelectedItem="{Binding SelectedContact, Mode=TwoWay}"/>
             </Grid>
             <Grid 
-                Grid.Row="5"
+                Grid.Row="3"
                 Height="25"
                 VerticalAlignment="Bottom"
                 Margin="8,0,8,8"/>
-            <Grid Grid.Row="5" Margin="8,0,8,8">
+            <Grid Grid.Row="5" Margin="8,3,8,8">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="3"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="3"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Button 
                     x:Name="AddButton"
                     Content="Add"
-                    Grid.ColumnSpan="3"
-                    Command="{Binding AddCommand}"/>
+                    Command="{Binding AddCommand}"
+                    Height="25"
+                    Grid.Column="0"/>
                 <Button 
                     x:Name="EditButton"
-                    Grid.Column="4"
                     Content="Edit"
-                    Command="{Binding EditCommand}"/>
+                    Command="{Binding EditCommand}"
+                    Height="25"
+                    Grid.Column="2"/>
                 <Button 
                     x:Name="RemoveButton"
-                    Grid.Column="6"
                     Content="Remove"
-                    Command="{Binding RemoveCommand}"/>
+                    Command="{Binding RemoveCommand}"
+                    Height="25"
+                    Grid.Column="4"/>
             </Grid>
         </Grid>
         <Grid Grid.Column="1" Margin="8,8,8,8">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="111"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -121,7 +120,7 @@
                 DataContext="{Binding EditingContact}"
                 IsReadonly="{Binding DataContext.IsReadonly, RelativeSource={RelativeSource AncestorType=Window}}" 
                 Width="NaN" 
-                Grid.ColumnSpan="2"/>
+                Grid.ColumnSpan="2" Margin="10,0,9,0"/>
             <Button 
                 Content="Apply"
                 Width="75"
